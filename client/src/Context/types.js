@@ -1,0 +1,12 @@
+export const SEARCH_USERS = 'SEARCH_USERS';
+export const GET_USER = 'GET_USER';
+export const GET_REPOS = 'GET_REPOS';
+export const CLEAR_USERS = 'CLEAR_USERS';
+export const SET_LOADING = 'SETLOADING';
+export const SET_TOGGLE = 'SET_TOGGLE';
+export const NAV_LOGIN_BTN = 'NAV_LOGIN_BTN';
+export const SUCCESSFUL_LOGIN = 'SUCCESSFUL_LOGIN';
+export const FAILED_LOGIN = 'FAILED_LOGIN';
+export const LOGOUT = 'LOGOUT';
+export const SET_DANGER = 'SET_DANGER';
+export const RESET_DANGER = 'RESET_DANGER';

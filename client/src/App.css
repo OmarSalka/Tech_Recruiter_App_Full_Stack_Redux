@@ -1,0 +1,700 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+/* Global Styling */
+:root {
+  --git-primary-color: #f4f4f4;
+  --git-primary-background-color: #388f83;
+  --git-hover-background: #f4f4f41c;
+  --twitter-primary-background-color: #1da1f2;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  background-color: #fff;
+  color: #333;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  overflow: hidden;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.primary {
+  font-size: 2rem;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--git-primary-color);
+}
+
+.form {
+  max-width: 900px;
+  margin: auto;
+  overflow: hidden;
+  padding: 2rem;
+  text-align: center;
+}
+
+.form input {
+  width: 100%;
+  height: 2rem;
+  margin: 0.2rem 0rem;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--light-color);
+  color: #333;
+  padding: 0.4rem 1.3rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  /* margin-right: 0.5rem; */
+  transition: opacity 0.2s ease-in;
+  outline: none;
+}
+
+.btn-primary {
+  color: var(--git-primary-color);
+  border: none;
+  background: var(--git-primary-background-color);
+}
+
+.btn:hover {
+  opacity: 0.7;
+}
+
+/* Landing Page ======================================*/
+
+.navLanding {
+  background-color: rgba(255, 255, 255, 0);
+  color: #fff;
+}
+.transparent h1,
+span,
+a {
+  color: #fff;
+}
+
+.theLoginButton {
+  position: relative;
+  font-family: 'Roboto';
+  border-radius: 5px;
+  color: #ffffff;
+  background: #60a360;
+  z-index: 1;
+}
+
+/* Section1 */
+
+#section1 {
+  margin-top: -4.3rem;
+  color: #f4f4f4;
+}
+
+#section1 h1 {
+  margin-bottom: '2rem';
+  font-size: '3rem';
+}
+
+.navLanding span {
+  cursor: pointer;
+}
+
+.backgroundPic {
+  background: #333 url(./img/unsplash3.jpg) no-repeat top center / cover;
+  height: 100vh;
+}
+
+.landing {
+  height: 100vh;
+  display: flex;
+  /* Overlay */
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.showcaseContent {
+  margin-top: 20rem;
+  margin-bottom: 20rem;
+}
+
+.downArrow {
+  margin-top: -4rem;
+  cursor: pointer;
+}
+
+.sideNavBar {
+  color: #fff;
+  position: fixed;
+  top: 45vh;
+  left: 0;
+  z-index: 1;
+  /* background: grey; */
+}
+
+.sideNavBar ul li i {
+  color: #f8f7f7;
+}
+.sideNavBar ul li span {
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0);
+}
+
+.sideNavBar ul li span:hover {
+  color: #f4f4f4;
+}
+
+/* Section2 */
+#section2 {
+  background: #333; /**/
+  height: 100vh;
+  color: #f4f4f4;
+}
+
+.section2Content {
+  margin-top: 6rem;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 3fr);
+  grid-gap: 1rem;
+  margin: 2rem 0rem;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0px 8px 8px 0px #424141;
+  color: #f4f4f4;
+  background: #333; /**/
+  border: 1px dotted #d6d1d100;
+  text-align: center;
+  /* height: 150px; */
+}
+
+.featureItem i {
+  padding: 1rem;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.featureItem p {
+  margin: 0.5rem 0;
+  text-align: left;
+}
+
+/* Section3 */
+#section3 {
+  color: #f4f4f4;
+  background: #333;
+}
+
+.snippetsGrid {
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
+}
+
+.snippetGridItem {
+  border-radius: 10px;
+  width: 100%;
+  box-shadow: 0px 8px 8px 0px #0a0808;
+}
+
+.section3ContactUs {
+  margin: 3rem;
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+  grid-gap: 2rem;
+}
+
+#section3 hr {
+  /* width: 60%; */
+  margin-bottom: 1rem;
+}
+
+.contactItem {
+  text-align: left;
+}
+
+.login {
+  border: 1px solid #333;
+  border-radius: 10px;
+  background: #ece7e7b2;
+}
+
+.login h1 {
+  margin-bottom: 2rem;
+}
+
+.login label {
+  font-weight: 100;
+  margin-bottom: 1rem;
+}
+
+.login input {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  width: 50%;
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>> Alert */
+
+.loginAlert {
+  padding: 0.5rem;
+  border: 1px solid red;
+}
+
+/* Navbars */
+/* global */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3rem 2rem;
+  z-index: 1;
+  width: 100%;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+}
+
+.navbar ul {
+  display: flex;
+}
+
+.navbar ul a {
+  padding: 1rem;
+}
+
+.navbar ul a:hover {
+  background: var(--git-hover-background);
+  border-radius: 5px;
+}
+
+/* Dropdown =================== */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--git-primary-background-color);
+  min-width: 6.75rem;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 1;
+  top: 2.4rem;
+}
+
+.dropdown-content a,
+.dropdown-item {
+  float: none;
+  padding: 1rem;
+  display: block;
+  text-align: center;
+}
+
+.dropdown-content a:hover {
+  background-color: var(--git-hover-background);
+}
+
+.dropdown-item:hover {
+  background-color: var(--git-hover-background);
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Users */
+
+.userCard {
+  background: #f4f4f4bd;
+  padding: 1rem 0rem;
+  /* text-align: center; */
+  align-items: center;
+  box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.2);
+}
+
+.userCard * {
+  padding-top: 0.4rem;
+}
+
+.userCard img {
+  border-radius: 50%;
+  height: 30%;
+  width: 30%;
+}
+
+.userCards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1.5rem;
+}
+
+.profileCard {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  background: #ece7e7b2;
+  padding: 1rem 0;
+}
+
+.profileCard strong {
+  color: var(--git-primary-background-color);
+  font-size: 1rem;
+}
+
+.cardElement1 p {
+  text-align: justify;
+  padding: 0.3rem 2rem;
+}
+
+.cardElements {
+  background: #18131300;
+}
+
+.cardElement1 {
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  border-right: 1.5px solid #d6d1d1;
+}
+
+.cardElement1 p {
+  font-size: 14px;
+}
+
+.cardElement2 {
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.flexStats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userQuantifiedInfo {
+  display: 'flex';
+  padding-right: '1rem';
+}
+
+.userQuantifiedInfo p {
+  display: inline-block;
+  margin: 2px;
+  padding: 3px 7px;
+  font-size: 11px;
+  border-radius: 15px;
+  color: #fff;
+}
+
+.repo {
+  padding: 0.3rem;
+  border: 1px dotted #d6d1d1;
+  margin: 0.7rem;
+  text-align: left;
+}
+
+.repo * {
+  padding-left: 0.5rem !important;
+}
+
+.repo a {
+  color: var(--git-primary-background-color);
+  font-weight: bold;
+  padding: 0 !important;
+}
+
+/* ====================== */
+
+/* Git */
+.git {
+  background: var(--git-primary-background-color);
+  color: var(--git-primary-color);
+}
+/* Twitter */
+.twitter {
+  background: var(--twitter-primary-background-color);
+  color: var(--git-primary-color);
+}
+/* linkedin */
+
+/* >>>>>>>>>>>>>>>>>>>> Responsive Design <<<<<<<<<<<<<<<<<<<<<< */
+
+/* Tablets */
+@media (max-width: 1130px) {
+  .profileCard {
+    margin: 1rem;
+  }
+  .features {
+    grid-template-columns: repeat(2, 1fr);
+    margin: 2rem 3rem;
+  }
+
+  .sideNavBar {
+    display: none;
+  }
+
+  .downArrow {
+    margin-top: 0rem;
+  }
+}
+
+/* Unique: git profile cards */
+@media (max-width: 830px) {
+  .flexStats {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 1rem;
+  }
+
+  .userQuantifiedInfo {
+    margin-left: 1.5rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  /* Navbars */
+
+  .sideNavBar {
+    display: none;
+  }
+
+  .navbar {
+    flex-direction: column;
+  }
+
+  .navbar ul {
+    margin-top: 1rem;
+  }
+
+  .navLanding {
+    background: #333;
+    padding: 0.5rem 3rem;
+  }
+  .navLanding ul {
+    flex-direction: column;
+    margin-top: 1rem;
+  }
+
+  .navLanding ul li {
+    width: 100vw;
+    margin-bottom: 0.3rem;
+    border-bottom: 1px solid #5a5959;
+    padding-bottom: 0.5rem;
+    text-align: center;
+  }
+  .navLanding ul li:last-child {
+    padding-top: 0.2rem;
+    border: none;
+  }
+
+  .dropdown-content {
+    top: 1.75rem;
+  }
+
+  /* Landing Sections */
+
+  /* Section1 */
+  #section1 {
+    height: 100vh;
+    margin-top: -15rem;
+  }
+
+  #section1 h1 {
+    font-size: 1.5rem;
+  }
+
+  #section1 h2 {
+    padding-top: 1rem;
+    font-size: 1rem;
+  }
+
+  .downArrow {
+    display: none;
+  }
+
+  /*  Section2 */
+
+  #section2 {
+    height: 110vh;
+  }
+  #section2 .landing {
+    height: 110vh;
+  }
+
+  .section2Content {
+    margin-top: 1rem;
+  }
+
+  .features {
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0 auto;
+  }
+
+  .featureItem {
+    display: flex;
+    flex-direction: column;
+    padding: 0rem;
+  }
+
+  .featureItem h4 {
+    text-align: center;
+  }
+
+  .featureItem i {
+    padding: 1rem;
+    border-radius: 50%;
+    margin-right: 0rem;
+    /* height: 1rem; */
+  }
+
+  .featureItem p {
+    display: none;
+  }
+
+  /* Section3 */
+
+  .section3ContactUs {
+    margin: 3rem;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .section3ContactUs h2,
+  .socialMedia,
+  p {
+    text-align: center;
+  }
+
+  /* Git APP */
+  .userCards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .profileCard {
+    grid-template-columns: 1fr;
+  }
+
+  .cardElement1 {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cardElement1 a {
+    align-self: center;
+    margin-top: 1rem;
+  }
+
+  .cardElement1 img {
+    align-self: center;
+  }
+
+  .userQuantifiedInfo {
+    background: #388f83;
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    align-items: center;
+    margin-left: 0;
+    margin-right: 2rem;
+  }
+
+  .userQuantifiedInfo p {
+    display: none;
+    background: #388f83;
+  }
+  .cardElement2 .flexStats {
+    margin-top: 1rem;
+    display: inline-block;
+    align-items: left;
+    width: 80vw;
+  }
+
+  .hireable {
+    margin-left: 0;
+    margin-right: 2rem;
+  }
+
+  .repo {
+    margin-right: 3rem;
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 320px) {
+  .navbar ul a {
+    padding: 0.5rem;
+  }
+}
+
+/* Height responsiveness across mobile devices */
+@media (max-height: 700px) {
+  #section2 {
+    height: 150vh;
+  }
+  #section2 .landing {
+    height: 150vh;
+  }
+}
+
+/*>>>>>>>>>>>>>>>>>>>>>>>>> Loader <<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+.loader {
+  margin-top: 4rem;
+  border: 16px solid #fff;
+  border-radius: 50%;
+  border-top: 16px solid #388f83;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Test ============================= */
