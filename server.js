@@ -9,10 +9,6 @@ connectDB();
 // Init Middleware - to accept data/body data
 app.use(express.json({ extended: false }));
 
-app.get('/', (req, res) =>
-  res.json({ msg: 'Welcome to the Tech Recruiter API...' })
-);
-
 // Define Routes
 app.use('/api/users', require('./routes/users'));
 app.use('/api/auth', require('./routes/auth'));
