@@ -1,6 +1,6 @@
 import React from 'react';
-import Search from './content/Search';
-import Users from './content/Users';
+import Search from '../home/Search';
+import Users from '../home/Users';
 
 const Home = () => {
   return (

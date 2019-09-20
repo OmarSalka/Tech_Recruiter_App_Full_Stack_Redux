@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import GithubContext from '../../../Context/Github/githubContext';
-import Repos from './Repos';
+import Repos from '../profile/Repos';
 import styled, { keyframes } from 'styled-components';
 import { fadeInLeft } from 'react-animations';
 

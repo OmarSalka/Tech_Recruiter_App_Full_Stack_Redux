@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 import { fadeInDown } from 'react-animations';
 
-import AuthContext from '../../Context/Authentication/authContext';
+import AuthContext from '../../../Context/Authentication/authContext';
 
 const FadeInDown = styled.div`
   animation: 2s ${keyframes`${fadeInDown}`};

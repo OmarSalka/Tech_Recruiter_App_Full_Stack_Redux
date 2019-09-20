@@ -1,18 +1,18 @@
-import React, { Fragment, useContext, useState } from 'react';
-import AuthContext from '../../../Context/Authentication/authContext';
+import React, { Fragment, useContext } from 'react';
+import AuthContext from '../../Context/Authentication/authContext';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect
 } from 'react-router-dom';
-import PageSpinner from '../../PageSpinner';
-import Navbar from '../Navbar';
-import Home from '../Home';
-import UserProfile from './UserProfile';
-import About from '../About';
-import Database from '../../database/Database';
-import Footer from '../Footer';
+import PageSpinner from '../PageSpinner';
+import Navbar from './layout/Navbar';
+import Home from './layout/Home';
+import UserProfile from './profile/UserProfile';
+import About from './layout/About';
+import Database from './layout/Database';
+import Footer from './layout/Footer';
 
 const GitApp = ({ match }) => {
   const authContext = useContext(AuthContext);

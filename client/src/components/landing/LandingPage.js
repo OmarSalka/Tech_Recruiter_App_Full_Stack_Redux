@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
-import NavbarLanding from './NavbarLanding';
-import SideNavBar from './SideNavBar';
-import LandingSection1 from './LandingSection1';
-import LandingSection2 from './LandingSection2';
-import LandingSection3 from './LandingSection3';
-import { Route } from 'react-router-dom';
-import GitApp from '../github/content/GitApp';
+import NavbarLanding from './layout/NavbarLanding';
+import SideNavBar from './layout/SideNavBar';
+import LandingSection1 from './layout/LandingSection1';
+import LandingSection2 from './layout/LandingSection2';
+import LandingSection3 from './layout/LandingSection3';
+// import { Route } from 'react-router-dom';
+// import GitApp from '../github/content/GitApp';
 
-import LoginPage from './LoginPage';
+import LoginPage from '../auth/LoginPage';
 
 import AuthContext from '../../Context/Authentication/authContext';
 
