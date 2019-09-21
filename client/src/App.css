@@ -70,7 +70,7 @@ input {
 
 .form-sm h1 {
   text-align: center;
-  margin-bottom: 2rem;
+  margin: 2rem 0rem;
 }
 
 .form-sm label {
@@ -102,6 +102,18 @@ input {
 
 .btn:hover {
   opacity: 0.7;
+}
+
+.alert {
+  display: block;
+  padding: 0.5rem 0.5rem;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.alert-danger {
+  background: #f0abab;
+  color: red;
 }
 
 /* Landing Page ======================================*/

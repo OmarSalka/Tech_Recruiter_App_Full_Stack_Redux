@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+import setAuthToken from './utils/setAuthToken';
+
 // import NavbarLanding from './components/landing/NavbarLanding';
 // import Navbar from './components/github/Navbar';
 // import Home from './components/github/Home';
@@ -18,7 +20,11 @@ import PageNotFound from './components/PageNotFound';
 import AuthState from './Context/Authentication/AuthState';
 import GithubState from './Context/Github/GithubState';
 import AlertState from './Context/Alert/AlertState';
-import Alert from './components/Alert';
+// import Alert from './components/Alert';
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 const App = () => {
   return (
@@ -27,7 +33,7 @@ const App = () => {
         <AlertState>
           <Router>
             <Router>
-              <Alert />
+              {/* <Alert /> */}
               <Switch>
                 <Route exact path='/' component={LandingPage} />
                 <Route exact path='/register' component={Register} />

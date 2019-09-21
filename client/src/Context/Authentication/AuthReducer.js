@@ -1,10 +1,16 @@
 import {
-  SUCCESSFUL_LOGIN,
   NAV_LOGIN_BTN,
-  SET_DANGER,
+  USER_LOADED,
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+  CLEAR_ERRORS,
+  AUTH_ERROR,
+  LOGOUT,
+  // old
   RESET_DANGER,
-  FAILED_LOGIN,
-  LOGOUT
+  SET_DANGER,
+  SUCCESSFUL_LOGIN,
+  FAILED_LOGIN
 } from '../types';
 
 export default (state, action) => {
@@ -13,6 +19,37 @@ export default (state, action) => {
       return {
         ...state,
         nav_login_btn_clicked: true
+      };
+    case USER_LOADED:
+      return {
+        ...state,
+        isAuthenticated: true,
+        loading: false,
+        user: action.payload
+      };
+    case REGISTER_SUCCESS:
+      localStorage.setItem('token', action.payload.token);
+      return {
+        ...state,
+        token: action.payload,
+        isAuthenticated: true,
+        loading: false
+      };
+    case REGISTER_FAIL:
+    case AUTH_ERROR:
+      localStorage.removeItem('token');
+      return {
+        ...state,
+        token: null,
+        isAuthenticated: false,
+        loading: false,
+        user: null,
+        error: action.payload
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null
       };
     case SUCCESSFUL_LOGIN:
       return {

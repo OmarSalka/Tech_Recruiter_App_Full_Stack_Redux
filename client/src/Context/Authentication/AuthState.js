@@ -1,7 +1,9 @@
 import React, { useReducer } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 import AuthContext from './authContext';
 import AuthReducer from './AuthReducer';
+
+// import setAuthToken from '../../utils/setAuthToken';
 
 import {
   REGISTER_SUCCESS,
@@ -29,9 +31,6 @@ const AuthState = props => {
     error: null,
     // old
     nav_login_btn_clicked: false,
-    authorized: null,
-    danger: null,
-    alert: false,
     logout: false
   };
 
@@ -44,44 +43,71 @@ const AuthState = props => {
   };
 
   // Load User
+  const loadUser = async () => {
+    // if (localStorage.token) {
+    //   setAuthToken(localStorage.token);
+    // }
 
-  // Register User
-
-  // Login User
-
-  // Logout
-
-  //Clear Errors
-
-  const authentication = (email, password) => {
-    if ((email === '1') & (password === '1')) {
-      dispatch({
-        type: SUCCESSFUL_LOGIN
+    try {
+      // let config2 = {
+      //   headers: {
+      //     'x-auth-token': localStorage.token
+      //   }
+      // };
+      const res = await axios.get('/api/auth', {
+        headers: {
+          'x-auth-token': localStorage.token
+        }
       });
-    } else {
+
       dispatch({
-        type: FAILED_LOGIN
+        type: USER_LOADED,
+        payload: res.data
       });
-      unauthorizedAlert();
+    } catch (err) {
+      dispatch({
+        type: AUTH_ERROR
+      });
     }
   };
 
-  const unauthorizedAlert = () => {
-    setTimeout(() => {
+  // Register User
+  const register = async formData => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    try {
+      const res = await axios.post('/api/users', formData, config);
+
       dispatch({
-        type: RESET_DANGER
+        type: REGISTER_SUCCESS,
+        payload: res.data
       });
-    }, 3000);
-    dispatch({
-      type: SET_DANGER
-    });
+
+      loadUser();
+    } catch (err) {
+      dispatch({
+        type: REGISTER_FAIL,
+        payload: err.response.data.msg
+      });
+    }
   };
 
+  // Login User
+  const login = () => console.log('login');
+
+  // Logout
   const logout = () => {
     dispatch({
       type: LOGOUT
     });
   };
+
+  //Clear Errors
+  const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
 
   return (
     <AuthContext.Provider
@@ -91,6 +117,11 @@ const AuthState = props => {
         loading: state.loading,
         user: state.user,
         error: state.error,
+        loadUser,
+        register,
+        login,
+        logout,
+        clearErrors,
         // old
         nav_login_btn_clicked: state.nav_login_btn_clicked,
         authorized: state.authorized,
@@ -98,8 +129,6 @@ const AuthState = props => {
         alert: state.alert,
         logout: state.logout,
         navLoginClicked,
-        authentication,
-        unauthorizedAlert,
         logout
       }}
     >
