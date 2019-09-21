@@ -4,16 +4,30 @@ import AuthContext from './authContext';
 import AuthReducer from './AuthReducer';
 
 import {
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+  USER_LOADED,
+  AUTH_ERROR,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  LOGOUT,
+  CLEAR_ERRORS,
+  // OLD
   SUCCESSFUL_LOGIN,
   NAV_LOGIN_BTN,
   SET_DANGER,
   RESET_DANGER,
-  FAILED_LOGIN,
-  LOGOUT
+  FAILED_LOGIN
 } from '../types';
 
 const AuthState = props => {
   const initialState = {
+    token: localStorage.getItem('token'),
+    isAuthenticated: null,
+    loading: true,
+    user: null,
+    error: null,
+    // old
     nav_login_btn_clicked: false,
     authorized: null,
     danger: null,
@@ -28,6 +42,16 @@ const AuthState = props => {
       type: NAV_LOGIN_BTN
     });
   };
+
+  // Load User
+
+  // Register User
+
+  // Login User
+
+  // Logout
+
+  //Clear Errors
 
   const authentication = (email, password) => {
     if ((email === '1') & (password === '1')) {
@@ -62,6 +86,12 @@ const AuthState = props => {
   return (
     <AuthContext.Provider
       value={{
+        token: state.token,
+        isAuthenticated: state.isAuthenticated,
+        loading: state.loading,
+        user: state.user,
+        error: state.error,
+        // old
         nav_login_btn_clicked: state.nav_login_btn_clicked,
         authorized: state.authorized,
         danger: state.danger,

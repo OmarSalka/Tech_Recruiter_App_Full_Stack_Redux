@@ -7,7 +7,7 @@ import LandingSection3 from './layout/LandingSection3';
 // import { Route } from 'react-router-dom';
 // import GitApp from '../github/content/GitApp';
 
-import LoginPage from '../auth/LoginPage';
+import Login from '../auth/Login';
 
 import AuthContext from '../../Context/Authentication/authContext';
 
@@ -19,7 +19,7 @@ const LandingPage = () => {
   return (
     <div>
       {nav_login_btn_clicked ? (
-        <LoginPage />
+        <Login />
       ) : (
         <div>
           <NavbarLanding />
