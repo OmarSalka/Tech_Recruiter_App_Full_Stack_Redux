@@ -5,8 +5,8 @@ const CandidateSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users'
   },
-  git_account_id: {
-    type: Number,
+  login: {
+    type: String,
     required: true
   },
   notes: {

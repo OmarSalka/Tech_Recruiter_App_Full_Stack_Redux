@@ -28,7 +28,7 @@ router.post(
   '/',
   [
     auth,
-    check('git_account_id', 'Please enter git_account_id')
+    check('login', 'Please enter login')
       .not()
       .isEmpty()
   ],
@@ -39,10 +39,10 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { git_account_id } = req.body;
+    const { login } = req.body;
     try {
       let newCandidate = await Candidate.findOne({
-        git_account_id: git_account_id
+        login: login
       });
 
       if (newCandidate) {
@@ -53,7 +53,7 @@ router.post(
 
       newCandidate = new Candidate({
         user: req.user.id,
-        git_account_id: git_account_id
+        login: login
       });
 
       const candidate = await newCandidate.save();
