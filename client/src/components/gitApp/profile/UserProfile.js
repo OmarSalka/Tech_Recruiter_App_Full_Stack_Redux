@@ -12,7 +12,6 @@ const FadeIn = styled.div`
 
 const UserProfile = ({ match }) => {
   const githubContext = useContext(GithubContext);
-  console.log(githubContext.user);
   const {
     avatar_url,
     bio,
@@ -31,10 +30,8 @@ const UserProfile = ({ match }) => {
   useEffect(() => {
     githubContext.getUser(match.params.login);
     githubContext.getRepos(match.params.login);
-    console.log(typeof avatar_url);
-    console.log(typeof html_url);
     // eslint-disable-next-line
-  }, [avatar_url, html_url]);
+  }, []);
 
   return (
     <FadeIn>

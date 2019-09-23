@@ -105,8 +105,26 @@ router.put('/:id', auth, async (req, res) => {
 // @route   DELETE  api/candidates/:id
 // @desc    Delete candidate
 // @access  Private
-router.delete('/:id', (req, res) => {
-  res.send('Delete candidate');
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    let candidate = await Candidate.findById(req.params.id);
+
+    if (!candidate) {
+      return res.status(404).json({ msg: 'Candidate not found' });
+    }
+
+    // Counter measure for those savy enough out there to cause trouble
+    if (candidate.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'Unauthorized' });
+    }
+
+    await Candidate.findByIdAndRemove(req.params.id);
+
+    res.json({ msg: 'Contact Removed' });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
 });
 
 module.exports = router;
