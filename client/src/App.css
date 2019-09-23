@@ -296,13 +296,6 @@ a {
   width: 50%;
 }
 
-/* >>>>>>>>>>>>>>>>>>>>>>>>> Alert */
-
-.loginAlert {
-  padding: 0.5rem;
-  border: 1px solid red;
-}
-
 /* Navbars */
 /* global */
 .navbar {
@@ -465,6 +458,12 @@ a {
   color: var(--git-primary-background-color);
   font-weight: bold;
   padding: 0 !important;
+}
+
+/* >>>>>>>>>>>>>>>>>>>>> About <<<<<<<<<<<<<<<<<<<< */
+
+.indent {
+  margin-left: 1rem;
 }
 
 /* ====================== */

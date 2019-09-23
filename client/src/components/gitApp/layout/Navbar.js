@@ -5,18 +5,23 @@ import styled, { keyframes } from 'styled-components';
 import { fadeInDown } from 'react-animations';
 
 import AuthContext from '../../../Context/Authentication/authContext';
+import GithubContext from '../../../Context/Github/githubContext';
 
 const FadeInDown = styled.div`
   animation: 2s ${keyframes`${fadeInDown}`};
 `;
 
-const Navbar = ({ icon, platform }) => {
+const Navbar = ({ icon, platform, history }) => {
   const authContext = useContext(AuthContext);
-
   const { logout } = authContext;
 
+  const githubContext = useContext(GithubContext);
+  const { clearUsers } = githubContext;
+
   const logoutClicked = () => {
+    clearUsers();
     logout();
+    history.push('/');
   };
 
   return (
@@ -41,7 +46,6 @@ const Navbar = ({ icon, platform }) => {
         </li>
         <div className='dropdown'>
           <FadeInDown>
-            {/* eslint-disable-next-line */}
             <span
               className='dropbtn'
               style={{ padding: '1rem', cursor: 'pointer' }}
@@ -50,10 +54,10 @@ const Navbar = ({ icon, platform }) => {
             </span>
           </FadeInDown>
           <div className='dropdown-content'>
-            <Link to='/gitapp/database'>Database</Link>
-            <span className='dropdown-item' onClick={logoutClicked}>
+            <Link to='/gitapp/database'>Directory</Link>
+            <Link to='/' className='dropdown-item' onClick={logoutClicked}>
               Logout
-            </span>
+            </Link>
           </div>
         </div>
       </ul>
@@ -62,8 +66,8 @@ const Navbar = ({ icon, platform }) => {
 };
 
 Navbar.defaultProps = {
-  icon: 'fab fa-github',
-  platform: 'Git Finder'
+  icon: 'fas fa-terminal',
+  platform: 'Tech R.A.'
 };
 
 Navbar.propTypes = {

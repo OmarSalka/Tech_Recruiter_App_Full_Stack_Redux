@@ -10,25 +10,37 @@ const About = () => {
   return (
     <Fragment>
       <FadeInDown>
-        <div style={aboutStyle}>
-          <h1 style={{ fontFamily: 'Acme', color: '#388f83' }}>About:</h1>
-          <p>
-            Search Potential Candidates' Github accounts with the most valuable
-            metrics displayed in a really convenient way, including an option to
-            visit their profile and/or repositories with a click of a button!
+        <div id='about' style={aboutStyle}>
+          <h1 style={{ color: '#388f83' }}>About:</h1>
+          <p className='indent'>
+            <i className='fas fa-caret-right' style={{ color: '#388f83' }}></i>{' '}
+            Search Potential Candidates' Github account with the most valuable
+            metrics displayed in a very convenient way
           </p>
-          <p style={{ margin: '1rem 0' }}>
-            <strong style={{ fontFamily: 'Acme', color: '#388f83' }}>
-              App: <br />
-            </strong>{' '}
-            v. 1.0.0
+          <p className='indent'>
+            <i className='fas fa-caret-right' style={{ color: '#388f83' }}></i>{' '}
+            Feel like learning more about the condidate? Use our links to their
+            github profile and repos
           </p>
-          <p>
-            <strong style={{ fontFamily: 'Acme', color: '#388f83' }}>
-              Author: <br />
-            </strong>{' '}
-            Omar Salka
+          <p className='indent'>
+            <i className='fas fa-caret-right' style={{ color: '#388f83' }}></i>{' '}
+            Add the potential condidate to your directory
           </p>
+          <p className='indent'>
+            <i className='fas fa-caret-right' style={{ color: '#388f83' }}></i>{' '}
+            Revisit your directory with all the saved profiles for comparisons
+          </p>
+          <p className='indent'>
+            <i className='fas fa-caret-right' style={{ color: '#388f83' }}></i>{' '}
+            In case of a no match, you can delete a candidate's profile from
+            your directory
+          </p>
+          <h2 style={{ color: '#388f83', marginTop: '1rem' }}>App:</h2>
+          <p className='indent'>v. 1.0.0</p>
+          <h2 style={{ color: '#388f83', marginTop: '1rem' }}>
+            Author: <br />
+          </h2>
+          <p className='indent'>Omar Salka</p>
         </div>
         <div
           style={{

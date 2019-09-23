@@ -3,8 +3,6 @@ import axios from 'axios';
 import AuthContext from './authContext';
 import AuthReducer from './AuthReducer';
 
-// import setAuthToken from '../../utils/setAuthToken';
-
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -13,13 +11,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
-  CLEAR_ERRORS,
-  // OLD
-  SUCCESSFUL_LOGIN,
-  NAV_LOGIN_BTN,
-  SET_DANGER,
-  RESET_DANGER,
-  FAILED_LOGIN
+  CLEAR_ERRORS
 } from '../types';
 
 const AuthState = props => {
@@ -28,37 +20,20 @@ const AuthState = props => {
     isAuthenticated: null,
     loading: true,
     user: null,
-    error: null,
-    // old
-    nav_login_btn_clicked: false,
-    logout: false
+    error: null
   };
 
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
-  const navLoginClicked = () => {
-    dispatch({
-      type: NAV_LOGIN_BTN
-    });
-  };
-
   // Load User
   const loadUser = async () => {
-    // if (localStorage.token) {
-    //   setAuthToken(localStorage.token);
-    // }
-
+    const config = {
+      headers: {
+        'x-auth-token': localStorage.token
+      }
+    };
     try {
-      // let config2 = {
-      //   headers: {
-      //     'x-auth-token': localStorage.token
-      //   }
-      // };
-      const res = await axios.get('/api/auth', {
-        headers: {
-          'x-auth-token': localStorage.token
-        }
-      });
+      const res = await axios.get('/api/auth', config);
 
       dispatch({
         type: USER_LOADED,
@@ -97,7 +72,28 @@ const AuthState = props => {
   };
 
   // Login User
-  const login = () => console.log('login');
+  const login = async formData => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    try {
+      const res = await axios.post('/api/auth', formData, config);
+
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data
+      });
+
+      loadUser();
+    } catch (err) {
+      dispatch({
+        type: LOGIN_FAIL,
+        payload: err.response.data.msg
+      });
+    }
+  };
 
   // Logout
   const logout = () => {
@@ -121,15 +117,7 @@ const AuthState = props => {
         register,
         login,
         logout,
-        clearErrors,
-        // old
-        nav_login_btn_clicked: state.nav_login_btn_clicked,
-        authorized: state.authorized,
-        danger: state.danger,
-        alert: state.alert,
-        logout: state.logout,
-        navLoginClicked,
-        logout
+        clearErrors
       }}
     >
       {props.children}

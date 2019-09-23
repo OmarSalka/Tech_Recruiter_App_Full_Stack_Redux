@@ -15,11 +15,11 @@ const Register = props => {
       props.history.push('/gitapp');
     }
     if (error === 'User already exists') {
-      setAlert('User already exists', 'danger');
+      setAlert(error, 'danger');
       clearErrors();
     }
     // eslint-disable-next-line
-  }, [error, isAuthenticated, props.history]);
+  }, [error, isAuthenticated]);
 
   const [user, setUser] = useState({
     name: '',
@@ -55,7 +55,6 @@ const Register = props => {
         <Alert />
         <h1>Register</h1>
         <form onSubmit={onSubmit}>
-          {/* <div className='form-group'> */}
           <label htmlFor='name'>Name:</label>
           <input
             type='text'
@@ -95,7 +94,6 @@ const Register = props => {
             minLength='6'
           />
           <input type='submit' value='Register' className='btn btn-primary' />
-          {/* </div> */}
         </form>
       </div>
     </div>

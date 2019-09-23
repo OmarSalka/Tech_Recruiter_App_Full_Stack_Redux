@@ -49,7 +49,7 @@ const GithubState = props => {
 
   const getUser = async login => {
     const response = await axios.get(
-      `https://api.github.com/users/${login}?client_id=727a25a43434f4b52fad&client_secret=e1d7e46e4c07bdd62eeb29a638f5733271c51e72`
+      `https://api.github.com/users/${login}?client_id=${githubClientId}&client_secret=${githubClientSecrect}`
     );
 
     dispatch({
@@ -60,7 +60,7 @@ const GithubState = props => {
 
   const getRepos = async login => {
     const response = await axios.get(
-      `https://api.github.com/users/${login}/repos?per_page=5&sort=created:asc&client_id=727a25a43434f4b52fad&client_secret=e1d7e46e4c07bdd62eeb29a638f5733271c51e72`
+      `https://api.github.com/users/${login}/repos?per_page=5&sort=created:asc&client_id=${githubClientId}&client_secret=${githubClientSecrect}`
     );
 
     dispatch({
