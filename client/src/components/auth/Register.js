@@ -14,7 +14,10 @@ const Register = props => {
     if (isAuthenticated) {
       props.history.push('/gitapp');
     }
-    if (error === 'User already exists') {
+    if (
+      error === 'User already exists' ||
+      error === 'Please enter a valid email'
+    ) {
       setAlert(error, 'danger');
       clearErrors();
     }

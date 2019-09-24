@@ -45,53 +45,79 @@ const UserProfile = ({ match }) => {
         </Link>
       </div>
       <div className='container profileCard'>
-        <div className='cardElements cardElement1'>
-          <h1>{name}</h1>
-          <img
-            src={avatar_url}
-            alt='Oops'
-            style={{ borderRadius: '80%', width: '40%' }}
-          />
+        <div className='cardElement1'>
+          <div className='topCardElement'>
+            <p className='hide-mobile-item hireable-mobile'>
+              <span
+                style={{
+                  fontWeight: 'bold',
+                  marginLeft: '1.5rem',
+                  marginBottom: '1rem',
+                  color: '#333'
+                }}
+              >
+                Hireable:{' '}
+              </span>{' '}
+              {hireable ? (
+                <i className='fas fa-check' style={{ color: '#388f83' }}></i>
+              ) : (
+                <i className='fas fa-times' style={{ color: '#dc3545' }}></i>
+              )}
+            </p>
+            <h1>{name}</h1>
+            <img
+              src={avatar_url}
+              alt='Oops'
+              style={{
+                borderRadius: '80%',
+                width: '40%',
+                marginRight: 'none'
+              }}
+            />
+            <a
+              className='btn btn-primary btn-hover'
+              style={{ borderRadius: 5 }}
+              href={html_url}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              Github Profile
+            </a>
+          </div>
           <hr style={{ border: '1px solid #d6d1d1', margin: '1rem' }} />
-          <p style={{ textAlign: 'left' }}>
-            <strong>Bio:</strong> <br />
-            {bio ? bio : 'N/A'}
-          </p>
-          <p>
-            <strong>Email:</strong> <br />
-            {email ? (
-              <a href={`mailto:${email}`} style={{ color: 'blue' }}>
-                {email}{' '}
-                <i
-                  className='fas fa-envelope fa-1x'
-                  style={{ color: '#388f83' }}
-                ></i>
-              </a>
-            ) : (
-              'N/A'
-            )}
-          </p>
-          <p>
-            <strong>Company:</strong> <br />
-            {company ? company : 'N/A'}
-          </p>
-          <p>
-            <strong>Location:</strong> <br />
-            {location ? location : 'N/A'}
-          </p>
-          <a
-            className='btn btn-primary btn-hover'
-            style={{ borderRadius: 5 }}
-            href={html_url}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            Github Profile
-          </a>
+          <div className='bottomCardElement'>
+            <p style={{ textAlign: 'left' }}>
+              <strong>Bio:</strong> <br />
+              {bio ? bio : 'N/A'}
+            </p>
+            <p>
+              <strong>Email:</strong> <br />
+              {email ? (
+                <a href={`mailto:${email}`} style={{ color: 'blue' }}>
+                  {email}{' '}
+                  <i
+                    className='fas fa-envelope fa-1x'
+                    style={{ color: '#388f83' }}
+                  ></i>
+                </a>
+              ) : (
+                'N/A'
+              )}
+            </p>
+            <p>
+              <strong>Company:</strong> <br />
+              {company ? company : 'N/A'}
+            </p>
+            <p>
+              <strong>Location:</strong> <br />
+              {location ? location : 'N/A'}
+            </p>
+          </div>
         </div>
+        <hr className= 'hide-mobile-item' style={{ border: '1px solid #d6d1d1', margin: '1rem', marginBottom: '0rem' }} />
         <div className='cardElements cardElement2'>
-          <div className='flexStats'>
-            <p className='hireable'>
+          <div className='profileStats'>
+            <p>
               <span
                 style={{
                   fontWeight: 'bold',

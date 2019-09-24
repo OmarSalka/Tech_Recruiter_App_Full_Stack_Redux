@@ -12,8 +12,9 @@ const AlertState = props => {
 
   // Set Alert
 
-  const setAlert = (msg, type, timeout = 4000) => {
+  const setAlert = (msg, type, timeout = 3000) => {
     const id = uuid.v4();
+
     dispatch({
       type: SET_ALERT,
       payload: { msg, type, id }

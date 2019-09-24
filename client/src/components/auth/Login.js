@@ -14,12 +14,15 @@ const Login = props => {
     if (isAuthenticated) {
       props.history.push('/gitapp');
     }
-    if (error === 'Invalid Credentials') {
+    if (
+      error === 'Invalid Credentials' ||
+      error === 'Please enter a valid email'
+    ) {
       setAlert(error, 'danger');
       clearErrors();
     }
     // eslint-disable-next-line
-  }, [error, isAuthenticated]);
+  }, [error, isAuthenticated, props.history]);
 
   const [user, setUser] = useState({
     email: '',

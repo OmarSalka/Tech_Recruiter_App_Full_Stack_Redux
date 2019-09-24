@@ -11,7 +11,7 @@ const FadeInDown = styled.div`
   animation: 2s ${keyframes`${fadeInDown}`};
 `;
 
-const Navbar = ({ icon, platform, history }) => {
+const Navbar = ({ icon, platform }) => {
   const authContext = useContext(AuthContext);
   const { logout } = authContext;
 
@@ -21,7 +21,6 @@ const Navbar = ({ icon, platform, history }) => {
   const logoutClicked = () => {
     clearUsers();
     logout();
-    history.push('/');
   };
 
   return (
@@ -44,6 +43,18 @@ const Navbar = ({ icon, platform, history }) => {
             <Link to='/gitapp/about'>About</Link>
           </FadeInDown>
         </li>
+        <li className='mobile-nav-item'>
+          <FadeInDown>
+            <Link to='/gitapp/database'>MyDirectory</Link>
+          </FadeInDown>
+        </li>
+        <li className='mobile-nav-item'>
+          <FadeInDown>
+            <Link to='/' onClick={logoutClicked}>
+              Logout
+            </Link>
+          </FadeInDown>
+        </li>
         <div className='dropdown'>
           <FadeInDown>
             <span
@@ -54,7 +65,7 @@ const Navbar = ({ icon, platform, history }) => {
             </span>
           </FadeInDown>
           <div className='dropdown-content'>
-            <Link to='/gitapp/database'>Directory</Link>
+            <Link to='/gitapp/database'>My Directory</Link>
             <Link to='/' className='dropdown-item' onClick={logoutClicked}>
               Logout
             </Link>

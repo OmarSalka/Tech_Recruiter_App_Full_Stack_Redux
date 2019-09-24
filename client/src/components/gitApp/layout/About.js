@@ -12,35 +12,35 @@ const About = () => {
       <FadeInDown>
         <div id='about' style={aboutStyle}>
           <h1 style={{ color: '#388f83' }}>About:</h1>
-          <p className='indent'>
+          <p className='indent-features'>
             <i className='fas fa-caret-right' style={{ color: '#388f83' }}></i>{' '}
             Search Potential Candidates' Github account with the most valuable
             metrics displayed in a very convenient way
           </p>
-          <p className='indent'>
+          <p className='indent-features'>
             <i className='fas fa-caret-right' style={{ color: '#388f83' }}></i>{' '}
             Feel like learning more about the condidate? Use our links to their
             github profile and repos
           </p>
-          <p className='indent'>
+          <p className='indent-features'>
             <i className='fas fa-caret-right' style={{ color: '#388f83' }}></i>{' '}
             Add the potential condidate to your directory
           </p>
-          <p className='indent'>
+          <p className='indent-features'>
             <i className='fas fa-caret-right' style={{ color: '#388f83' }}></i>{' '}
             Revisit your directory with all the saved profiles for comparisons
           </p>
-          <p className='indent'>
+          <p className='indent-features'>
             <i className='fas fa-caret-right' style={{ color: '#388f83' }}></i>{' '}
             In case of a no match, you can delete a candidate's profile from
             your directory
           </p>
           <h2 style={{ color: '#388f83', marginTop: '1rem' }}>App:</h2>
-          <p className='indent'>v. 1.0.0</p>
+          <p className='indent-features'>v. 1.0.0</p>
           <h2 style={{ color: '#388f83', marginTop: '1rem' }}>
             Author: <br />
           </h2>
-          <p className='indent'>Omar Salka</p>
+          <p className='indent-features'>Omar Salka</p>
         </div>
         <div
           style={{

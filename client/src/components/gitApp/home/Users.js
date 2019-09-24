@@ -32,11 +32,12 @@ const Users = () => {
         </FadeInUsers>
       ) : (
         <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            marginTop: '7rem'
-          }}
+          className='home-github-icon'
+          // style={{
+          //   display: 'flex',
+          //   justifyContent: 'center',
+          //   marginTop: '7rem'
+          // }}
         >
           <FadeIn>
             <i

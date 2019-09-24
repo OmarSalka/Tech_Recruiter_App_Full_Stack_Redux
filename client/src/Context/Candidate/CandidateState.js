@@ -10,6 +10,14 @@ import {
   DELETE_CANDIDATE
 } from '../types';
 
+if (process.env.NODE_ENV !== 'production') {
+  githubClientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
+  githubClientSecrect = process.env.REACT_APP_GITHUB_CLIENT_SECRET;
+} else {
+  githubClientId = process.env.GITHUB_CLIENT_ID;
+  githubClientSecrect = process.env.GITHUB_CLIENT_SECRET;
+}
+
 const CandidateState = props => {
   const initialState = {};
 

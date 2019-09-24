@@ -25,7 +25,7 @@ export default (state, action) => {
       return {
         ...state,
         repos: action.payload,
-        clearButton: true
+        // clearButton: true
       };
     case CLEAR_USERS:
       return {

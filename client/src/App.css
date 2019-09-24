@@ -106,14 +106,17 @@ input {
 
 .alert {
   display: block;
-  padding: 0.5rem 0.5rem;
+  padding: 0.2rem;
   width: 100%;
-  border-radius: 10px;
 }
 
 .alert-danger {
-  background: #f0abab;
-  color: red;
+  background: #f0dddd;
+  color: #ec2727;
+}
+
+.hide-mobile-item {
+  display: none;
 }
 
 /* Landing Page ======================================*/
@@ -331,11 +334,12 @@ a {
   display: none;
   position: absolute;
   background-color: var(--git-primary-background-color);
-  min-width: 6.75rem;
+  min-width: 7.75rem;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   z-index: 1;
   top: 2.4rem;
+  right: 0.1rem;
 }
 
 .dropdown-content a,
@@ -358,7 +362,23 @@ a {
   display: block;
 }
 
+.mobile-nav-item {
+  display: none;
+}
+
 /* Users */
+.home-github-icon {
+  display: flex;
+  justify-content: center;
+}
+
+.home-github-icon i {
+  margin-top: 4rem;
+  /* display: inline-block; */
+  /* display: 'flex';
+  justify-content: 'center';
+  margin-top: '7rem'; */
+}
 
 .userCard {
   background: #f4f4f4bd;
@@ -399,13 +419,10 @@ a {
   font-size: 1rem;
 }
 
-.cardElement1 p {
+.bottomCardElement p {
   text-align: justify;
   padding: 0.3rem 2rem;
-}
-
-.cardElements {
-  background: #18131300;
+  font-size: 14px;
 }
 
 .cardElement1 {
@@ -414,8 +431,14 @@ a {
   border-right: 1.5px solid #d6d1d1;
 }
 
-.cardElement1 p {
-  font-size: 14px;
+.topCardElement {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.topCardElement .btn {
+  margin-top: 0.7rem;
 }
 
 .cardElement2 {
@@ -423,15 +446,15 @@ a {
   border-top-right-radius: 5px;
 }
 
-.flexStats {
+.profileStats {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .userQuantifiedInfo {
-  display: 'flex';
-  padding-right: '1rem';
+  display: flex;
+  padding-right: 1rem;
 }
 
 .userQuantifiedInfo p {
@@ -459,10 +482,13 @@ a {
   font-weight: bold;
   padding: 0 !important;
 }
+.repo a:hover {
+  opacity: 0.7;
+}
 
 /* >>>>>>>>>>>>>>>>>>>>> About <<<<<<<<<<<<<<<<<<<< */
 
-.indent {
+#about .indent-features {
   margin-left: 1rem;
 }
 
@@ -503,7 +529,7 @@ a {
 
 /* Unique: git profile cards */
 @media (max-width: 830px) {
-  .flexStats {
+  .profileStats {
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-gap: 1rem;
@@ -516,6 +542,9 @@ a {
 
 /* Mobile */
 @media (max-width: 700px) {
+  .hide-mobile-item {
+    display: block;
+  }
   /* Navbars */
 
   .sideNavBar {
@@ -534,25 +563,33 @@ a {
     background: #333;
     padding: 0.5rem 3rem;
   }
-  .navLanding ul {
+  .navbar ul {
     flex-direction: column;
-    margin-top: 1rem;
+    margin-top: 0rem;
   }
 
-  .navLanding ul li {
+  .navbar ul li {
     width: 100vw;
     margin-bottom: 0.3rem;
-    border-bottom: 1px solid #5a5959;
+    border-bottom: 1px solid #748881;
     padding-bottom: 0.5rem;
     text-align: center;
   }
-  .navLanding ul li:last-child {
+  .navLanding ul li {
+    border-bottom: 1px solid #5a5959;
+  }
+
+  .navbar ul li:last-child {
     padding-top: 0.2rem;
     border: none;
   }
 
-  .dropdown-content {
-    top: 1.75rem;
+  .dropdown {
+    display: none;
+  }
+
+  .mobile-nav-item {
+    display: block;
   }
 
   /* Landing Sections */
@@ -608,7 +645,6 @@ a {
     padding: 1rem;
     border-radius: 50%;
     margin-right: 0rem;
-    /* height: 1rem; */
   }
 
   .featureItem p {
@@ -630,6 +666,28 @@ a {
   }
 
   /* Git APP */
+
+  /* Register & Login */
+  .form-sm {
+    padding-top: 0rem;
+    height: 75vh;
+  }
+  .form-sm h1 {
+    margin: 0rem;
+  }
+
+  .home-github-icon {
+    /* margin-top: rem; */
+  }
+
+  /* about */
+  #about .indent {
+    margin-left: 0rem;
+    margin-top: 0.4rem;
+    text-align: left;
+  }
+
+  /* profiles */
   .userCards {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -638,49 +696,22 @@ a {
     grid-template-columns: 1fr;
   }
 
-  .cardElement1 {
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .cardElement1 a {
+  .hireable-mobile {
     align-self: center;
-    margin-top: 1rem;
-  }
-
-  .cardElement1 img {
-    align-self: center;
-  }
-
-  .userQuantifiedInfo {
-    background: #388f83;
-    display: grid;
-    grid-template-rows: repeat(4, 1fr);
-    align-items: center;
-    margin-left: 0;
     margin-right: 2rem;
   }
 
-  .userQuantifiedInfo p {
+  .profileStats {
     display: none;
-    background: #388f83;
   }
-  .cardElement2 .flexStats {
-    margin-top: 1rem;
-    display: inline-block;
-    align-items: left;
-    width: 80vw;
-  }
+}
 
-  .hireable {
-    margin-left: 0;
-    margin-right: 2rem;
+@media (max-width: 370px) {
+  .form {
+    padding: 0.7rem;
   }
-
-  .repo {
-    margin-right: 3rem;
-    align-self: flex-start;
+  .home-github-icon {
+    margin-top: -4rem;
   }
 }
 

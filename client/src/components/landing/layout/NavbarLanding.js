@@ -11,6 +11,7 @@ const FadeIn = styled.div`
 `;
 
 const NavbarLanding = ({ icon, platform }) => {
+
   return (
     <div className='navbar navLanding'>
       <FadeIn>
@@ -63,7 +64,7 @@ const NavbarLanding = ({ icon, platform }) => {
         </li>
         <li>
           <FadeIn>
-            <Link to='/auth/login' style={{ padding: 0, margin: '1rem' }}>
+            <Link to='/auth/login'style={{ padding: 0, margin: '1rem' }}>
               <span
                 className='theLoginButton btn'
                 style={{ padding: '0.15rem 0.4rem' }}

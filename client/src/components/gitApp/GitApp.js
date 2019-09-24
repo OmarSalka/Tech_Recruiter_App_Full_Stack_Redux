@@ -5,9 +5,10 @@ import Navbar from './layout/Navbar';
 import Home from './layout/Home';
 import UserProfile from './profile/UserProfile';
 import About from './layout/About';
-import Database from './layout/Database';
+import MyDirectory from './layout/MyDirectory';
 import Footer from './layout/Footer';
-import LandingPage from '../landing/LandingPage';
+import App from '../../App';
+// import LandingPage from '../landing/LandingPage';
 
 const GitApp = ({ match }) => {
   const authContext = useContext(AuthContext);
@@ -30,8 +31,12 @@ const GitApp = ({ match }) => {
               component={UserProfile}
             />
             <Route exact path={`${match.url}/about`} component={About} />
-            <Route exact path={`${match.url}/database`} component={Database} />
-            <Route exact path={'/'} component={LandingPage} />
+            <Route
+              exact
+              path={`${match.url}/database`}
+              component={MyDirectory}
+            />
+            <Route exact path={'/'} component={App} />
           </Switch>
           <Route path={match.url} component={Footer} />
         </div>

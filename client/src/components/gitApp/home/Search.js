@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react';
 import GithubContext from '../../../Context/Github/githubContext';
+import AlertContext from '../../../Context/Alert/alertContext';
+import Alert from '../../Alert';
 import styled, { keyframes } from 'styled-components';
 import { fadeIn } from 'react-animations';
 
@@ -9,15 +11,21 @@ const FadeIn = styled.div`
 
 const Search = () => {
   const githubContext = useContext(GithubContext);
+  const { clearButton, users } = githubContext;
 
-  const { clearButton } = githubContext;
+  const alertContext = useContext(AlertContext);
+  const { setAlert } = alertContext;
 
   const [text, setText] = useState('');
 
   const onSubmit = e => {
     e.preventDefault();
-    githubContext.searchUsers(text);
-    setText('');
+    if (text === '') {
+      setAlert('Please enter a valid github username', 'danger');
+    } else {
+      githubContext.searchUsers(text);
+      setText('');
+    }
   };
 
   const onChange = e => {
@@ -32,6 +40,9 @@ const Search = () => {
     <div className='container'>
       <FadeIn>
         <form className='form' onSubmit={onSubmit}>
+          <div style={{ marginBottom: '0.3rem' }}>
+            <Alert />
+          </div>
           <input
             type='text'
             name='text'
