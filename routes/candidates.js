@@ -28,7 +28,7 @@ router.post(
   '/',
   [
     auth,
-    check('login', 'Please enter login')
+    check('position', 'Please enter position')
       .not()
       .isEmpty()
   ],
@@ -36,10 +36,12 @@ router.post(
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res
+        .status(400)
+        .json({ errors: errors.errors.map(error => error.msg).toString() });
     }
 
-    const { login } = req.body;
+    const { login, position } = req.body;
     try {
       let newCandidate = await Candidate.findOne({
         login: login
@@ -53,7 +55,8 @@ router.post(
 
       newCandidate = new Candidate({
         user: req.user.id,
-        login: login
+        login: login,
+        position: position
       });
 
       const candidate = await newCandidate.save();
@@ -69,11 +72,12 @@ router.post(
 // @desc    Update candidate
 // @access  Private
 router.put('/:id', auth, async (req, res) => {
-  const { notes } = req.body;
+  const { notes, position } = req.body;
 
   // Building candidate object
   const candidateFields = {};
   if (notes) candidateFields.notes = notes;
+  if (position) candidateFields.position = position;
 
   try {
     let candidate = await Candidate.findById(req.params.id);
