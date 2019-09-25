@@ -14,7 +14,8 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const LOGOUT = 'LOGOUT';
 
-export const CHECK_IF_CANDIDATE = 'CHECK_IF_CANDIDATE';
+export const IS_CANDIDATE = 'IS_CANDIDATE';
+export const NOT_CANDIDATE = 'NOT_CANDIDATE';
 export const GET_CANDIDATES = 'GET_CANDIDATES';
 export const ADD_CANDIDATE = 'ADD_CANDIDATE';
 export const UPDATE_CANDIDATE = 'UPDATE_CANDIDATE';

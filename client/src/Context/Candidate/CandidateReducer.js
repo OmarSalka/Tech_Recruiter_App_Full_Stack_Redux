@@ -1,5 +1,6 @@
 import {
-  CHECK_IF_CANDIDATE,
+  IS_CANDIDATE,
+  NOT_CANDIDATE,
   GET_CANDIDATES,
   ADD_CANDIDATE,
   UPDATE_CANDIDATE,
@@ -8,7 +9,7 @@ import {
 
 export default (state, action) => {
   switch (action.type) {
-    case CHECK_IF_CANDIDATE:
+    case IS_CANDIDATE:
       return {
         ...state
       };

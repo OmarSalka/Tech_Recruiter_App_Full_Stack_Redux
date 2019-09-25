@@ -26,6 +26,7 @@ const UserProfile = ({ match }) => {
 
   const githubContext = useContext(GithubContext);
   const {
+    id,
     login,
     avatar_url,
     bio,
@@ -44,9 +45,9 @@ const UserProfile = ({ match }) => {
   useEffect(() => {
     githubContext.getUser(match.params.login);
     githubContext.getRepos(match.params.login);
-    checkIfCandidate(match.params.login);
+    checkIfCandidate(id);
     // eslint-disable-next-line
-  }, []);
+  }, [id]);
 
   const onClick = () => {
     console.log(githubContext.user.id);
