@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
@@ -13,26 +13,91 @@ const FadeInDown = styled.div`
 
 const Navbar = ({ icon, platform }) => {
   const authContext = useContext(AuthContext);
-  const { logout } = authContext;
+  const { isAuthenticated, logout, user, loadUser } = authContext;
 
   const githubContext = useContext(GithubContext);
   const { clearUsers } = githubContext;
+
+  useEffect(() => {
+    loadUser();
+    // eslint-disable-next-line
+  }, []);
 
   const logoutClicked = () => {
     clearUsers();
     logout();
   };
 
+  const userNavItems = (
+    <ul>
+      <li>
+        <FadeInDown>
+          <Link to='/gitapp'>Home</Link>
+        </FadeInDown>
+      </li>
+      <li>
+        <FadeInDown>
+          <Link to='/gitapp/about'>About</Link>
+        </FadeInDown>
+      </li>
+      <li className='mobile-nav-item'>
+        <FadeInDown>
+          <Link to='/gitapp/database'>MyDirectory</Link>
+        </FadeInDown>
+      </li>
+      <li className='mobile-nav-item'>
+        <FadeInDown>
+          <Link to='/' onClick={logoutClicked}>
+            Logout
+          </Link>
+        </FadeInDown>
+      </li>
+      <div className='dropdown'>
+        <FadeInDown>
+          <span
+            className='dropbtn'
+            style={{ padding: '1rem', cursor: 'pointer' }}
+          >
+            <i className='fas fa-user-circle fa-2x'></i>
+          </span>
+        </FadeInDown>
+        <div className='dropdown-content'>
+          <Link to='/gitapp/database'>My Directory</Link>
+          <Link to='/' className='dropdown-item' onClick={logoutClicked}>
+            Logout
+          </Link>
+        </div>
+      </div>
+    </ul>
+  );
+
+  const guestNavItems = (
+    <ul>
+      <li>
+        <FadeInDown>
+          <Link to='/auth/login'>Login</Link>
+        </FadeInDown>
+      </li>
+      <li>
+        <FadeInDown>
+          <Link to='/auth/register'>Register</Link>
+        </FadeInDown>
+      </li>
+    </ul>
+  );
+
   return (
     <div className='git navbar'>
       <FadeInDown>
-        <Link to='/gitapp' className='logo'>
+        <div className='logo'>
           <h1>
-            <i className={icon} /> <span>{platform}</span>
+            <i className={icon} />{' '}
+            <span>{user ? `Hi, ${user.name}` : platform}</span>
           </h1>
-        </Link>
+        </div>
       </FadeInDown>
-      <ul>
+      {isAuthenticated ? userNavItems : guestNavItems}
+      {/* <ul>
         <li>
           <FadeInDown>
             <Link to='/gitapp'>Home</Link>
@@ -71,7 +136,7 @@ const Navbar = ({ icon, platform }) => {
             </Link>
           </div>
         </div>
-      </ul>
+      </ul> */}
     </div>
   );
 };

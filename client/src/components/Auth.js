@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import LoginNavbar from './auth/LoginNavbar';
+import Navbar from './gitApp/layout/Navbar';
 import Register from './auth/Register';
 import Login from './auth/Login';
 import Footer from './gitApp/layout/Footer';
@@ -11,7 +11,7 @@ const Auth = ({ match }) => {
     <Fragment>
       <Router>
         <div style={containerStyling}>
-          <Route path={match.url} component={LoginNavbar} />
+          <Route path={match.url} component={Navbar} />
           <Switch>
             <Route exact path={`${match.url}/login`} component={Login} />
             <Route exact path={`${match.url}/register`} component={Register} />

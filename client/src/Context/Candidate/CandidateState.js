@@ -4,11 +4,15 @@ import CandidateContext from './candidateContext';
 import CandidateReducer from './CandidateReducer';
 
 import {
-  GET_CANDIDATE,
+  CHECK_IF_CANDIDATE,
+  GET_CANDIDATES,
   ADD_CANDIDATE,
   UPDATE_CANDIDATE,
   DELETE_CANDIDATE
 } from '../types';
+
+let githubClientId;
+let githubClientSecrect;
 
 if (process.env.NODE_ENV !== 'production') {
   githubClientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
@@ -23,10 +27,22 @@ const CandidateState = props => {
 
   const [state, dispatch] = useReducer(CandidateReducer, initialState);
 
+  const checkIfCandidate = () => {
+    dispatch({
+      type: CHECK_IF_CANDIDATE
+    });
+  };
+  const addToDirectory = () => {};
+
   return (
-    <CandidateState.Provider value={{}}>
+    <CandidateContext.Provider
+      value={{
+        checkIfCandidate,
+        addToDirectory
+      }}
+    >
       {props.children}
-    </CandidateState.Provider>
+    </CandidateContext.Provider>
   );
 };
 

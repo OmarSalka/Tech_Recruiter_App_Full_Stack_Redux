@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
   return (
     <footer style={footerStyle}>
-      <p>Copyright {'\u00A9'} 2019, Social Media Finder, All Rights Reserved</p>
+      <p>Copyright {'\u00A9'} 2019, Tech Recruiter App, All Rights Reserved</p>
     </footer>
   );
 };

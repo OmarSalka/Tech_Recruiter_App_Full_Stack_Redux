@@ -1,18 +1,32 @@
 import React, { useEffect, useContext } from 'react';
+
 import GithubContext from '../../../Context/Github/githubContext';
+import CandidateContext from '../../../Context/Candidate/candidateContext';
+import AuthContext from '../../../Context/Authentication/authContext';
+
 import Repos from '../profile/Repos';
 import styled, { keyframes } from 'styled-components';
-import { fadeInLeft } from 'react-animations';
+import { fadeInLeft, fadeIn } from 'react-animations';
 
 import { Link } from 'react-router-dom';
 
 const FadeIn = styled.div`
+  animation: 1s ${keyframes`${fadeIn}`};
+`;
+const FadeInLeft = styled.div`
   animation: 1s ${keyframes`${fadeInLeft}`};
 `;
 
 const UserProfile = ({ match }) => {
+  const authContext = useContext(AuthContext);
+  const { user } = authContext;
+
+  const candidateContext = useContext(CandidateContext);
+  const { checkIfCandidate, addToDirectory } = candidateContext;
+
   const githubContext = useContext(GithubContext);
   const {
+    login,
     avatar_url,
     bio,
     company,
@@ -30,11 +44,25 @@ const UserProfile = ({ match }) => {
   useEffect(() => {
     githubContext.getUser(match.params.login);
     githubContext.getRepos(match.params.login);
+    checkIfCandidate(match.params.login);
     // eslint-disable-next-line
   }, []);
 
+  const onClick = () => {
+    console.log(githubContext.user.id);
+    console.log(user._id, login);
+    addToDirectory(user._id, login /*, position*/);
+  };
+
   return (
-    <FadeIn>
+    <FadeInLeft>
+      {/* {show && 
+      <FadeIn>
+
+      </FadeIn>
+      <div></div>
+      } */}
+
       <div className='container' style={{ display: 'flex' }}>
         <Link
           to='/gitapp'
@@ -47,6 +75,12 @@ const UserProfile = ({ match }) => {
       <div className='container profileCard'>
         <div className='cardElement1'>
           <div className='topCardElement'>
+            <div className='add-to-directory' onClick={onClick}>
+              {/* if user doesn't exist in directoy then display add to directory */}
+              <i className='fas fa-plus-circle fa-fw'></i>&nbsp;
+              <p> Add to Directory</p>
+              {/* else, display a check icon with "added" */}
+            </div>
             <p className='hide-mobile-item hireable-mobile'>
               <span
                 style={{
@@ -114,7 +148,14 @@ const UserProfile = ({ match }) => {
             </p>
           </div>
         </div>
-        <hr className= 'hide-mobile-item' style={{ border: '1px solid #d6d1d1', margin: '1rem', marginBottom: '0rem' }} />
+        <hr
+          className='hide-mobile-item'
+          style={{
+            border: '1px solid #d6d1d1',
+            margin: '1rem',
+            marginBottom: '0rem'
+          }}
+        />
         <div className='cardElements cardElement2'>
           <div className='profileStats'>
             <p>
@@ -162,7 +203,7 @@ const UserProfile = ({ match }) => {
           <Repos />
         </div>
       </div>
-    </FadeIn>
+    </FadeInLeft>
   );
 };
 
