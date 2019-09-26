@@ -30,7 +30,7 @@ const MyDirectory = () => {
   return (
     <div className='container'>
       <h1>Directory</h1>
-      <form className='form-sm' onSubmit={onSubmit}>
+      <form className='form-sm trim' onSubmit={onSubmit}>
         <h3 style={{ marginBottom: '1rem' }}>Filter By:</h3>
         <label htmlFor='position'>Position:</label>
         <input

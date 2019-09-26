@@ -27,18 +27,25 @@ const Candidates = () => {
   }, []);
 
   return (
-    <div>
+    <div className='empty-directory-message'>
       {loading ? (
         <div className='loader container'></div>
       ) : candidates.length === 0 ? (
         <FadeIn>
-          <h3>
-            No Candidates in your directory yet, {user.name}. Please go to home
-            and search for candidates once you find a candidate of interest,
-            click more to learn more about their github profile. Then you'll
-            find an option at the top of their profile to add them to your
-            directory.
-          </h3>
+          <div>
+            <h3>No Candidates in your directory yet, {user && user.name}.</h3>
+            <div>
+              <p>Please go to the home page and search for candidates.</p>
+              <p>
+                Once you find an interesting candidate, click "More" to learn
+                more about their github profile.
+              </p>
+              <p>
+                Once in their profile, you'll find an option at the top of their
+                profile to add them to your directory.
+              </p>
+            </div>
+          </div>
         </FadeIn>
       ) : (
         <FadeInUsers>

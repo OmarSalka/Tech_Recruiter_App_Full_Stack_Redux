@@ -533,6 +533,10 @@ a {
   border-bottom-right-radius: 10px;
 }
 
+.empty-directory-message {
+  margin-top: 2rem;
+}
+
 /* ====================== */
 
 /* Git */
@@ -639,7 +643,7 @@ a {
   /* Section1 */
   #section1 {
     height: 100vh;
-    margin-top: -15rem;
+    margin-top: -14.3rem;
   }
 
   #section1 h1 {
@@ -712,14 +716,9 @@ a {
   /* Register & Login */
   .form-sm {
     padding-top: 0rem;
-    height: 75vh;
   }
   .form-sm h1 {
     margin: 0rem;
-  }
-
-  .home-github-icon {
-    /* margin-top: rem; */
   }
 
   /* about */
@@ -745,6 +744,11 @@ a {
 
   .profileStats {
     display: none;
+  }
+
+  /* My directory */
+  .empty-directory-message {
+    margin-top: 0rem;
   }
 }
 
