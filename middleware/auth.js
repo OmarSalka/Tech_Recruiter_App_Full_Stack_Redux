@@ -9,6 +9,7 @@ module.exports = function(req, res, next) {
   // Check if not token
   if (!token) {
     return res.status(401).json({ msg: 'No token, auhorization denied' });
+    // return res.status(401).send(req.header('x-auth-token'));
   }
 
   try {

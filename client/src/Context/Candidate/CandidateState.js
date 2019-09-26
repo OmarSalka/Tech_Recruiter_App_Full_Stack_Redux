@@ -6,12 +6,16 @@ import CandidateReducer from './CandidateReducer';
 // import setAuthToken from '../../utils/setAuthToken';
 
 import {
+  SET_LOADING,
+  AND,
+  OR,
   IS_CANDIDATE,
   NOT_CANDIDATE,
   GET_CANDIDATES,
   ADD_CANDIDATE,
   UPDATE_CANDIDATE,
-  DELETE_CANDIDATE
+  DELETE_CANDIDATE,
+  NO_CANDIDATES_FOUND
 } from '../types';
 
 let githubClientId;
@@ -27,15 +31,28 @@ if (process.env.NODE_ENV !== 'production') {
 
 const CandidateState = props => {
   const initialState = {
-    isCandidate: false
+    // token: localStorage.getItem('token'),
+    isCandidate: false,
+    and: true,
+    or: false,
+    loading: false,
+    candidates: []
   };
 
   const [state, dispatch] = useReducer(CandidateReducer, initialState);
 
+  const andFilterBtnToggled = () => {
+    dispatch({
+      type: AND
+    });
+  };
+  const orFilterBtnToggled = () => {
+    dispatch({
+      type: OR
+    });
+  };
+
   const checkIfCandidate = async git_id => {
-    // if (localStorage.token) {
-    //   setAuthToken(localStorage.token);
-    // }
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -43,7 +60,7 @@ const CandidateState = props => {
       }
     };
     try {
-      const res = await axios.get('/api/candidates/check', git_id, config);
+      const res = await axios.get('/api/candidate', git_id, config);
       console.log(res.data);
       dispatch({
         type: IS_CANDIDATE,
@@ -59,13 +76,114 @@ const CandidateState = props => {
     }
   };
 
-  const addToDirectory = () => {};
+  const addToDirectory = async candidateInfo => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'x-auth-token': localStorage.token
+      }
+    };
+    try {
+      const res = await axios.post('/api/candidates', candidateInfo, config);
+      console.log('Added successfully');
+      dispatch({
+        type: ADD_CANDIDATE,
+        payload: res.data
+      });
+    } catch (err) {
+      console.log(err.response.data.msg);
+      console.log(candidateInfo);
+    }
+  };
+
+  const loadCandidates = async () => {
+    const config = {
+      headers: {
+        'x-auth-token': localStorage.token
+      }
+    };
+
+    setTimeout(async () => {
+      try {
+        const res = await axios.get('/api/candidates', config);
+        console.log(res.data);
+        dispatch({
+          type: GET_CANDIDATES,
+          payload: res.data
+        });
+      } catch (err) {
+        console.log(err.response.data.msg);
+        dispatch({
+          type: NO_CANDIDATES_FOUND,
+          payload: err.response.data.msg
+        });
+      }
+    }, 500);
+    setLoading();
+  };
+
+  const updateCandidate = async (updates, git_id) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'x-auth-token': localStorage.token
+      }
+    };
+    try {
+      const res = await axios.put(`/api/candidates/${git_id}`, updates, config);
+      console.log('Updated Successfully');
+      dispatch({
+        type: UPDATE_CANDIDATE,
+        payload: res.data
+      });
+    } catch (err) {
+      console.log(err.response.data.msg);
+      // dispatch({
+      //   type: ,
+      //   payload: err.response.data.msg
+      // });
+    }
+  };
+
+  const deleteCandidate = async git_id => {
+    const config = {
+      headers: {
+        'x-auth-token': localStorage.token
+      }
+    };
+    try {
+      const res = await axios.put(`/api/candidates/${git_id}`, config);
+      console.log('Deleted Successfully');
+      dispatch({
+        type: DELETE_CANDIDATE,
+        payload: res.data
+      });
+    } catch (err) {
+      console.log(err.response.data.msg);
+      // dispatch({
+      //   type: ,
+      //   payload: err.response.data.msg
+      // });
+    }
+  };
+
+  const setLoading = () => dispatch({ type: SET_LOADING });
 
   return (
     <CandidateContext.Provider
       value={{
+        and: state.and,
+        or: state.or,
+        loading: state.loading,
+        candidates: state.candidates,
+        andFilterBtnToggled,
+        orFilterBtnToggled,
         checkIfCandidate,
-        addToDirectory
+        addToDirectory,
+        loadCandidates,
+        updateCandidate,
+        deleteCandidate,
+        setLoading
       }}
     >
       {props.children}

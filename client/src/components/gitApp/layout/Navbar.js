@@ -54,11 +54,8 @@ const Navbar = ({ icon, platform }) => {
       </li>
       <div className='dropdown'>
         <FadeInDown>
-          <span
-            className='dropbtn'
-            style={{ padding: '1rem', cursor: 'pointer' }}
-          >
-            <i className='fas fa-user-circle fa-2x'></i>
+          <span style={{ cursor: 'pointer', fontSize: '0.5rem' }}>
+            <i className='fas fa-user-circle fa-3x'></i>
           </span>
         </FadeInDown>
         <div className='dropdown-content'>
@@ -97,46 +94,6 @@ const Navbar = ({ icon, platform }) => {
         </div>
       </FadeInDown>
       {isAuthenticated ? userNavItems : guestNavItems}
-      {/* <ul>
-        <li>
-          <FadeInDown>
-            <Link to='/gitapp'>Home</Link>
-          </FadeInDown>
-        </li>
-        <li>
-          <FadeInDown>
-            <Link to='/gitapp/about'>About</Link>
-          </FadeInDown>
-        </li>
-        <li className='mobile-nav-item'>
-          <FadeInDown>
-            <Link to='/gitapp/database'>MyDirectory</Link>
-          </FadeInDown>
-        </li>
-        <li className='mobile-nav-item'>
-          <FadeInDown>
-            <Link to='/' onClick={logoutClicked}>
-              Logout
-            </Link>
-          </FadeInDown>
-        </li>
-        <div className='dropdown'>
-          <FadeInDown>
-            <span
-              className='dropbtn'
-              style={{ padding: '1rem', cursor: 'pointer' }}
-            >
-              <i className='fas fa-user-circle fa-2x'></i>
-            </span>
-          </FadeInDown>
-          <div className='dropdown-content'>
-            <Link to='/gitapp/database'>My Directory</Link>
-            <Link to='/' className='dropdown-item' onClick={logoutClicked}>
-              Logout
-            </Link>
-          </div>
-        </div>
-      </ul> */}
     </div>
   );
 };

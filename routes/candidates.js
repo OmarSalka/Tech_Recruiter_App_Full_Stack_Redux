@@ -6,48 +6,6 @@ const { check, validationResult } = require('express-validator');
 const User = require('../models/User');
 const Candidate = require('../models/Candidate');
 
-// @route   GET api/candidates/check
-// @desc    Check if candidate exists
-// @access  Private
-router.get(
-  '/check',
-  [
-    auth,
-    check('git_id', 'git_id missing')
-      .not()
-      .isEmpty()
-  ],
-  async (req, res) => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      return res
-        .status(400)
-        .json({ errors: errors.errors.map(error => error.msg).toString() });
-    }
-
-    const { git_id } = req.body;
-    try {
-      let candidate = await Candidate.find({ user: req.user.id }).findOne({
-        git_account_id: git_id
-      });
-
-      if (candidate) {
-        // Countermeasure for those savy enough out there to cause trouble
-        if (candidate.user.toString() !== req.user.id) {
-          return res.status(401).json({ msg: 'Unauthorized' });
-        }
-        return res.json({ candidate: candidate });
-      }
-
-      res.json({ candidate: 'Does not exist' });
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send('Server Error');
-    }
-  }
-);
-
 // @route   GET  api/candidates
 // @desc    Get all user's candidates
 // @access  Private

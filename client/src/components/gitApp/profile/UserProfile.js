@@ -19,7 +19,7 @@ const FadeInLeft = styled.div`
 
 const UserProfile = ({ match }) => {
   const authContext = useContext(AuthContext);
-  const { user } = authContext;
+  const { user, loadUser } = authContext;
 
   const candidateContext = useContext(CandidateContext);
   const { checkIfCandidate, addToDirectory } = candidateContext;
@@ -45,14 +45,19 @@ const UserProfile = ({ match }) => {
   useEffect(() => {
     githubContext.getUser(match.params.login);
     githubContext.getRepos(match.params.login);
+    loadUser();
     checkIfCandidate(id);
     // eslint-disable-next-line
   }, [id]);
 
   const onClick = () => {
-    console.log(githubContext.user.id);
-    console.log(user._id, login);
-    addToDirectory(user._id, login /*, position*/);
+    // create real position and note when pop up is ready
+    addToDirectory({
+      git_id: id,
+      login,
+      position: 'sr. dev',
+      notes: 'highly qualified'
+    });
   };
 
   return (

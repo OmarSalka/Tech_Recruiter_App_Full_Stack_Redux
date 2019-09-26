@@ -1,4 +1,8 @@
 import {
+  NO_CANDIDATES_FOUND,
+  SET_LOADING,
+  AND,
+  OR,
   IS_CANDIDATE,
   NOT_CANDIDATE,
   GET_CANDIDATES,
@@ -9,13 +13,37 @@ import {
 
 export default (state, action) => {
   switch (action.type) {
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: true
+      };
+    case AND:
+      return {
+        ...state,
+        and: true,
+        or: false
+      };
+    case OR:
+      return {
+        ...state,
+        and: false,
+        or: true
+      };
     case IS_CANDIDATE:
       return {
         ...state
       };
     case GET_CANDIDATES:
       return {
-        ...state
+        ...state,
+        loading: false,
+        candidates: action.payload
+      };
+    case NO_CANDIDATES_FOUND:
+      return {
+        ...state,
+        loading: false
       };
     case ADD_CANDIDATE:
       return {

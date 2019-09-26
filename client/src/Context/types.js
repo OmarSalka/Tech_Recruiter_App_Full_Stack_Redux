@@ -14,6 +14,10 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const LOGOUT = 'LOGOUT';
 
+export const AND = 'AND';
+export const OR = 'OR';
+
+export const NO_CANDIDATES_FOUND = 'NO_CANDIDATES_FOUND';
 export const IS_CANDIDATE = 'IS_CANDIDATE';
 export const NOT_CANDIDATE = 'NOT_CANDIDATE';
 export const GET_CANDIDATES = 'GET_CANDIDATES';
