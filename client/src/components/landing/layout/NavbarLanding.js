@@ -4,11 +4,8 @@ import { Link as LinkScroll } from 'react-scroll';
 import PropTypes from 'prop-types';
 
 import styled, { keyframes } from 'styled-components';
-import { fadeInDown, pulse } from 'react-animations';
+import { fadeInDown } from 'react-animations';
 
-const Bounce = styled.div`
-  animation: 2s ${keyframes`${pulse}`} infinite;
-`;
 const FadeIn = styled.div`
   animation: 2s ${keyframes`${fadeInDown}`};
 `;
@@ -66,13 +63,11 @@ const NavbarLanding = ({ icon, platform }) => {
         </li>
         <li>
           <FadeIn>
-            <Bounce>
-              <Link to='/auth/login' className='theLoginButton'>
-                <span>
-                  Login <i className='fas fa-sign-in-alt'></i>
-                </span>
-              </Link>
-            </Bounce>
+            <Link to='/auth/login'>
+              <span>
+                Login <i className='fas fa-sign-in-alt'></i>
+              </span>
+            </Link>
           </FadeIn>
         </li>
       </ul>

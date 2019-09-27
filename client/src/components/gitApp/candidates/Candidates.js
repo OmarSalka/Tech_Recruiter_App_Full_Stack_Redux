@@ -24,6 +24,7 @@ const Candidates = () => {
   useEffect(() => {
     loadCandidates();
     console.log(candidates);
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -33,6 +34,7 @@ const Candidates = () => {
       ) : candidates.length === 0 ? (
         <FadeIn>
           <div>
+            <i className='far fa-folder-open fa-3x'></i>
             <h3>No Candidates in your directory yet, {user && user.name}.</h3>
             <div>
               <p>Please go to the home page and search for candidates.</p>
@@ -41,8 +43,8 @@ const Candidates = () => {
                 more about their github profile.
               </p>
               <p>
-                Once in their profile, you'll find an option at the top of their
-                profile to add them to your directory.
+                Once in their profile, you'll find an option at the top to add
+                them to your directory.
               </p>
             </div>
           </div>

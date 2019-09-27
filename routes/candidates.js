@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
+const dbGitId = require('../middleware/dbGitId');
 const { check, validationResult } = require('express-validator');
 
 const User = require('../models/User');
@@ -9,16 +10,27 @@ const Candidate = require('../models/Candidate');
 // @route   GET  api/candidates
 // @desc    Get all user's candidates
 // @access  Private
-router.get('/', auth, async (req, res) => {
+router.get('/', [auth, dbGitId], async (req, res) => {
   try {
-    const candidates = await Candidate.find({ user: req.user.id }).sort({
-      date: -1
-    });
-    res.json(candidates);
+    // console.log(req);
+    // const dbData = req;
+    // res.json(dbData);
+
+    res.json(res.locals.candidates);
+    // res.send('Stop right there');
   } catch (err) {
-    console.log(res.error);
-    res.status(500).send('Server Error');
+    console.error(err.message);
+    res.status(401).json({ msg: 'candidates.js: Something is not right' });
   }
+  // try {
+  //   const candidates = await Candidate.find({ user: req.user.id }).sort({
+  //     date: -1
+  //   });
+  //   res.json(candidates);
+  // } catch (err) {
+  //   console.log(res.error);
+  //   res.status(500).send('Server Error');
+  // }
 });
 
 // @route   POST  api/candidates

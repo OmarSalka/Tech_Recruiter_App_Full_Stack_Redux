@@ -132,6 +132,7 @@ a {
 }
 
 .theLoginButton {
+  padding: 0.7rem;
   border: 1px solid #f4f4f4;
   border-radius: 5px;
 }
@@ -153,7 +154,7 @@ a {
 }
 
 .backgroundPic {
-  background: #333 url(./img/unsplash3.jpg) no-repeat top center / cover;
+  background: #333 url(./img/unsplash3_3_2.jpg) no-repeat center center / cover;
   height: 100vh;
 }
 
@@ -197,13 +198,14 @@ a {
 
 /* Section2 */
 #section2 {
-  background: #333; /**/
-  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  background: #333;
   color: #f4f4f4;
 }
 
 .section2Content {
-  margin-top: 6rem;
+  margin-top: 2rem;
 }
 
 .features {
@@ -240,6 +242,7 @@ a {
 
 /* Section3 */
 #section3 {
+  display: block;
   color: #f4f4f4;
   background: #333;
 }
@@ -389,7 +392,7 @@ a {
 
 .userCard img {
   border-radius: 50%;
-  height: 30%;
+  /* height: 30%; */
   width: 30%;
 }
 
@@ -592,6 +595,10 @@ a {
   }
   /* Navbars */
 
+  /* .theLoginButton {
+    border: none;
+  } */
+
   .sideNavBar {
     display: none;
   }
@@ -660,17 +667,6 @@ a {
   }
 
   /*  Section2 */
-
-  #section2 {
-    height: 110vh;
-  }
-  #section2 .landing {
-    height: 110vh;
-  }
-
-  .section2Content {
-    margin-top: 1rem;
-  }
 
   .features {
     grid-template-columns: repeat(2, 1fr);
@@ -764,16 +760,6 @@ a {
 @media (max-width: 320px) {
   .navbar ul a {
     padding: 0.5rem;
-  }
-}
-
-/* Height responsiveness across mobile devices */
-@media (max-height: 700px) {
-  #section2 {
-    height: 150vh;
-  }
-  #section2 .landing {
-    height: 150vh;
   }
 }
 

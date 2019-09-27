@@ -102,7 +102,7 @@ const CandidateState = props => {
         'x-auth-token': localStorage.token
       }
     };
-
+    setLoading();
     setTimeout(async () => {
       try {
         const res = await axios.get('/api/candidates', config);
@@ -111,6 +111,7 @@ const CandidateState = props => {
           type: GET_CANDIDATES,
           payload: res.data
         });
+        upToDateInfo(res.data);
       } catch (err) {
         console.log(err.response.data.msg);
         dispatch({
@@ -119,7 +120,18 @@ const CandidateState = props => {
         });
       }
     }, 500);
-    setLoading();
+  };
+
+  const upToDateInfo = dbList => {
+    // map through the list
+    let candidates = [];
+    dbList.map(async dbCandidateInfo => {
+      const res = await axios.get(
+        `https://api.github.com/user/${dbCandidateInfo.git_account_id}?client_id=${githubClientId}&client_secret=${githubClientSecrect}`
+      );
+      candidates = [...candidates, res.data];
+      console.log(res.data);
+    });
   };
 
   const updateCandidate = async (updates, git_id) => {

@@ -4,13 +4,13 @@ import styled, { keyframes } from 'styled-components';
 import { fadeIn, fadeInDown } from 'react-animations';
 
 const FadeIn = styled.div`
-  animation: 0s ${keyframes`${fadeIn}`};
+  animation: 1s ${keyframes`${fadeIn}`};
 `;
 const FadeInPrimary = styled.div`
-  animation: 3s ${keyframes`${fadeIn}`};
+  animation: 4s ${keyframes`${fadeIn}`};
 `;
 const FadeInDownArr = styled.div`
-  animation: 4s ${keyframes`${fadeInDown}`} infinite;
+  animation: 5s ${keyframes`${fadeInDown}`} infinite;
 `;
 
 const LandingPage = () => {

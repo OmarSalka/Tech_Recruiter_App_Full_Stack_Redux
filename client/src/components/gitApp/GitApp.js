@@ -8,15 +8,23 @@ import About from './layout/About';
 import MyDirectory from './layout/MyDirectory';
 import Footer from './layout/Footer';
 import App from '../../App';
-// import LandingPage from '../landing/LandingPage';
 
 const GitApp = ({ match }) => {
   const authContext = useContext(AuthContext);
+  const { loadUser, isAuthenticated } = authContext;
 
   useEffect(() => {
-    authContext.loadUser();
+    loadUser();
     // eslint-disable-next-line
   }, []);
+
+  const containerStyling = {
+    minHeight: isAuthenticated && '100vh',
+    overflow: isAuthenticated && 'hidden',
+    display: isAuthenticated && 'block',
+    position: isAuthenticated && 'relative',
+    paddingBottom: isAuthenticated && '70px'
+  };
 
   return (
     <Fragment>
@@ -43,14 +51,6 @@ const GitApp = ({ match }) => {
       </Router>
     </Fragment>
   );
-};
-
-const containerStyling = {
-  minHeight: '100vh',
-  overflow: 'hidden',
-  display: 'block',
-  position: 'relative',
-  paddingBottom: '70px'
 };
 
 export default GitApp;
