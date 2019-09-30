@@ -96,43 +96,46 @@ const CandidateState = props => {
     }
   };
 
+  // ======================================
+
   const loadCandidates = async () => {
     const config = {
       headers: {
         'x-auth-token': localStorage.token
       }
     };
+
     setLoading();
-    setTimeout(async () => {
-      try {
-        const res = await axios.get('/api/candidates', config);
-        console.log(res.data);
+    try {
+      let finalList = [];
+      const dbData = await axios.get('/api/candidates', config);
+      console.log('dbData', dbData.data);
+      await dbData.data.map(async candidate => {
+        const res2 = await axios.get(
+          `https://api.github.com/user/${candidate.git_account_id}?client_id=${githubClientId}&client_secret=${githubClientSecrect}`
+        );
+        res2.data.position = candidate.position;
+        res2.data.notes = candidate.notes;
+        finalList = [...finalList, res2.data];
+      });
+      setTimeout(() => {
+        console.log(finalList);
         dispatch({
           type: GET_CANDIDATES,
-          payload: res.data
+          payload: finalList
         });
-        upToDateInfo(res.data);
-      } catch (err) {
-        console.log(err.response.data.msg);
-        dispatch({
-          type: NO_CANDIDATES_FOUND,
-          payload: err.response.data.msg
-        });
-      }
-    }, 500);
+      }, 1000);
+    } catch (err) {
+      // console.log(err);
+      console.log(err.response.data.msg);
+      dispatch({
+        type: NO_CANDIDATES_FOUND,
+        payload: err.response.data.msg
+      });
+    }
   };
 
-  const upToDateInfo = dbList => {
-    // map through the list
-    let candidates = [];
-    dbList.map(async dbCandidateInfo => {
-      const res = await axios.get(
-        `https://api.github.com/user/${dbCandidateInfo.git_account_id}?client_id=${githubClientId}&client_secret=${githubClientSecrect}`
-      );
-      candidates = [...candidates, res.data];
-      console.log(res.data);
-    });
-  };
+  // ======================================
 
   const updateCandidate = async (updates, git_id) => {
     const config = {
@@ -166,9 +169,10 @@ const CandidateState = props => {
     try {
       const res = await axios.put(`/api/candidates/${git_id}`, config);
       console.log('Deleted Successfully');
+      console.log('delete', res);
       dispatch({
-        type: DELETE_CANDIDATE,
-        payload: res.data
+        type: DELETE_CANDIDATE
+        // payload: res.data
       });
     } catch (err) {
       console.log(err.response.data.msg);

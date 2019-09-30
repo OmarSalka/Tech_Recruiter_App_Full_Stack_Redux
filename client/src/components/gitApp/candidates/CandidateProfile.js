@@ -19,7 +19,7 @@ const FadeInLeft = styled.div`
   animation: 1s ${keyframes`${fadeInLeft}`};
 `;
 
-const UserProfile = ({ match }) => {
+const CandidateProfile = ({ match }) => {
   const popUpContext = useContext(PopUpContext);
   const { addCandidatePopUp } = popUpContext;
 
@@ -50,13 +50,8 @@ const UserProfile = ({ match }) => {
     githubContext.getUser(match.params.login);
     githubContext.getRepos(match.params.login);
     loadUser();
-    checkIfCandidate(id);
     // eslint-disable-next-line
   }, [id]);
-
-  const addCandidate = () => {
-    addCandidatePopUp(name, id);
-  };
 
   return (
     <FadeInLeft>
@@ -65,7 +60,7 @@ const UserProfile = ({ match }) => {
       </FadeIn>
       <div className='container' style={{ display: 'flex' }}>
         <Link
-          to='/gitapp'
+          to='/gitapp/database'
           className='btn btn-primary'
           style={{ alignItems: 'left' }}
         >
@@ -75,12 +70,6 @@ const UserProfile = ({ match }) => {
       <div className='container profileCard'>
         <div className='cardElement1'>
           <div className='topCardElement'>
-            <div className='add-to-directory' onClick={addCandidate}>
-              {/* if user doesn't exist in directoy then display add to directory */}
-              <i className='fas fa-plus-circle fa-fw'></i>&nbsp;
-              <p> Add to Directory</p>
-              {/* else, display a check icon with "added" */}
-            </div>
             <p className='hide-mobile-item hireable-mobile'>
               <span
                 style={{
@@ -201,10 +190,12 @@ const UserProfile = ({ match }) => {
             <strong style={{ fontSize: '2rem' }}>Repos:</strong>
           </h1>
           <Repos />
+          <label htmlFor='notes'>Notes:</label>
+          <input type='text' name='notes' />
         </div>
       </div>
     </FadeInLeft>
   );
 };
 
-export default UserProfile;
+export default CandidateProfile;

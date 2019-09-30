@@ -24,3 +24,7 @@ export const GET_CANDIDATES = 'GET_CANDIDATES';
 export const ADD_CANDIDATE = 'ADD_CANDIDATE';
 export const UPDATE_CANDIDATE = 'UPDATE_CANDIDATE';
 export const DELETE_CANDIDATE = 'DELETE_CANDIDATE';
+
+export const ADD_POP_UP = 'ADD_POP_UP';
+export const DELETE_POP_UP = 'DELETE_POP_UP';
+export const CLEAR_POP_UPS = 'CLEAR_POP_UPS';

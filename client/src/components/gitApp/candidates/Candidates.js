@@ -23,7 +23,6 @@ const Candidates = () => {
 
   useEffect(() => {
     loadCandidates();
-    console.log(candidates);
     // eslint-disable-next-line
   }, []);
 
@@ -51,13 +50,12 @@ const Candidates = () => {
         </FadeIn>
       ) : (
         <FadeInUsers>
-          <div className='userCards' style={{ marginBottom: '1rem' }}>
-            {candidates.map(candidate => (
-              <CandidateCard
-                key={candidate.git_account_id}
-                candidate={candidate}
-              />
-            ))}
+          <div>
+            <div className='userCards' style={{ marginBottom: '1rem' }}>
+              {candidates.map(candidate => (
+                <CandidateCard key={candidate.id} candidate={candidate} />
+              ))}
+            </div>
           </div>
         </FadeInUsers>
       )}

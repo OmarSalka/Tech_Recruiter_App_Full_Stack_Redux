@@ -12,24 +12,27 @@ import Auth from './components/Auth';
 import GithubState from './Context/Github/GithubState';
 import AlertState from './Context/Alert/AlertState';
 import CandidateState from './Context/Candidate/CandidateState';
+import PopUpState from './Context/PopUp/PopUpState';
 
 const App = () => {
   return (
     <AuthState>
       <GithubState>
         <CandidateState>
-          <AlertState>
-            <Router>
+          <PopUpState>
+            <AlertState>
               <Router>
-                <Switch>
-                  <Route exact path='/' component={LandingPage} />
-                  <Route path={'/auth'} component={Auth} />
-                  <PrivateRoute path='/gitapp' component={GitApp} />
-                  <Route component={PageNotFound} />
-                </Switch>
+                <Router>
+                  <Switch>
+                    <Route exact path='/' component={LandingPage} />
+                    <Route path={'/auth'} component={Auth} />
+                    <PrivateRoute path='/gitapp' component={GitApp} />
+                    <Route component={PageNotFound} />
+                  </Switch>
+                </Router>
               </Router>
-            </Router>
-          </AlertState>
+            </AlertState>
+          </PopUpState>
         </CandidateState>
       </GithubState>
     </AuthState>

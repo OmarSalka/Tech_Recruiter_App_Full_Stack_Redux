@@ -3,10 +3,11 @@ const Candidate = require('../models/Candidate');
 
 module.exports = async (req, res, next) => {
   try {
-    const candidates = await Candidate.find({ user: req.user.id }).sort({
-      date: -1
-    });
-    // req.json(candidates);
+    const candidates = await Candidate.find({ user: req.user.id })
+      .select('-login -position')
+      .sort({
+        date: -1
+      });
     res.locals.candidates = candidates;
     next();
   } catch (err) {

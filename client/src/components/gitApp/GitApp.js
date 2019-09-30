@@ -6,6 +6,7 @@ import Home from './layout/Home';
 import UserProfile from './profile/UserProfile';
 import About from './layout/About';
 import MyDirectory from './layout/MyDirectory';
+import CandidateProfile from './candidates/CandidateProfile';
 import Footer from './layout/Footer';
 import App from '../../App';
 
@@ -43,6 +44,11 @@ const GitApp = ({ match }) => {
               exact
               path={`${match.url}/database`}
               component={MyDirectory}
+            />
+            <Route
+              exact
+              path={`${match.url}/database/:login`}
+              component={CandidateProfile}
             />
             <Route exact path={'/'} component={App} />
           </Switch>

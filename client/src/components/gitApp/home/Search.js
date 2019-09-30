@@ -11,7 +11,7 @@ const FadeIn = styled.div`
 
 const Search = () => {
   const githubContext = useContext(GithubContext);
-  const { clearButton, users } = githubContext;
+  const { clearButton } = githubContext;
 
   const alertContext = useContext(AlertContext);
   const { setAlert } = alertContext;

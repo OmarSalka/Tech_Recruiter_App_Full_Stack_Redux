@@ -47,7 +47,8 @@ export default (state, action) => {
       };
     case ADD_CANDIDATE:
       return {
-        ...state
+        ...state,
+        addPopUp: true
       };
     case UPDATE_CANDIDATE:
       return {
@@ -55,7 +56,8 @@ export default (state, action) => {
       };
     case DELETE_CANDIDATE:
       return {
-        ...state
+        ...state,
+        deletePopUp: true
       };
 
     default:

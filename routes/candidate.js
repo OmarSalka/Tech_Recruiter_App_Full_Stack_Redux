@@ -8,10 +8,10 @@ const Candidate = require('../models/Candidate');
 // @desc    Check if candidate exists
 // @access  Private
 router.get('/', auth, async (req, res) => {
-  const { git_id } = req.body;
+  const { git_account_id } = req.body;
   try {
     let candidate = await Candidate.find({ user: req.user.id }).findOne({
-      git_account_id: git_id
+      git_account_id: git_account_id
     });
 
     if (candidate) {

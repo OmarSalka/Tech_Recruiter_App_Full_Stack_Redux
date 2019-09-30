@@ -1,36 +1,24 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
-const dbGitId = require('../middleware/dbGitId');
 const { check, validationResult } = require('express-validator');
-
-const User = require('../models/User');
 const Candidate = require('../models/Candidate');
 
 // @route   GET  api/candidates
 // @desc    Get all user's candidates
 // @access  Private
-router.get('/', [auth, dbGitId], async (req, res) => {
+router.get('/', auth, async (req, res) => {
   try {
-    // console.log(req);
-    // const dbData = req;
-    // res.json(dbData);
-
-    res.json(res.locals.candidates);
-    // res.send('Stop right there');
+    const candidates = await Candidate.find({ user: req.user.id })
+      .select('git_account_id notes position -_id')
+      .sort({
+        date: -1
+      });
+    res.json(candidates);
   } catch (err) {
-    console.error(err.message);
-    res.status(401).json({ msg: 'candidates.js: Something is not right' });
+    console.log(res.error);
+    res.status(500).send('Server Error');
   }
-  // try {
-  //   const candidates = await Candidate.find({ user: req.user.id }).sort({
-  //     date: -1
-  //   });
-  //   res.json(candidates);
-  // } catch (err) {
-  //   console.log(res.error);
-  //   res.status(500).send('Server Error');
-  // }
 });
 
 // @route   POST  api/candidates
@@ -53,10 +41,10 @@ router.post(
         .json({ errors: errors.errors.map(error => error.msg).toString() });
     }
 
-    const { git_id, login, position, notes } = req.body;
+    const { git_account_id, position, notes } = req.body;
     try {
       let newCandidate = await Candidate.find({ user: req.user.id }).findOne({
-        git_account_id: git_id
+        git_account_id: git_account_id
       });
 
       if (newCandidate) {
@@ -67,8 +55,7 @@ router.post(
 
       newCandidate = new Candidate({
         user: req.user.id,
-        git_account_id: git_id,
-        login: login,
+        git_account_id: git_account_id,
         position: position,
         notes: notes
       });

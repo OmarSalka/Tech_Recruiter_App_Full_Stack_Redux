@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 import { fadeInDown } from 'react-animations';

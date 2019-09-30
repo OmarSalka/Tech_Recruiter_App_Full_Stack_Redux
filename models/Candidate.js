@@ -9,10 +9,10 @@ const CandidateSchema = mongoose.Schema({
     type: Number,
     required: true
   },
-  login: {
-    type: String,
-    required: true
-  },
+  // login: {
+  //   type: String,
+  //   required: true
+  // },
   position: {
     type: String,
     required: true
