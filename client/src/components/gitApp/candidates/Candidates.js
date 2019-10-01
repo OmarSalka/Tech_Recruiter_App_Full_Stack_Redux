@@ -23,6 +23,9 @@ const Candidates = () => {
 
   useEffect(() => {
     loadCandidates();
+    // for (let i in candidates) {
+    //   loadSingleCandidate(i.git_account_id);
+    // }
     // eslint-disable-next-line
   }, []);
   console.log(candidates);
@@ -56,10 +59,7 @@ const Candidates = () => {
               style={{ marginBottom: '1rem' }}
             >
               {candidates.map(candidate => (
-                <CandidateCard
-                  key={candidate.git_account_id}
-                  dbCandidate={candidate}
-                />
+                <CandidateCard key={candidate.id} candidate={candidate} />
               ))}
             </div>
           </div>

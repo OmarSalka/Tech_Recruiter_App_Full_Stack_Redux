@@ -1,12 +1,11 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PopUpContext from '../../../Context/PopUp/popUpContext';
 import CandidateContext from '../../../Context/Candidate/candidateContext';
 
 const CandidateCard = ({
-  dbCandidate: { git_account_id, notes, position }
+  candidate: { id, notes, position, name, hireable, login, avatar_url }
 }) => {
-  // console.log('id', git_account_id);
   const popUpContext = useContext(PopUpContext);
   const {
     deleteCandidatePopUp,
@@ -14,18 +13,14 @@ const CandidateCard = ({
     editNotes,
     candidateToBeUpdated
   } = popUpContext;
-  useEffect(() => {
-    loadSingleCandidate(git_account_id);
-    // eslint-disable-next-line
-  }, []);
 
   const candidateContext = useContext(CandidateContext);
-  const { updateCandidate, loadSingleCandidate, candidate } = candidateContext;
+  const { updateCandidate } = candidateContext;
 
   const [editableField, setEditableField] = useState(notes);
 
   const removeCandidate = () => {
-    deleteCandidatePopUp(candidate.name, git_account_id);
+    deleteCandidatePopUp(name, id);
   };
 
   const onChange = e => {
@@ -33,15 +28,15 @@ const CandidateCard = ({
   };
 
   const editNotesBtn = () => {
-    toggleDisplay(true, git_account_id);
+    toggleDisplay(true, id);
   };
   const cancelEdit = () => {
-    toggleDisplay(false, git_account_id);
+    toggleDisplay(false, id);
   };
 
   const updateNotes = () => {
-    updateCandidate({ notes: editableField }, git_account_id);
-    toggleDisplay(false, git_account_id);
+    updateCandidate({ notes: editableField }, id);
+    toggleDisplay(false, id);
   };
 
   return (
@@ -51,17 +46,17 @@ const CandidateCard = ({
         <div className='left'>
           <p style={{ marginBottom: '0.5rem' }}>
             <strong style={{ color: '#388f83', fontSize: '1.1rem' }}>
-              {candidate && candidate.name ? candidate.name : 'N/A'}
+              {name ? name : 'N/A'}
             </strong>
           </p>
-          <img src={candidate && candidate.avatar_url} alt='Oops' />
+          <img src={avatar_url} alt='Oops' />
           <p>
             Position:
             <br />
             <strong>{position}</strong>
           </p>
           <Link
-            to={`/gitapp/database/${candidate && candidate.login}`}
+            to={`/gitapp/database/${login}`}
             className='btn btn-primary btn-primary-hover'
             style={{
               borderRadius: '5px',
@@ -84,9 +79,9 @@ const CandidateCard = ({
               >
                 Hireable:{' '}
               </span>{' '}
-              {candidate && candidate.hireable ? (
+              {hireable ? (
                 <i className='fas fa-check' style={{ color: '#388f83' }}></i>
-              ) : candidate && candidate.hireable === false ? (
+              ) : hireable === false ? (
                 <i className='fas fa-times' style={{ color: '#dc3545' }}></i>
               ) : (
                 <i className='fas fa-question' style={{ color: 'grey' }}></i>
@@ -106,7 +101,7 @@ const CandidateCard = ({
               marginTop: '1rem'
             }}
           >
-            {editNotes && candidateToBeUpdated === git_account_id ? (
+            {editNotes && candidateToBeUpdated === id ? (
               <div>
                 <label
                   htmlFor='notes'
@@ -156,7 +151,7 @@ const CandidateCard = ({
                   <strong>Notes:</strong>
                 </p>
                 <p style={{ display: 'inline', fontStyle: 'italic' }}>
-                  {notes ? notes : 'N/A'}
+                  {editableField === '' ? 'N/A' : editableField}
                 </p>
                 <p
                   className='btn btn-primary-hover'
@@ -170,7 +165,7 @@ const CandidateCard = ({
                   }}
                   onClick={editNotesBtn}
                 >
-                  Edit
+                  Add
                 </p>
               </div>
             )}

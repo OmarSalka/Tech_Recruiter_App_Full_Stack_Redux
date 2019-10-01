@@ -100,18 +100,29 @@ const CandidateState = props => {
 
   // ======================================
 
-  const loadCandidates = async () => {
+  const loadCandidates = async (spinner = true) => {
     const config = {
       headers: {
         'x-auth-token': localStorage.token
       }
     };
 
-    setLoading();
+    {
+      spinner && setLoading();
+    }
     try {
-      // let finalList = [];
+      let wholeList = [];
       const dbData = await axios.get('/api/candidates', config);
       console.log('dbData', dbData.data);
+      for (const i of dbData.data) {
+        const res = await axios.get(
+          `https://api.github.com/user/${i.git_account_id}?client_id=${githubClientId}&client_secret=${githubClientSecrect}`
+        );
+        res.data.position = i.position;
+        res.data.notes = i.notes;
+        wholeList = [...wholeList, res.data];
+      }
+      console.log('wholeList', wholeList);
       // await dbData.data.map(async candidate => {
       //   const res2 = await axios.get(
       //     `https://api.github.com/user/${candidate.git_account_id}?client_id=${githubClientId}&client_secret=${githubClientSecrect}`
@@ -123,7 +134,8 @@ const CandidateState = props => {
       // setTimeout(() => {
       dispatch({
         type: GET_CANDIDATES,
-        payload: dbData.data
+        payload: wholeList
+        // payload: dbData.data
       });
       // }, 1000);
       // setTimeout(() => {
@@ -144,19 +156,19 @@ const CandidateState = props => {
   };
 
   const loadSingleCandidate = async git_account_id => {
-    console.log('git_account', git_account_id);
-    try {
-      const res = await axios.get(
-        `https://api.github.com/user/${git_account_id}?client_id=${githubClientId}&client_secret=${githubClientSecrect}`
-      );
-
-      dispatch({
-        type: GET_SINGLE_CANDIDATE,
-        payload: res.data
-      });
-    } catch (err) {
-      console.log(err);
-    }
+    // console.log('git_account', git_account_id);
+    // try {
+    //   const res = await axios.get(
+    //     `https://api.github.com/user/${git_account_id}?client_id=${githubClientId}&client_secret=${githubClientSecrect}`
+    //   );
+    //   return res.data;
+    //   dispatch({
+    //     type: GET_SINGLE_CANDIDATE,
+    //     payload: res.data
+    //   });
+    // } catch (err) {
+    //   console.log(err);
+    // }
   };
 
   // ======================================
@@ -175,6 +187,7 @@ const CandidateState = props => {
         type: UPDATE_CANDIDATE,
         payload: res.data
       });
+      loadCandidates(false);
     } catch (err) {
       // console.log(err.response.data.msg);
       console.log(err);

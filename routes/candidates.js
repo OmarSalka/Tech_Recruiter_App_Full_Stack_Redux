@@ -76,8 +76,12 @@ router.put('/:id', auth, async (req, res) => {
   const { notes, position } = req.body;
   // Building candidate object
   const candidateFields = {};
-  if (notes) candidateFields.notes = notes;
-  if (position) candidateFields.position = position;
+  if (notes) {
+    candidateFields.notes = notes;
+  } else if (notes === '') candidateFields.notes = '';
+  if (position) {
+    candidateFields.position = position;
+  } else if (position === '') candidateFields.position = '';
 
   try {
     // let candidate = await Candidate.findById(req.params.id);
