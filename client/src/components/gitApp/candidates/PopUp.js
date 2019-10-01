@@ -59,7 +59,10 @@ const PopUp = () => {
           <div className='popup-inner'>
             <p>
               Are you sure you want to remove{' '}
-              <span style={{ color: 'red' }}>{candidateToBeDeleted}</span>?
+              <span style={{ color: 'red' }}>
+                {candidateToBeDeleted ? candidateToBeDeleted : 'this candidate'}
+              </span>{' '}
+              from your directory?
             </p>
             <div className='confirmation'>
               <p

@@ -74,7 +74,6 @@ router.post(
 // @access  Private
 router.put('/:id', auth, async (req, res) => {
   const { notes, position } = req.body;
-
   // Building candidate object
   const candidateFields = {};
   if (notes) candidateFields.notes = notes;

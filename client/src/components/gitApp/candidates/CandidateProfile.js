@@ -83,8 +83,10 @@ const CandidateProfile = ({ match }) => {
               </span>{' '}
               {hireable ? (
                 <i className='fas fa-check' style={{ color: '#388f83' }}></i>
-              ) : (
+              ) : hireable === false ? (
                 <i className='fas fa-times' style={{ color: '#dc3545' }}></i>
+              ) : (
+                <i className='fas fa-question' style={{ color: 'grey' }}></i>
               )}
             </p>
             <h1>{name}</h1>
@@ -160,8 +162,10 @@ const CandidateProfile = ({ match }) => {
               </span>{' '}
               {hireable ? (
                 <i className='fas fa-check' style={{ color: '#388f83' }}></i>
-              ) : (
+              ) : hireable === false ? (
                 <i className='fas fa-times' style={{ color: '#dc3545' }}></i>
+              ) : (
+                <i className='fas fa-question' style={{ color: 'grey' }}></i>
               )}
             </p>
             <div className='userQuantifiedInfo'>
@@ -190,8 +194,6 @@ const CandidateProfile = ({ match }) => {
             <strong style={{ fontSize: '2rem' }}>Repos:</strong>
           </h1>
           <Repos />
-          <label htmlFor='notes'>Notes:</label>
-          <input type='text' name='notes' />
         </div>
       </div>
     </FadeInLeft>

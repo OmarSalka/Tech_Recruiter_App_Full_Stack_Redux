@@ -1,7 +1,25 @@
-import { ADD_POP_UP, DELETE_POP_UP, CLEAR_POP_UPS } from '../types';
+import {
+  DISPLAY,
+  NO_DISPLAY,
+  ADD_POP_UP,
+  DELETE_POP_UP,
+  CLEAR_POP_UPS
+} from '../types';
 
 export default (state, action) => {
   switch (action.type) {
+    case DISPLAY:
+      return {
+        ...state,
+        editNotes: true,
+        candidateToBeUpdated: action.payload
+      };
+    case NO_DISPLAY:
+      return {
+        ...state,
+        editNotes: false,
+        candidateToBeUpdated: null
+      };
     case ADD_POP_UP:
       return {
         ...state,

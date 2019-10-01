@@ -6,6 +6,7 @@ import {
   IS_CANDIDATE,
   NOT_CANDIDATE,
   GET_CANDIDATES,
+  GET_SINGLE_CANDIDATE,
   ADD_CANDIDATE,
   UPDATE_CANDIDATE,
   DELETE_CANDIDATE
@@ -39,6 +40,12 @@ export default (state, action) => {
         ...state,
         loading: false,
         candidates: action.payload
+      };
+    case GET_SINGLE_CANDIDATE:
+      return {
+        ...state,
+        loading: false,
+        candidate: [...state.candidate, action.payload]
       };
     case NO_CANDIDATES_FOUND:
       return {

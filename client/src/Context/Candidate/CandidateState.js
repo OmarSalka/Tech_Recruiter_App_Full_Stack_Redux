@@ -12,6 +12,7 @@ import {
   IS_CANDIDATE,
   NOT_CANDIDATE,
   GET_CANDIDATES,
+  GET_SINGLE_CANDIDATE,
   ADD_CANDIDATE,
   UPDATE_CANDIDATE,
   DELETE_CANDIDATE,
@@ -36,7 +37,8 @@ const CandidateState = props => {
     and: true,
     or: false,
     loading: false,
-    candidates: []
+    candidates: [],
+    candidate: []
   };
 
   const [state, dispatch] = useReducer(CandidateReducer, initialState);
@@ -107,31 +109,53 @@ const CandidateState = props => {
 
     setLoading();
     try {
-      let finalList = [];
+      // let finalList = [];
       const dbData = await axios.get('/api/candidates', config);
       console.log('dbData', dbData.data);
-      await dbData.data.map(async candidate => {
-        const res2 = await axios.get(
-          `https://api.github.com/user/${candidate.git_account_id}?client_id=${githubClientId}&client_secret=${githubClientSecrect}`
-        );
-        res2.data.position = candidate.position;
-        res2.data.notes = candidate.notes;
-        finalList = [...finalList, res2.data];
-      });
-      setTimeout(() => {
-        console.log(finalList);
-        dispatch({
-          type: GET_CANDIDATES,
-          payload: finalList
-        });
-      }, 1000);
-    } catch (err) {
-      // console.log(err);
-      console.log(err.response.data.msg);
+      // await dbData.data.map(async candidate => {
+      //   const res2 = await axios.get(
+      //     `https://api.github.com/user/${candidate.git_account_id}?client_id=${githubClientId}&client_secret=${githubClientSecrect}`
+      //   );
+      //   res2.data.position = candidate.position;
+      //   res2.data.notes = candidate.notes;
+      //   finalList = [...finalList, res2.data];
+      // });
+      // setTimeout(() => {
       dispatch({
-        type: NO_CANDIDATES_FOUND,
-        payload: err.response.data.msg
+        type: GET_CANDIDATES,
+        payload: dbData.data
       });
+      // }, 1000);
+      // setTimeout(() => {
+      //   console.log(finalList);
+      //   dispatch({
+      //     type: GET_CANDIDATES,
+      //     payload: finalList
+      //   });
+      // }, 1000);
+    } catch (err) {
+      console.log(err);
+      // console.log(err.response.data.msg);
+      // dispatch({
+      //   type: NO_CANDIDATES_FOUND,
+      //   payload: err.response.data.msg
+      // });
+    }
+  };
+
+  const loadSingleCandidate = async git_account_id => {
+    console.log('git_account', git_account_id);
+    try {
+      const res = await axios.get(
+        `https://api.github.com/user/${git_account_id}?client_id=${githubClientId}&client_secret=${githubClientSecrect}`
+      );
+
+      dispatch({
+        type: GET_SINGLE_CANDIDATE,
+        payload: res.data
+      });
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -152,7 +176,10 @@ const CandidateState = props => {
         payload: res.data
       });
     } catch (err) {
-      console.log(err.response.data.msg);
+      // console.log(err.response.data.msg);
+      console.log(err);
+      console.log(updates);
+      console.log(git_id);
       // dispatch({
       //   type: ,
       //   payload: err.response.data.msg
@@ -192,11 +219,13 @@ const CandidateState = props => {
         or: state.or,
         loading: state.loading,
         candidates: state.candidates,
+        candidate: state.candidate,
         andFilterBtnToggled,
         orFilterBtnToggled,
         checkIfCandidate,
         addToDirectory,
         loadCandidates,
+        loadSingleCandidate,
         updateCandidate,
         deleteCandidate,
         setLoading

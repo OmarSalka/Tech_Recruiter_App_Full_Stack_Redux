@@ -561,8 +561,49 @@ a {
 .empty-directory-message {
   margin-top: 2rem;
 }
+/* =============================================================================================== */
+.candidateCards {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.candidateCardLayout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.candidateCard {
+  /* display: grid;
+  grid-template-columns: 1fr 2fr; */
+  background: #f4f4f4bd;
+  padding: 0.5rem 0rem;
+  /* text-align: center; */
+  align-items: center;
+  box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.2);
+}
+
+.candidateCard div {
+  padding-top: 0rem;
+}
+.candidateCard .cardHeader {
+  display: flex;
+  justify-content: space-around;
+  padding: 0rem;
+  align-content: center;
+}
+
+.candidateCard img {
+  border-radius: 50%;
+  width: 30%;
+}
+
+.candidateCard .left {
+  border-right: 1.5px solid #d6d1d1;
+}
 
 .remove-from-directory {
+  padding: 0rem;
+  padding-right: 0.5rem;
+  display: inline;
   color: red;
   cursor: pointer;
 }
@@ -650,11 +691,6 @@ a {
   .hide-mobile-item {
     display: block;
   }
-  /* Navbars */
-
-  /* .theLoginButton {
-    border: none;
-  } */
 
   .sideNavBar {
     display: none;
@@ -802,6 +838,14 @@ a {
   /* My directory */
   .empty-directory-message {
     margin-top: 0rem;
+  }
+
+  .candidateCards {
+    grid-template-columns: 1fr;
+  }
+
+  .candidateCardLayout {
+    grid-template-columns: 1fr 1.4fr;
   }
 }
 

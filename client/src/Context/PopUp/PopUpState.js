@@ -3,17 +3,39 @@ import React, { useReducer } from 'react';
 import PopUpContext from './popUpContext';
 import PopUpReducer from './PopUpReducer';
 
-import { ADD_POP_UP, DELETE_POP_UP, CLEAR_POP_UPS } from '../types';
+import {
+  DISPLAY,
+  NO_DISPLAY,
+  ADD_POP_UP,
+  DELETE_POP_UP,
+  CLEAR_POP_UPS
+} from '../types';
 
 const PopUpState = props => {
   const initialState = {
     popUpType: null,
     candidateToBeAdded: false,
     id: null,
-    candidateToBeDeleted: false
+    candidateToBeDeleted: false,
+    editNotes: false,
+    candidateToBeUpdated: null
   };
 
   const [state, dispatch] = useReducer(PopUpReducer, initialState);
+
+  const toggleDisplay = (boolean, id) => {
+    {
+      boolean
+        ? dispatch({
+            type: DISPLAY,
+            payload: id
+          })
+        : dispatch({
+            type: NO_DISPLAY,
+            payload: id
+          });
+    }
+  };
 
   const addCandidatePopUp = (name, id) => {
     dispatch({
@@ -22,12 +44,6 @@ const PopUpState = props => {
     });
   };
   const deleteCandidatePopUp = (name, id) => {
-    dispatch({
-      type: DELETE_POP_UP,
-      payload: { name, id }
-    });
-  };
-  const candidateProfilePopUp = (name, id) => {
     dispatch({
       type: DELETE_POP_UP,
       payload: { name, id }
@@ -45,6 +61,9 @@ const PopUpState = props => {
         candidateToBeAdded: state.candidateToBeAdded,
         id: state.id,
         candidateToBeDeleted: state.candidateToBeDeleted,
+        editNotes: state.editNotes,
+        candidateToBeUpdated: state.candidateToBeUpdated,
+        toggleDisplay,
         addCandidatePopUp,
         deleteCandidatePopUp,
         clearPopUps

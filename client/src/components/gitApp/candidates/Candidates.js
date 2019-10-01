@@ -25,7 +25,7 @@ const Candidates = () => {
     loadCandidates();
     // eslint-disable-next-line
   }, []);
-
+  console.log(candidates);
   return (
     <div className='empty-directory-message'>
       {loading ? (
@@ -51,9 +51,15 @@ const Candidates = () => {
       ) : (
         <FadeInUsers>
           <div>
-            <div className='userCards' style={{ marginBottom: '1rem' }}>
+            <div
+              className='userCards candidateCards'
+              style={{ marginBottom: '1rem' }}
+            >
               {candidates.map(candidate => (
-                <CandidateCard key={candidate.id} candidate={candidate} />
+                <CandidateCard
+                  key={candidate.git_account_id}
+                  dbCandidate={candidate}
+                />
               ))}
             </div>
           </div>
