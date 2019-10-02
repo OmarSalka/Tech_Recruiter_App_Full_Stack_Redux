@@ -103,6 +103,7 @@ const CandidateState = props => {
   const loadCandidates = async (spinner = true) => {
     const config = {
       headers: {
+        'Content-Type': 'application/json',
         'x-auth-token': localStorage.token
       }
     };
@@ -214,6 +215,7 @@ const CandidateState = props => {
         type: DELETE_CANDIDATE
         // payload: res.data
       });
+      loadCandidates(false);
     } catch (err) {
       console.log(err.response.data.msg);
       // dispatch({
@@ -222,6 +224,8 @@ const CandidateState = props => {
       // });
     }
   };
+
+  // const filterCandidates
 
   const setLoading = () => dispatch({ type: SET_LOADING });
 

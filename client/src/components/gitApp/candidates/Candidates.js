@@ -23,12 +23,9 @@ const Candidates = () => {
 
   useEffect(() => {
     loadCandidates();
-    // for (let i in candidates) {
-    //   loadSingleCandidate(i.git_account_id);
-    // }
     // eslint-disable-next-line
   }, []);
-  console.log(candidates);
+
   return (
     <div className='empty-directory-message'>
       {loading ? (

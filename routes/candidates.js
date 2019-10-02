@@ -8,17 +8,66 @@ const Candidate = require('../models/Candidate');
 // @desc    Get all user's candidates
 // @access  Private
 router.get('/', auth, async (req, res) => {
-  try {
-    const candidates = await Candidate.find({ user: req.user.id })
-      .select('git_account_id notes position -_id')
-      .sort({
-        date: -1
-      });
-    res.json(candidates);
-  } catch (err) {
-    console.log(res.error);
-    res.status(500).send('Server Error');
+  // try {
+  const { position, login, filterType } = req.body;
+  console.log('p', position);
+  console.log('l', login);
+  console.log('f', filterType);
+  if (filterType === 'or') {
+    const filterFields = [];
+    {
+      position ? filterFields.push({ position: position }) : null;
+    }
+    {
+      login ? filterFields.push({ login: login }) : null;
+    }
+    try {
+      const candidates = await Candidate.find({
+        user: req.user.id,
+        $or: filterFields
+      })
+        .select('git_account_id notes position -_id')
+        .sort({
+          date: -1
+        });
+      res.json(candidates);
+    } catch (err) {
+      console.log('or');
+      console.log(res.error);
+      res.status(500).send('Server Error');
+    }
+  } else {
+    const candidateFields = {};
+    {
+      position ? (candidateFields.position = position) : null;
+    }
+    {
+      login ? (candidateFields.login = login) : null;
+    }
+    console.log('cf', candidateFields);
+    try {
+      const candidates = await Candidate.find(
+        {
+          user: req.user.id
+          // position: position
+        }
+        // { $set: candidateFields }
+      )
+        .select('git_account_id notes position -_id')
+        .sort({
+          date: -1
+        });
+      res.json(candidates);
+    } catch (err) {
+      console.log('else');
+      console.log(res.error);
+      res.status(500).send('Server Error');
+    }
   }
+  // } catch (err) {
+  //   console.log(res.error);
+  //   res.status(500).send('Server Error');
+  // }
 });
 
 // @route   POST  api/candidates
@@ -79,6 +128,7 @@ router.put('/:id', auth, async (req, res) => {
   if (notes) {
     candidateFields.notes = notes;
   } else if (notes === '') candidateFields.notes = '';
+
   if (position) {
     candidateFields.position = position;
   } else if (position === '') candidateFields.position = '';
