@@ -32,6 +32,7 @@ const CandidateProfile = ({ match }) => {
   const githubContext = useContext(GithubContext);
   const {
     id,
+    login,
     avatar_url,
     bio,
     company,
@@ -89,7 +90,7 @@ const CandidateProfile = ({ match }) => {
                 <i className='fas fa-question' style={{ color: 'grey' }}></i>
               )}
             </p>
-            <h1>{name}</h1>
+            <h1>{name ? name : login}</h1>
             <img
               src={avatar_url}
               alt='Oops'

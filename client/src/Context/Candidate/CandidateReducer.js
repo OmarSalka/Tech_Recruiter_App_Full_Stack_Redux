@@ -22,18 +22,22 @@ export default (state, action) => {
     case AND:
       return {
         ...state,
-        and: true,
-        or: false
+        filterType: 'and'
       };
     case OR:
       return {
         ...state,
-        and: false,
-        or: true
+        filterType: 'or'
       };
     case IS_CANDIDATE:
       return {
-        ...state
+        ...state,
+        isCandidate: true
+      };
+    case NOT_CANDIDATE:
+      return {
+        ...state,
+        isCandidate: false
       };
     case GET_CANDIDATES:
       return {

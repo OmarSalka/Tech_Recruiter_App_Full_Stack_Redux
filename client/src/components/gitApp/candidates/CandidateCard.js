@@ -46,7 +46,7 @@ const CandidateCard = ({
         <div className='left'>
           <p style={{ marginBottom: '0.5rem' }}>
             <strong style={{ color: '#388f83', fontSize: '1.1rem' }}>
-              {name ? name : 'N/A'}
+              {login ? login : 'N/A'}
             </strong>
           </p>
           <img src={avatar_url} alt='Oops' />

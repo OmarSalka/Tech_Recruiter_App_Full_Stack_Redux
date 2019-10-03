@@ -8,20 +8,12 @@ const Candidate = require('../models/Candidate');
 // @desc    Get all user's candidates
 // @access  Private
 router.get('/', auth, async (req, res) => {
-  // try {
-  const { position, login, filterType } = req.body;
-  console.log('p', position);
-  console.log('l', login);
-  console.log('f', filterType);
-  if (filterType === 'or') {
-    const filterFields = [];
-    {
-      position ? filterFields.push({ position: position }) : null;
-    }
-    {
-      login ? filterFields.push({ login: login }) : null;
-    }
-    try {
+  try {
+    const { position, login, filterType } = req.body;
+    if (filterType === 'or') {
+      const filterFields = [];
+      if (position) filterFields.push({ position: position });
+      if (login) filterFields.push({ login: login });
       const candidates = await Candidate.find({
         user: req.user.id,
         $or: filterFields
@@ -31,43 +23,22 @@ router.get('/', auth, async (req, res) => {
           date: -1
         });
       res.json(candidates);
-    } catch (err) {
-      console.log('or');
-      console.log(res.error);
-      res.status(500).send('Server Error');
-    }
-  } else {
-    const candidateFields = {};
-    {
-      position ? (candidateFields.position = position) : null;
-    }
-    {
-      login ? (candidateFields.login = login) : null;
-    }
-    console.log('cf', candidateFields);
-    try {
-      const candidates = await Candidate.find(
-        {
-          user: req.user.id
-          // position: position
-        }
-        // { $set: candidateFields }
-      )
+    } else {
+      const candidateFields = {};
+      if (position) candidateFields.position = position;
+      if (login) candidateFields.login = login;
+      candidateFields.user = req.user.id;
+      const candidates = await Candidate.find(candidateFields)
         .select('git_account_id notes position -_id')
         .sort({
           date: -1
         });
       res.json(candidates);
-    } catch (err) {
-      console.log('else');
-      console.log(res.error);
-      res.status(500).send('Server Error');
     }
+  } catch (err) {
+    console.log(res.error);
+    res.status(500).send('Server Error');
   }
-  // } catch (err) {
-  //   console.log(res.error);
-  //   res.status(500).send('Server Error');
-  // }
 });
 
 // @route   POST  api/candidates
@@ -90,9 +61,10 @@ router.post(
         .json({ errors: errors.errors.map(error => error.msg).toString() });
     }
 
-    const { git_account_id, position, notes } = req.body;
+    const { git_account_id, login, position, notes } = req.body;
     try {
-      let newCandidate = await Candidate.find({ user: req.user.id }).findOne({
+      let newCandidate = await Candidate.findOne({
+        user: req.user.id,
         git_account_id: git_account_id
       });
 
@@ -105,6 +77,7 @@ router.post(
       newCandidate = new Candidate({
         user: req.user.id,
         git_account_id: git_account_id,
+        login: login,
         position: position,
         notes: notes
       });
@@ -135,7 +108,8 @@ router.put('/:id', auth, async (req, res) => {
 
   try {
     // let candidate = await Candidate.findById(req.params.id);
-    let candidate = await Candidate.find({ user: req.user.id }).findOne({
+    let candidate = await Candidate.findOne({
+      user: req.user.id,
       git_account_id: req.params.id
     });
 
@@ -148,8 +122,8 @@ router.put('/:id', auth, async (req, res) => {
       return res.status(401).json({ msg: 'Unauthorized' });
     }
 
-    candidate = await Candidate.find({ user: req.user.id }).findOneAndUpdate(
-      { git_account_id: req.params.id },
+    candidate = await Candidate.findOneAndUpdate(
+      { user: req.user.id, git_account_id: req.params.id },
       {
         $set: candidateFields
       },
@@ -168,7 +142,8 @@ router.put('/:id', auth, async (req, res) => {
 // @access  Private
 router.delete('/:id', auth, async (req, res) => {
   try {
-    let candidate = await Candidate.find({ user: req.user.id }).findOne({
+    let candidate = await Candidate.findOne({
+      user: req.user.id,
       git_account_id: req.params.id
     });
 
@@ -181,11 +156,12 @@ router.delete('/:id', auth, async (req, res) => {
       return res.status(401).json({ msg: 'Unauthorized' });
     }
 
-    await Candidate.find({ user: req.user.id }).findOneAndUpdate({
+    await Candidate.findOneAndRemove({
+      user: req.user.id,
       git_account_id: req.params.id
     });
 
-    res.json({ msg: 'Contact Removed' });
+    res.json({ msg: 'Candidate Removed' });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import PopUp from '../candidates/PopUp';
 import Candidates from '../candidates/Candidates';
 import CandidateContext from '../../../Context/Candidate/candidateContext';
@@ -12,7 +12,12 @@ const FadeIn = styled.div`
 
 const MyDirectory = () => {
   const candidateContext = useContext(CandidateContext);
-  const { andFilterBtnToggled, orFilterBtnToggled, and, or } = candidateContext;
+  const {
+    andFilterBtnToggled,
+    orFilterBtnToggled,
+    filterType,
+    loadCandidates
+  } = candidateContext;
 
   const popUpContext = useContext(PopUpContext);
   const { popUpType } = popUpContext;
@@ -25,6 +30,14 @@ const MyDirectory = () => {
 
   const onSubmit = e => {
     e.preventDefault();
+    loadCandidates(
+      {
+        position: position,
+        login: login,
+        filterType: filterType
+      },
+      false
+    );
   };
 
   const onChange = e => {
@@ -62,8 +75,8 @@ const MyDirectory = () => {
             <p
               onClick={andClicked}
               style={{
-                color: and ? '#f4f4f4' : '#333',
-                background: and ? '#388f83' : '#d9dbdb'
+                color: filterType === 'and' ? '#f4f4f4' : '#333',
+                background: filterType === 'and' ? '#388f83' : '#d9dbdb'
               }}
             >
               And
@@ -71,8 +84,8 @@ const MyDirectory = () => {
             <p
               onClick={orClicked}
               style={{
-                color: or ? '#f4f4f4' : '#333',
-                background: or ? '#388f83' : '#d9dbdb'
+                color: filterType === 'or' ? '#f4f4f4' : '#333',
+                background: filterType === 'or' ? '#388f83' : '#d9dbdb'
               }}
             >
               Or

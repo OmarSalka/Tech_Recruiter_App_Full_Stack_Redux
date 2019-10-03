@@ -12,7 +12,6 @@ import {
   IS_CANDIDATE,
   NOT_CANDIDATE,
   GET_CANDIDATES,
-  GET_SINGLE_CANDIDATE,
   ADD_CANDIDATE,
   UPDATE_CANDIDATE,
   DELETE_CANDIDATE,
@@ -33,9 +32,8 @@ if (process.env.NODE_ENV !== 'production') {
 const CandidateState = props => {
   const initialState = {
     // token: localStorage.getItem('token'),
-    isCandidate: false,
-    and: true,
-    or: false,
+    isCandidate: null,
+    filterType: 'and',
     loading: false,
     candidates: [],
     candidate: []
@@ -54,26 +52,32 @@ const CandidateState = props => {
     });
   };
 
-  const checkIfCandidate = async git_id => {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        'x-auth-token': localStorage.token
-      }
-    };
+  const checkIfCandidate = async git_account_id => {
     try {
-      const res = await axios.get('/api/candidate', git_id, config);
-      console.log(res.data);
-      dispatch({
-        type: IS_CANDIDATE,
-        payload: res.data
+      const res = await axios({
+        headers: {
+          'Content-Type': 'application/json',
+          'x-auth-token': localStorage.token
+        },
+        url: '/api/candidate',
+        method: 'get',
+        data: git_account_id
       });
+      if (res.data.msg === 'This candidate exists in your directory') {
+        console.log(res.data.msg);
+        dispatch({
+          type: IS_CANDIDATE
+        });
+      } else if (res.data.msg === 'Does not exist') {
+        console.log(res.data.msg);
+        dispatch({
+          type: NOT_CANDIDATE
+        });
+      }
     } catch (err) {
-      console.log(localStorage.token);
       console.log(err.response.data.msg);
       dispatch({
-        type: NOT_CANDIDATE,
-        payload: err.response.data.msg
+        type: NOT_CANDIDATE
       });
     }
   };
@@ -100,7 +104,7 @@ const CandidateState = props => {
 
   // ======================================
 
-  const loadCandidates = async (spinner = true) => {
+  const loadCandidates = async (filterInput, spinner = true) => {
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -108,12 +112,15 @@ const CandidateState = props => {
       }
     };
 
-    {
-      spinner && setLoading();
-    }
+    if (spinner) setLoading();
+
     try {
       let wholeList = [];
-      const dbData = await axios.get('/api/candidates', config);
+      let dbData;
+      if (filterInput)
+        dbData = await axios.get('/api/candidates', filterInput, config);
+      if (!filterInput) dbData = await axios.get('/api/candidates', config);
+
       console.log('dbData', dbData.data);
       for (const i of dbData.data) {
         const res = await axios.get(
@@ -124,55 +131,14 @@ const CandidateState = props => {
         wholeList = [...wholeList, res.data];
       }
       console.log('wholeList', wholeList);
-      // await dbData.data.map(async candidate => {
-      //   const res2 = await axios.get(
-      //     `https://api.github.com/user/${candidate.git_account_id}?client_id=${githubClientId}&client_secret=${githubClientSecrect}`
-      //   );
-      //   res2.data.position = candidate.position;
-      //   res2.data.notes = candidate.notes;
-      //   finalList = [...finalList, res2.data];
-      // });
-      // setTimeout(() => {
       dispatch({
         type: GET_CANDIDATES,
         payload: wholeList
-        // payload: dbData.data
       });
-      // }, 1000);
-      // setTimeout(() => {
-      //   console.log(finalList);
-      //   dispatch({
-      //     type: GET_CANDIDATES,
-      //     payload: finalList
-      //   });
-      // }, 1000);
     } catch (err) {
       console.log(err);
-      // console.log(err.response.data.msg);
-      // dispatch({
-      //   type: NO_CANDIDATES_FOUND,
-      //   payload: err.response.data.msg
-      // });
     }
   };
-
-  const loadSingleCandidate = async git_account_id => {
-    // console.log('git_account', git_account_id);
-    // try {
-    //   const res = await axios.get(
-    //     `https://api.github.com/user/${git_account_id}?client_id=${githubClientId}&client_secret=${githubClientSecrect}`
-    //   );
-    //   return res.data;
-    //   dispatch({
-    //     type: GET_SINGLE_CANDIDATE,
-    //     payload: res.data
-    //   });
-    // } catch (err) {
-    //   console.log(err);
-    // }
-  };
-
-  // ======================================
 
   const updateCandidate = async (updates, git_id) => {
     const config = {
@@ -188,7 +154,7 @@ const CandidateState = props => {
         type: UPDATE_CANDIDATE,
         payload: res.data
       });
-      loadCandidates(false);
+      loadCandidates(null, false);
     } catch (err) {
       // console.log(err.response.data.msg);
       console.log(err);
@@ -208,7 +174,7 @@ const CandidateState = props => {
       }
     };
     try {
-      const res = await axios.put(`/api/candidates/${git_id}`, config);
+      const res = await axios.delete(`/api/candidates/${git_id}`, config);
       console.log('Deleted Successfully');
       console.log('delete', res);
       dispatch({
@@ -217,6 +183,7 @@ const CandidateState = props => {
       });
       loadCandidates(false);
     } catch (err) {
+      console.log('too bad');
       console.log(err.response.data.msg);
       // dispatch({
       //   type: ,
@@ -225,16 +192,14 @@ const CandidateState = props => {
     }
   };
 
-  // const filterCandidates
-
   const setLoading = () => dispatch({ type: SET_LOADING });
 
   return (
     <CandidateContext.Provider
       value={{
-        and: state.and,
-        or: state.or,
+        filterType: state.filterType,
         loading: state.loading,
+        isCandidate: state.isCandidate,
         candidates: state.candidates,
         candidate: state.candidate,
         andFilterBtnToggled,
@@ -242,7 +207,6 @@ const CandidateState = props => {
         checkIfCandidate,
         addToDirectory,
         loadCandidates,
-        loadSingleCandidate,
         updateCandidate,
         deleteCandidate,
         setLoading

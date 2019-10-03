@@ -24,14 +24,15 @@ const UserProfile = ({ match }) => {
   const { addCandidatePopUp } = popUpContext;
 
   const authContext = useContext(AuthContext);
-  const { user, loadUser } = authContext;
+  const { loadUser } = authContext;
 
   const candidateContext = useContext(CandidateContext);
-  const { checkIfCandidate } = candidateContext;
+  const { checkIfCandidate, isCandidate } = candidateContext;
 
   const githubContext = useContext(GithubContext);
   const {
     id,
+    login,
     avatar_url,
     bio,
     company,
@@ -46,16 +47,22 @@ const UserProfile = ({ match }) => {
     public_repos
   } = githubContext.user;
 
-  useEffect(() => {
-    githubContext.getUser(match.params.login);
-    githubContext.getRepos(match.params.login);
-    loadUser();
-    checkIfCandidate(id);
-    // eslint-disable-next-line
-  }, [id]);
+  useEffect(
+    () => {
+      githubContext.getUser(match.params.login);
+      githubContext.getRepos(match.params.login);
+      loadUser();
+      checkIfCandidate({ git_account_id: id });
+      console.log(isCandidate);
+      // eslint-disable-next-line
+    },
+    [
+      /*id*/
+    ]
+  );
 
   const addCandidate = () => {
-    addCandidatePopUp(name, id);
+    addCandidatePopUp(name, id, login);
   };
 
   return (
@@ -75,12 +82,22 @@ const UserProfile = ({ match }) => {
       <div className='container profileCard'>
         <div className='cardElement1'>
           <div className='topCardElement'>
-            <div className='add-to-directory' onClick={addCandidate}>
-              {/* if user doesn't exist in directoy then display add to directory */}
-              <i className='fas fa-plus-circle fa-fw'></i>&nbsp;
-              <p> Add to Directory</p>
-              {/* else, display a check icon with "added" */}
-            </div>
+            {/* <div className='add-to-directory' onClick={addCandidate}> */}
+            {/* if user doesn't exist in directoy then display add to directory */}
+            {isCandidate === true ? (
+              <div className='added-to-directory'>
+                <i className='fas fa-check-circle fa-fw fa-2x'></i>
+                <p> Added!</p>
+              </div>
+            ) : (
+              <div className='add-to-directory' onClick={addCandidate}>
+                <i className='fas fa-plus-circle fa-fw'></i>
+                <p> Add to Directory</p>
+              </div>
+            )}
+
+            {/* else, display a check icon with "added" */}
+            {/* </div> */}
             <p className='hide-mobile-item hireable-mobile'>
               <span
                 style={{
@@ -100,7 +117,7 @@ const UserProfile = ({ match }) => {
                 <i className='fas fa-question' style={{ color: 'grey' }}></i>
               )}
             </p>
-            <h1>{name}</h1>
+            <h1>{name ? name : login}</h1>
             <img
               src={avatar_url}
               alt='Oops'

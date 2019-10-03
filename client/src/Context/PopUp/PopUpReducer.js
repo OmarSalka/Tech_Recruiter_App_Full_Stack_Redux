@@ -24,6 +24,7 @@ export default (state, action) => {
       return {
         ...state,
         candidateToBeAdded: action.payload.name,
+        login: action.payload.login,
         id: action.payload.id,
         popUpType: 'add'
       };
@@ -39,6 +40,8 @@ export default (state, action) => {
         ...state,
         candidateToBeAdded: false,
         candidateToBeDeleted: false,
+        id: null,
+        login: null,
         id: null,
         popUpType: null
       };

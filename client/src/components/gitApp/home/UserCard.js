@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import CandidateContext from '../../../Context/Candidate/candidateContext';
 
-const UserCard = ({ user: { avatar_url, login, hireable } }) => {
+const UserCard = ({ user: { avatar_url, login, id } }) => {
+  const candidateContext = useContext(CandidateContext);
+  const { checkIfCandidate, isCandidate } = candidateContext;
+
+  const onClick = () => {
+    checkIfCandidate({ git_account_id: id });
+  };
+
   return (
     <div className='userCard'>
       <img src={avatar_url} alt='Oops' />
@@ -12,6 +20,7 @@ const UserCard = ({ user: { avatar_url, login, hireable } }) => {
         to={`/gitapp/user/${login}`}
         className='btn btn-primary btn-primary-hover'
         style={customBtn}
+        onClick={onClick}
       >
         More
       </Link>

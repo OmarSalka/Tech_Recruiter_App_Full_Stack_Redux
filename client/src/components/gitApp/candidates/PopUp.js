@@ -10,6 +10,7 @@ const PopUp = () => {
   const {
     candidateToBeDeleted,
     candidateToBeAdded,
+    login,
     id,
     clearPopUps,
     popUpType
@@ -25,21 +26,16 @@ const PopUp = () => {
     {
       popUpType === 'add' && console.log(candidateToBeAdded);
     }
-    {
-      popUpType === 'add' && // create real position and note when pop up is ready
-        addToDirectory({
-          git_account_id: id,
-          position: position,
-          notes: notes
-        });
-    }
+    if (popUpType === 'add')
+      addToDirectory({
+        git_account_id: id,
+        login: login,
+        position: position,
+        notes: notes
+      });
 
-    {
-      popUpType === 'delete' && console.log(candidateToBeDeleted);
-    }
-    {
-      popUpType === 'delete' && deleteCandidate(id);
-    }
+    if (popUpType === 'delete') console.log(candidateToBeDeleted);
+    if (popUpType === 'delete') deleteCandidate(id);
     clearPopUps();
   };
 

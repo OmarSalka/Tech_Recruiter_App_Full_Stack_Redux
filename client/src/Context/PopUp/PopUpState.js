@@ -15,6 +15,7 @@ const PopUpState = props => {
   const initialState = {
     popUpType: null,
     candidateToBeAdded: false,
+    login: null,
     id: null,
     candidateToBeDeleted: false,
     editNotes: false,
@@ -37,10 +38,10 @@ const PopUpState = props => {
     }
   };
 
-  const addCandidatePopUp = (name, id) => {
+  const addCandidatePopUp = (name, id, login) => {
     dispatch({
       type: ADD_POP_UP,
-      payload: { name, id }
+      payload: { name, id, login }
     });
   };
   const deleteCandidatePopUp = (name, id) => {
@@ -59,6 +60,7 @@ const PopUpState = props => {
         popUpType: state.popUpType,
         addPopUp: state.addPopUp,
         candidateToBeAdded: state.candidateToBeAdded,
+        login: state.login,
         id: state.id,
         candidateToBeDeleted: state.candidateToBeDeleted,
         editNotes: state.editNotes,
