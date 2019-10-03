@@ -5,6 +5,7 @@ import {
   OR,
   IS_CANDIDATE,
   NOT_CANDIDATE,
+  CLEAR_VERIFIER,
   GET_CANDIDATES,
   GET_SINGLE_CANDIDATE,
   ADD_CANDIDATE,
@@ -38,6 +39,11 @@ export default (state, action) => {
       return {
         ...state,
         isCandidate: false
+      };
+    case CLEAR_VERIFIER:
+      return {
+        ...state,
+        isCandidate: null
       };
     case GET_CANDIDATES:
       return {

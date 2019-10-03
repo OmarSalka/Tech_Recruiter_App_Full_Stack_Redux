@@ -73,20 +73,18 @@ const MyDirectory = () => {
           />
           <div className='filter-condition'>
             <p
+              className={
+                filterType === 'and' ? 'filter-selected' : 'filter-not-selected'
+              }
               onClick={andClicked}
-              style={{
-                color: filterType === 'and' ? '#f4f4f4' : '#333',
-                background: filterType === 'and' ? '#388f83' : '#d9dbdb'
-              }}
             >
               And
             </p>
             <p
+              className={
+                filterType === 'or' ? 'filter-selected' : 'filter-not-selected'
+              }
               onClick={orClicked}
-              style={{
-                color: filterType === 'or' ? '#f4f4f4' : '#333',
-                background: filterType === 'or' ? '#388f83' : '#d9dbdb'
-              }}
             >
               Or
             </p>

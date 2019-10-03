@@ -119,12 +119,8 @@ const CandidateProfile = ({ match }) => {
             <p>
               <strong>Email:</strong> <br />
               {email ? (
-                <a href={`mailto:${email}`} style={{ color: 'blue' }}>
-                  {email}{' '}
-                  <i
-                    className='fas fa-envelope fa-1x'
-                    style={{ color: '#388f83' }}
-                  ></i>
+                <a className='email-Link' href={`mailto:${email}`}>
+                  {email} <i className='fas fa-envelope fa-1x'></i>
                 </a>
               ) : (
                 'N/A'
@@ -170,16 +166,16 @@ const CandidateProfile = ({ match }) => {
               )}
             </p>
             <div className='userQuantifiedInfo'>
-              <p style={{ background: '#32CD32' }}>
+              <p>
                 <span>Followers:</span> {followers}
               </p>
-              <p style={{ background: '#FF4500' }}>
+              <p>
                 <span>Following:</span> {following}
               </p>
-              <p style={{ background: '#000' }}>
+              <p>
                 <span>Public Gists:</span> {public_gists}
               </p>
-              <p style={{ background: '#0000FF' }}>
+              <p>
                 <span>Public Repos:</span> {public_repos}
               </p>
             </div>

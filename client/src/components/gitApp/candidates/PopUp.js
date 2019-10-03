@@ -63,22 +63,10 @@ const PopUp = () => {
               from your directory?
             </p>
             <div className='confirmation'>
-              <p
-                onClick={yes}
-                style={{
-                  color: '#f4f4f4',
-                  background: '#388f83'
-                }}
-              >
+              <p className='positive' onClick={yes}>
                 Yes
               </p>
-              <p
-                onClick={no}
-                style={{
-                  color: '#333',
-                  background: '#d9dbdb'
-                }}
-              >
+              <p className='negative' onClick={no}>
                 No
               </p>
             </div>
@@ -89,7 +77,7 @@ const PopUp = () => {
           <div className='popup-inner'>
             <p style={{ paddingLeft: '2rem' }}>
               Enter the following about{' '}
-              <span style={{ color: '#388f83' }}>{candidateToBeAdded}</span>?
+              <span className='highlighted-name'>{candidateToBeAdded}</span>:
             </p>
             <form className='form-sm'>
               <label htmlFor='position'>Potential Position:</label>
@@ -111,20 +99,18 @@ const PopUp = () => {
             </form>
             <div className='confirmation'>
               <p
+                className='positive'
                 onClick={yes}
                 style={{
-                  color: '#f4f4f4',
-                  background: '#388f83',
                   width: '5rem'
                 }}
               >
                 Ok
               </p>
               <p
+                className='negative'
                 onClick={no}
                 style={{
-                  color: '#333',
-                  background: '#d9dbdb',
                   width: '5rem'
                 }}
               >

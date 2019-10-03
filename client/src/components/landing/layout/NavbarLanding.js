@@ -14,7 +14,7 @@ const NavbarLanding = ({ icon, platform }) => {
   return (
     <div className='navbar navLanding'>
       <FadeIn>
-        <h1 className='logo'>
+        <h1>
           <i className={icon} /> {platform}
         </h1>
       </FadeIn>

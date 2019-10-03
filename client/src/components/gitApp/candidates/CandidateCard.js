@@ -41,21 +41,20 @@ const CandidateCard = ({
 
   return (
     <div className='candidateCard'>
-      <div className='cardHeader'></div>
       <div className='candidateCardLayout'>
         <div className='left'>
-          <p style={{ marginBottom: '0.5rem' }}>
-            <strong style={{ color: '#388f83', fontSize: '1.1rem' }}>
+          <Link to={`/gitapp/database/${login}`} className='candidatelogin'>
+            <strong style={{ fontSize: '1.1rem' }}>
               {login ? login : 'N/A'}
             </strong>
-          </p>
+          </Link>
           <img src={avatar_url} alt='Oops' />
           <p>
             Position:
             <br />
             <strong>{position}</strong>
           </p>
-          <Link
+          {/* <Link
             to={`/gitapp/database/${login}`}
             className='btn btn-primary btn-primary-hover'
             style={{
@@ -65,7 +64,7 @@ const CandidateCard = ({
             }}
           >
             Profile
-          </Link>
+          </Link> */}
         </div>
         <div className='right'>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -101,14 +100,11 @@ const CandidateCard = ({
               marginTop: '1rem'
             }}
           >
+            <p className='notesHeader'>
+              <strong>Notes:</strong>
+            </p>
             {editNotes && candidateToBeUpdated === id ? (
               <div>
-                <label
-                  htmlFor='notes'
-                  style={{ color: '#388f83', align: 'center' }}
-                >
-                  Notes:{' '}
-                </label>
                 <input
                   type='text'
                   name='notes'
@@ -123,7 +119,6 @@ const CandidateCard = ({
                     style={{
                       display: 'inline',
                       padding: '0.23rem 0.3rem',
-                      background: '#388f83',
                       color: '#f4f4f4'
                     }}
                     onClick={updateNotes}
@@ -147,9 +142,6 @@ const CandidateCard = ({
               </div>
             ) : (
               <div>
-                <p style={{ color: '#388f83' }}>
-                  <strong>Notes:</strong>
-                </p>
                 <p style={{ display: 'inline', fontStyle: 'italic' }}>
                   {editableField === '' ? 'N/A' : editableField}
                 </p>

@@ -31,19 +31,9 @@ const Users = () => {
           </div>
         </FadeInUsers>
       ) : (
-        <div
-          className='home-github-icon'
-          // style={{
-          //   display: 'flex',
-          //   justifyContent: 'center',
-          //   marginTop: '7rem'
-          // }}
-        >
+        <div className='home-github-icon'>
           <FadeIn>
-            <i
-              className='fab fa-github fa-10x'
-              style={{ color: '#388f83', opacity: '0.5' }}
-            ></i>
+            <i className='fab fa-github fa-10x'></i>
           </FadeIn>
         </div>
       )}

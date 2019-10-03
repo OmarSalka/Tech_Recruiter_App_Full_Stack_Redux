@@ -2,8 +2,16 @@
 
 /* Global Styling */
 :root {
+  /* --main-text-color: #333; */
+  --main-text-color: grey;
+  --main-hover-background-color: #f3efef;
   --git-primary-color: #f4f4f4;
-  --git-primary-background-color: #388f83;
+  --git-primary-background-color: #eb410e;
+  --git-primary-background-color: #1da1f2;
+  /* --git-primary-background-color: #968b2b; */
+  /* --git-primary-background-color: #a58861; */
+  /* --git-primary-background-color: #684b26; */
+  /* --git-primary-background-color: #388f83; */
   --git-hover-background: #f4f4f41c;
   --twitter-primary-background-color: #1da1f2;
 }
@@ -40,7 +48,6 @@ ul {
 
 a {
   text-decoration: none;
-  color: var(--git-primary-color);
 }
 
 .form {
@@ -55,9 +62,6 @@ input {
   width: 100%;
   height: 2rem;
   margin: 0.2rem 0rem;
-}
-
-.form-background {
 }
 
 .form-sm {
@@ -123,12 +127,17 @@ input {
 
 .navLanding {
   background-color: rgba(255, 255, 255, 0);
+  color: #fff !important;
+}
+.navLanding h1,
+.navLanding span,
+.navLanding a {
   color: #fff;
 }
-.transparent h1,
-span,
-a {
-  color: #fff;
+
+.navLanding ul a:hover {
+  background: var(--git-hover-background) !important;
+  border-radius: 5px;
 }
 
 .theLoginButton {
@@ -318,11 +327,32 @@ a {
 
 .navbar ul a {
   padding: 1rem;
+  color: var(--main-text-color);
+}
+
+.navbar .logo {
+  color: var(--main-text-color);
 }
 
 .navbar ul a:hover {
-  background: var(--git-hover-background);
+  background: var(--main-hover-background-color);
   border-radius: 5px;
+}
+
+/* >>>>>>>>>>>>>> Footer <<<<<<<<<<<<<<<<<*/
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  opacity: 0.9;
+  /* background: var(--main-text-color); */
+  background: rgb(241, 240, 240);
+  color: var(--main-text-color);
 }
 
 /* Dropdown =================== */
@@ -332,10 +362,14 @@ a {
   padding: 0rem 1rem;
 }
 
+.dropdown i {
+  color: var(--main-text-color);
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: var(--git-primary-background-color);
+  background-color: #fff;
   min-width: 7.75rem;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
@@ -353,11 +387,13 @@ a {
 }
 
 .dropdown-content a:hover {
-  background-color: var(--git-hover-background);
+  background-color: var(--main-hover-background-color);
+  /* background-color: var(--git-hover-background); */
 }
 
 .dropdown-item:hover {
-  background-color: var(--git-hover-background);
+  background-color: var(--main-hover-background-color);
+  /* background-color: var(--git-hover-background); */
 }
 
 .dropdown:hover .dropdown-content {
@@ -375,6 +411,8 @@ a {
 }
 
 .home-github-icon i {
+  color: var(--git-primary-background-color);
+  opacity: 0.5;
   margin-top: 4rem;
 }
 
@@ -408,7 +446,7 @@ a {
   grid-template-columns: 1fr 2fr;
   box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  background: #ece7e7b2;
+  background: #f4f4f4bd;
   padding: 1rem 0;
 }
 
@@ -439,6 +477,18 @@ a {
   text-align: justify;
   padding: 0.3rem 2rem;
   font-size: 14px;
+}
+
+.email-Link {
+  color: var(--main-text-color);
+  text-decoration: underline;
+}
+.email-Link:hover {
+  opacity: 0.7;
+}
+
+.bottomCardElement i {
+  color: var(--git-primary-background-color);
 }
 
 .cardElement1 {
@@ -480,6 +530,7 @@ a {
   font-size: 11px;
   border-radius: 15px;
   color: #fff;
+  background: var(--git-primary-background-color);
 }
 
 .repo {
@@ -538,7 +589,7 @@ a {
 .filter-condition p {
   display: inline-block;
   padding: 0.4rem;
-  background: #d9dbdb;
+  /* background: #d9dbdb; */
   width: 3rem;
   text-align: center;
   cursor: pointer;
@@ -548,14 +599,23 @@ a {
   opacity: 0.7;
 }
 .filter-condition p:first-child {
-  background: #388f83;
-  color: #f4f4f4;
+  /* background: #388f83;
+  color: #f4f4f4; */
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
 .filter-condition p:last-child {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+}
+
+.filter-selected {
+  background: var(--git-primary-background-color);
+  color: #f4f4f4;
+}
+.filter-not-selected {
+  background: #d9dbdb;
+  color: #9e9d9d;
 }
 
 .empty-directory-message {
@@ -569,6 +629,22 @@ a {
 .candidateCardLayout {
   display: grid;
   grid-template-columns: 1fr 2fr;
+}
+
+.candidateCardLayout .candidatelogin,
+.candidateCardLayout label [htmlFor='notes'],
+.candidateCardLayout .notesHeader {
+  color: var(--git-primary-background-color);
+}
+
+.candidatelogin {
+  text-decoration: underline;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.candidatelogin:hover {
+  opacity: 0.7;
 }
 
 .candidateCard {
@@ -637,6 +713,18 @@ a {
   margin: 1rem;
   margin-top: 2rem;
 }
+.popup-inner .highlighted-name {
+  color: var(--git-primary-background-color);
+}
+
+.confirmation .positive {
+  color: #f4f4f4;
+  background: var(--git-primary-background-color);
+}
+.confirmation .negative {
+  color: #333;
+  background: #d9dbdb;
+}
 
 /* ====================== */
 
@@ -645,13 +733,6 @@ a {
   background: var(--git-primary-background-color);
   color: var(--git-primary-color);
 }
-/* Twitter */
-.twitter {
-  background: var(--twitter-primary-background-color);
-  color: var(--git-primary-color);
-}
-/* linkedin */
-
 /* >>>>>>>>>>>>>>>>>>>> Responsive Design <<<<<<<<<<<<<<<<<<<<<< */
 
 /* Tablets */
@@ -699,6 +780,10 @@ a {
   .navbar {
     flex-direction: column;
     padding-bottom: 0rem;
+  }
+
+  .navbar .logo {
+    text-align: center;
   }
 
   .navbar ul {
@@ -795,8 +880,8 @@ a {
   }
 
   .section3ContactUs h2,
-  .socialMedia,
-  p {
+  .section3ContactUs .socialMedia,
+  .section3ContactUs p {
     text-align: center;
   }
 
@@ -870,7 +955,7 @@ a {
   margin-top: 4rem;
   border: 16px solid #fff;
   border-radius: 50%;
-  border-top: 16px solid #388f83;
+  border-top: 16px solid var(--git-primary-background-color);
   width: 120px;
   height: 120px;
   -webkit-animation: spin 2s linear infinite; /* Safari */

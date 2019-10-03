@@ -84,7 +84,8 @@ const Navbar = ({ icon, platform }) => {
   );
 
   return (
-    <div className='git navbar'>
+    // <div className='git navbar'>
+    <div className='navbar'>
       <FadeInDown>
         <div className='logo'>
           <h1>

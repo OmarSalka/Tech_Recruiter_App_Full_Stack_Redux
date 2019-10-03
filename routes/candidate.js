@@ -8,7 +8,6 @@ const Candidate = require('../models/Candidate');
 // @desc    Check if candidate exists
 // @access  Private
 router.get('/:id', auth, async (req, res) => {
-  console.log(req.params.id);
   try {
     const candidate = await Candidate.findOne({
       user: req.user.id,
@@ -26,8 +25,6 @@ router.get('/:id', auth, async (req, res) => {
     res.json({ msg: 'Does not exist' });
   } catch (err) {
     console.error(err.message);
-    console.log(typeof git_account_id);
-    console.log(typeof req.user.id);
     res.status(500).send('Server Error');
   }
 });

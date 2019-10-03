@@ -27,7 +27,7 @@ const UserProfile = ({ match }) => {
   const { loadUser } = authContext;
 
   const candidateContext = useContext(CandidateContext);
-  const { checkIfCandidate, isCandidate } = candidateContext;
+  const { checkIfCandidate, isCandidate, clearVerifier } = candidateContext;
 
   const githubContext = useContext(GithubContext);
   const {
@@ -48,16 +48,20 @@ const UserProfile = ({ match }) => {
   } = githubContext.user;
 
   useEffect(() => {
+    if (id) checkIfCandidate(id);
     githubContext.getUser(match.params.login);
     githubContext.getRepos(match.params.login);
     loadUser();
-    if (id) checkIfCandidate(id);
     console.log(isCandidate);
     // eslint-disable-next-line
   }, [id, isCandidate]);
 
   const addCandidate = () => {
     addCandidatePopUp(name, id, login);
+  };
+
+  const clearCandidateVerifier = () => {
+    clearVerifier();
   };
 
   return (
@@ -70,6 +74,7 @@ const UserProfile = ({ match }) => {
           to='/gitapp'
           className='btn btn-primary'
           style={{ alignItems: 'left' }}
+          onClick={clearCandidateVerifier}
         >
           Back
         </Link>
@@ -77,8 +82,6 @@ const UserProfile = ({ match }) => {
       <div className='container profileCard'>
         <div className='cardElement1'>
           <div className='topCardElement'>
-            {/* <div className='add-to-directory' onClick={addCandidate}> */}
-            {/* if user doesn't exist in directoy then display add to directory */}
             {isCandidate === true ? (
               <div className='added-to-directory'>
                 <i className='fas fa-check-circle fa-fw fa-2x'></i>
@@ -90,13 +93,9 @@ const UserProfile = ({ match }) => {
                 <p> Add to Directory</p>
               </div>
             )}
-
-            {/* else, display a check icon with "added" */}
-            {/* </div> */}
             <p className='hide-mobile-item hireable-mobile'>
               <span
                 style={{
-                  fontWeight: 'bold',
                   marginLeft: '1.5rem',
                   marginBottom: '1rem',
                   color: '#333'
@@ -141,12 +140,8 @@ const UserProfile = ({ match }) => {
             <p>
               <strong>Email:</strong> <br />
               {email ? (
-                <a href={`mailto:${email}`} style={{ color: 'blue' }}>
-                  {email}{' '}
-                  <i
-                    className='fas fa-envelope fa-1x'
-                    style={{ color: '#388f83' }}
-                  ></i>
+                <a className='email-Link' href={`mailto:${email}`}>
+                  {email} <i className='fas fa-envelope fa-1x'></i>
                 </a>
               ) : (
                 'N/A'
@@ -175,7 +170,6 @@ const UserProfile = ({ match }) => {
             <p>
               <span
                 style={{
-                  fontWeight: 'bold',
                   marginLeft: '1.5rem',
                   marginBottom: '1rem',
                   color: '#333'
@@ -192,16 +186,16 @@ const UserProfile = ({ match }) => {
               )}
             </p>
             <div className='userQuantifiedInfo'>
-              <p style={{ background: '#32CD32' }}>
+              <p>
                 <span>Followers:</span> {followers}
               </p>
-              <p style={{ background: '#FF4500' }}>
+              <p>
                 <span>Following:</span> {following}
               </p>
-              <p style={{ background: '#000' }}>
+              <p>
                 <span>Public Gists:</span> {public_gists}
               </p>
-              <p style={{ background: '#0000FF' }}>
+              <p>
                 <span>Public Repos:</span> {public_repos}
               </p>
             </div>
