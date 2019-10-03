@@ -47,19 +47,14 @@ const UserProfile = ({ match }) => {
     public_repos
   } = githubContext.user;
 
-  useEffect(
-    () => {
-      githubContext.getUser(match.params.login);
-      githubContext.getRepos(match.params.login);
-      loadUser();
-      checkIfCandidate({ git_account_id: id });
-      console.log(isCandidate);
-      // eslint-disable-next-line
-    },
-    [
-      /*id*/
-    ]
-  );
+  useEffect(() => {
+    githubContext.getUser(match.params.login);
+    githubContext.getRepos(match.params.login);
+    loadUser();
+    if (id) checkIfCandidate(id);
+    console.log(isCandidate);
+    // eslint-disable-next-line
+  }, [id, isCandidate]);
 
   const addCandidate = () => {
     addCandidatePopUp(name, id, login);

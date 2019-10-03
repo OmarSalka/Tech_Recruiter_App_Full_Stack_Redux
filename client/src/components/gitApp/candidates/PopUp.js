@@ -4,7 +4,11 @@ import PopUpContext from '../../../Context/PopUp/popUpContext';
 
 const PopUp = () => {
   const candidateContext = useContext(CandidateContext);
-  const { addToDirectory, deleteCandidate } = candidateContext;
+  const {
+    addToDirectory,
+    deleteCandidate,
+    checkIfCandidate
+  } = candidateContext;
 
   const popUpContext = useContext(PopUpContext);
   const {
@@ -23,18 +27,16 @@ const PopUp = () => {
   const { position, notes } = addInput;
 
   const yes = () => {
-    {
-      popUpType === 'add' && console.log(candidateToBeAdded);
-    }
-    if (popUpType === 'add')
+    if (popUpType === 'add') {
       addToDirectory({
         git_account_id: id,
         login: login,
         position: position,
         notes: notes
       });
+      checkIfCandidate(id);
+    }
 
-    if (popUpType === 'delete') console.log(candidateToBeDeleted);
     if (popUpType === 'delete') deleteCandidate(id);
     clearPopUps();
   };

@@ -52,17 +52,26 @@ const CandidateState = props => {
     });
   };
 
-  const checkIfCandidate = async git_account_id => {
+  const checkIfCandidate = async id => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'x-auth-token': localStorage.token
+      }
+    };
+    console.log(id);
     try {
-      const res = await axios({
-        headers: {
-          'Content-Type': 'application/json',
-          'x-auth-token': localStorage.token
-        },
-        url: '/api/candidate',
-        method: 'get',
-        data: git_account_id
-      });
+      const res = await axios.get(`/api/candidate/${id}`, config);
+      // const res = await axios({
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     'x-auth-token': localStorage.token
+      //   },
+      //   url: '/api/candidate',
+      //   method: 'GET',
+      //   data: git_account_id
+      // });
+      console.log(id);
       if (res.data.msg === 'This candidate exists in your directory') {
         console.log(res.data.msg);
         dispatch({
@@ -201,7 +210,6 @@ const CandidateState = props => {
         loading: state.loading,
         isCandidate: state.isCandidate,
         candidates: state.candidates,
-        candidate: state.candidate,
         andFilterBtnToggled,
         orFilterBtnToggled,
         checkIfCandidate,

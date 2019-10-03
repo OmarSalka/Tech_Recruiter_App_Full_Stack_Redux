@@ -7,12 +7,12 @@ const Candidate = require('../models/Candidate');
 // @route   GET api/candidate
 // @desc    Check if candidate exists
 // @access  Private
-router.get('/', auth, async (req, res) => {
-  const { git_account_id } = req.body;
+router.get('/:id', auth, async (req, res) => {
+  console.log(req.params.id);
   try {
     const candidate = await Candidate.findOne({
       user: req.user.id,
-      git_account_id: git_account_id
+      git_account_id: req.params.id
     });
 
     if (candidate) {
@@ -21,7 +21,6 @@ router.get('/', auth, async (req, res) => {
         return res.status(401).json({ msg: 'Unauthorized' });
       }
       return res.json({ msg: 'This candidate exists in your directory' });
-      // return res.json({ candidate: candidate });
     }
 
     res.json({ msg: 'Does not exist' });
