@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import 'animate.css/animate.min.css';
 import ScrollAnimation from 'react-animate-on-scroll';
 
-const LandingSection2 = () => {
+const Features = () => {
   return (
-    <div id='section2'>
-      <div className='section2Content container'>
+    <div id='section2' className='about-features'>
+      <div className='section2Content'>
         <ScrollAnimation
           animateIn='fadeIn'
           animateOut='fadeOut'
@@ -32,7 +32,7 @@ const LandingSection2 = () => {
           duration={2}
           animateOnce={true}
         >
-          <div className='features'>
+          <div className='features about-featureItem'>
             <div className='featureItem'>
               <i className='fas fa-id-card fa-3x'></i>
               <div style={{ textAlign: 'left' }}>
@@ -104,18 +104,6 @@ const LandingSection2 = () => {
                 best yet!
               </h1>
               <p style={{ textAlign: 'center' }}>- Omar Salka</p>
-              <h2 style={{ margin: '1rem 0rem' }}>
-                So what are you waiting for?
-              </h2>
-              <Link
-                to='/auth/login'
-                className='theLoginButton'
-                style={{ background: '#f4f4f4' }}
-              >
-                <span style={{ color: '#333' }}>
-                  Login <i className='fas fa-sign-in-alt'></i>
-                </span>
-              </Link>
             </ScrollAnimation>
           </div>
         </ScrollAnimation>
@@ -124,4 +112,4 @@ const LandingSection2 = () => {
   );
 };
 
-export default LandingSection2;
+export default Features;

@@ -27,7 +27,12 @@ const UserProfile = ({ match }) => {
   const { loadUser } = authContext;
 
   const candidateContext = useContext(CandidateContext);
-  const { checkIfCandidate, isCandidate, clearVerifier } = candidateContext;
+  const {
+    checkIfCandidate,
+    isCandidate,
+    clearVerifier,
+    loading
+  } = candidateContext;
 
   const githubContext = useContext(GithubContext);
   const {
@@ -82,7 +87,14 @@ const UserProfile = ({ match }) => {
       <div className='container profileCard'>
         <div className='cardElement1'>
           <div className='topCardElement'>
-            {isCandidate === true ? (
+            {loading ? (
+              // <div className='loader loader-sm container'></div>
+              <p className='loading-dot'>
+                Loading<span>.</span>
+                <span>.</span>
+                <span>.</span>
+              </p>
+            ) : isCandidate === true ? (
               <div className='added-to-directory'>
                 <i className='fas fa-check-circle fa-fw fa-2x'></i>
                 <p> Added!</p>

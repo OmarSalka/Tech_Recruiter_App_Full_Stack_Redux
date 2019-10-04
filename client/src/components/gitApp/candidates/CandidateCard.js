@@ -32,6 +32,7 @@ const CandidateCard = ({
   };
   const cancelEdit = () => {
     toggleDisplay(false, id);
+    setEditableField(notes);
   };
 
   const updateNotes = () => {
@@ -54,17 +55,6 @@ const CandidateCard = ({
             <br />
             <strong>{position}</strong>
           </p>
-          {/* <Link
-            to={`/gitapp/database/${login}`}
-            className='btn btn-primary btn-primary-hover'
-            style={{
-              borderRadius: '5px',
-              marginTop: '0.5rem',
-              padding: '0.2rem 0.3rem'
-            }}
-          >
-            Profile
-          </Link> */}
         </div>
         <div className='right'>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -105,7 +95,7 @@ const CandidateCard = ({
             </p>
             {editNotes && candidateToBeUpdated === id ? (
               <div>
-                <input
+                <textarea
                   type='text'
                   name='notes'
                   value={editableField}

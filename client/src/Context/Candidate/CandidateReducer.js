@@ -33,12 +33,14 @@ export default (state, action) => {
     case IS_CANDIDATE:
       return {
         ...state,
-        isCandidate: true
+        isCandidate: true,
+        loading: false
       };
     case NOT_CANDIDATE:
       return {
         ...state,
-        isCandidate: false
+        isCandidate: false,
+        loading: false
       };
     case CLEAR_VERIFIER:
       return {

@@ -60,6 +60,7 @@ const CandidateState = props => {
         'x-auth-token': localStorage.token
       }
     };
+    setLoading();
     try {
       const res = await axios.get(`/api/candidate/${id}`, config);
       if (res.data.msg === 'This candidate exists in your directory') {

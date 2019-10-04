@@ -1,47 +1,40 @@
 import React, { Fragment } from 'react';
+import Features from '../../gitApp/about/Features';
+import Contact from '../../gitApp/about/Contact';
 import styled, { keyframes } from 'styled-components';
-import { fadeInDown } from 'react-animations';
+import { fadeIn } from 'react-animations';
 
 const FadeInDown = styled.div`
-  animation: 1s ${keyframes`${fadeInDown}`};
+  animation: 1s ${keyframes`${fadeIn}`};
 `;
 
 const About = () => {
   return (
-    <Fragment>
+    <div id='about' className='container'>
+      <Features />
+      <hr className='divider' />
       <FadeInDown>
-        <div id='about' style={aboutStyle}>
-          <h1 style={{ color: '#388f83' }}>About:</h1>
-          <p className='indent-features'>
-            <i className='fas fa-caret-right' style={{ color: '#388f83' }}></i>{' '}
-            Search Potential Candidates' Github account with the most valuable
-            metrics displayed in a very convenient way
-          </p>
-          <p className='indent-features'>
-            <i className='fas fa-caret-right' style={{ color: '#388f83' }}></i>{' '}
-            Feel like learning more about the condidate? Use our links to their
-            github profile and repos
-          </p>
-          <p className='indent-features'>
-            <i className='fas fa-caret-right' style={{ color: '#388f83' }}></i>{' '}
-            Add the potential condidate to your directory
-          </p>
-          <p className='indent-features'>
-            <i className='fas fa-caret-right' style={{ color: '#388f83' }}></i>{' '}
-            Revisit your directory with all the saved profiles for comparisons
-          </p>
-          <p className='indent-features'>
-            <i className='fas fa-caret-right' style={{ color: '#388f83' }}></i>{' '}
-            In case of a no match, you can delete a candidate's profile from
-            your directory
-          </p>
-          <h2 style={{ color: '#388f83', marginTop: '1rem' }}>App:</h2>
-          <p className='indent-features'>v. 1.0.0</p>
-          <h2 style={{ color: '#388f83', marginTop: '1rem' }}>
-            Author: <br />
-          </h2>
-          <p className='indent-features'>Omar Salka</p>
-        </div>
+        <p className='indent-features'>
+          <i className='fas fa-caret-right'></i> Search Potential Candidates'
+          Github account with the most valuable metrics displayed in a very
+          convenient way
+        </p>
+        <p className='indent-features'>
+          <i className='fas fa-caret-right'></i> Feel like learning more about
+          the condidate? Use our links to their github profile and repos
+        </p>
+        <p className='indent-features'>
+          <i className='fas fa-caret-right'></i> Add the potential condidate to
+          your directory
+        </p>
+        <p className='indent-features'>
+          <i className='fas fa-caret-right'></i> Revisit your directory with all
+          the saved profiles for comparisons
+        </p>
+        <p className='indent-features'>
+          <i className='fas fa-caret-right'></i> In case of a no match, you can
+          delete a candidate's profile from your directory
+        </p>
         <div
           style={{
             display: 'flex',
@@ -50,24 +43,18 @@ const About = () => {
             marginBottom: '4rem'
           }}
         >
-          <i
-            className='fab fa-github fa-10x'
-            style={{ color: '#388f83', opacity: '0.5' }}
-          ></i>
+          <i className='fab fa-github fa-10x' style={{ opacity: '0.5' }}></i>
         </div>
       </FadeInDown>
-    </Fragment>
+      <Contact />
+      <p>
+        <strong>App:</strong>v. 1.0.0
+      </p>
+      <p>
+        <strong>Author:</strong> Omar Salka
+      </p>
+    </div>
   );
-};
-
-const aboutStyle = {
-  boxShadow: '0px 8px 8px 0px rgba(0, 0, 0, 0.2)',
-  borderRadius: 5,
-  background: '#f3ececfa',
-  padding: '2rem',
-  border: '1px dotted #d6d1d1',
-  margin: '1.5rem',
-  textAlign: 'left'
 };
 
 export default About;

@@ -554,9 +554,45 @@ input {
 }
 
 /* >>>>>>>>>>>>>>>>>>>>> About <<<<<<<<<<<<<<<<<<<< */
+#about {
+  color: var(--main-text-color);
+}
+
+#about .divider {
+  width: 30%;
+  margin: auto;
+  margin-bottom: 1rem;
+}
 
 #about .indent-features {
-  margin-left: 1rem;
+  /* margin-left: 1rem; */
+  font-size: 1.5rem;
+  text-align: left;
+  margin: 0.5rem 0rem;
+}
+
+.about-features {
+  background: #ffffff !important;
+  color: var(--main-text-color) !important;
+}
+
+.about-featureItem .featureItem {
+  background: #f4f4f4bd !important;
+  color: var(--main-text-color) !important;
+  box-shadow: 0px 8px 8px 0px var(--main-text-color);
+  /* box-shadow: 0px 8px 8px 0px #424141; */
+}
+
+.about-contact,
+.about-contact i,
+.about-contact a {
+  background: #ffffff !important;
+  color: var(--main-text-color) !important;
+}
+
+.about-contact a:hover,
+.about-contact i:hover {
+  opacity: 0.7;
 }
 
 /* >>>>>>>>>>>>>>>>>>>>>>> MyDirectory <<<<<<<<<<<< */
@@ -672,8 +708,12 @@ input {
   width: 30%;
 }
 
-.candidateCard .left {
-  border-right: 1.5px solid #d6d1d1;
+.candidateCard .right {
+  border-left: 1.5px solid #d6d1d1;
+}
+
+.candidateCard textarea {
+  width: 100%;
 }
 
 .remove-from-directory {
@@ -920,6 +960,11 @@ input {
     display: none;
   }
 
+  /* About */
+  #about .indent-features {
+    text-align: center;
+  }
+
   /* My directory */
   .empty-directory-message {
     margin-top: 0rem;
@@ -960,6 +1005,37 @@ input {
   height: 120px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0.2;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+.loading-dot {
+  color: var(--git-primary-background-color);
+  font-size: 1.5rem;
+}
+.loading-dot span {
+  animation-name: blink;
+  animation-duration: 1.4s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+.loading-dot span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-dot span:nth-child(3) {
+  animation-delay: 0.4s;
 }
 
 /* Safari */
