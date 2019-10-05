@@ -24,10 +24,9 @@ const Navbar = ({ icon, platform }) => {
   }, []);
 
   const logoutClicked = () => {
-    clearUsers();
     logout();
+    clearUsers();
   };
-
   const userNavItems = (
     <ul>
       <li>

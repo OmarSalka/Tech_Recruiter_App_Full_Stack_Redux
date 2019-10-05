@@ -21,7 +21,7 @@ const Search = () => {
   const onSubmit = e => {
     e.preventDefault();
     if (text === '') {
-      setAlert('Please enter a valid github username', 'danger');
+      setAlert('Please enter a valid github username', 'secondary');
     } else {
       githubContext.searchUsers(text);
       setText('');
@@ -53,7 +53,7 @@ const Search = () => {
 
           <input type='submit' value='Search' className='btn btn-primary' />
 
-          {clearButton && (
+          {clearButton && !githubContext.users && (
             <input
               type='submit'
               value='Clear'

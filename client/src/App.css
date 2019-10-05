@@ -119,6 +119,11 @@ input {
   color: #ec2727;
 }
 
+.alert-secondary {
+  background: var(--main-text-color);
+  color: #fff;
+}
+
 .hide-mobile-item {
   display: none;
 }
@@ -144,6 +149,10 @@ input {
   padding: 0.7rem;
   border: 1px solid #f4f4f4;
   border-radius: 5px;
+}
+
+.theLoginButton:hover {
+  opacity: 0.9;
 }
 
 /* Section1 */
@@ -307,6 +316,13 @@ input {
   width: 50%;
 }
 
+.redirect-login_register {
+  text-align: center;
+  margin-top: 1rem;
+}
+.redirect-login_register a {
+  color: var(--git-primary-background-color);
+}
 /* Navbars */
 /* global */
 .navbar {

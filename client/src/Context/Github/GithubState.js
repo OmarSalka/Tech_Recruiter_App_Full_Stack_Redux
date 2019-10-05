@@ -38,7 +38,6 @@ const GithubState = props => {
     const response = await axios.get(
       `https://api.github.com/search/users?q=${text}&client_id=${githubClientId}&client_secret=${githubClientSecrect}`
     );
-
     setTimeout(() => {
       dispatch({
         type: SEARCH_USERS,

@@ -24,7 +24,7 @@ export default (state, action) => {
     case GET_REPOS:
       return {
         ...state,
-        repos: action.payload,
+        repos: action.payload
         // clearButton: true
       };
     case CLEAR_USERS:

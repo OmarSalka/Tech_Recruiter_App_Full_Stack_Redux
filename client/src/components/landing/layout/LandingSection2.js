@@ -26,7 +26,7 @@ const LandingSection2 = () => {
           </p>
         </ScrollAnimation>
         <ScrollAnimation
-          animateIn='fadeInUp'
+          animateIn='fadeInLeft'
           animateOut='fadeOutDown'
           delay={200}
           duration={2}

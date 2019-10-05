@@ -20,7 +20,7 @@ const Users = () => {
     <div>
       {loading ? (
         <div className='loader container'></div>
-      ) : clearButton ? (
+      ) : githubContext.users.length > 0 ? (
         <FadeInUsers>
           <div className='container'>
             <div className='userCards' style={{ marginBottom: '1rem' }}>
@@ -30,6 +30,10 @@ const Users = () => {
             </div>
           </div>
         </FadeInUsers>
+      ) : githubContext.users.length === 0 && clearButton ? (
+        <div>
+          <h1>Oops, try again</h1>
+        </div>
       ) : (
         <div className='home-github-icon'>
           <FadeIn>

@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Alert from '../Alert';
 import AlertContext from '../../Context/Alert/alertContext';
 import AuthContext from '../../Context/Authentication/authContext';
@@ -73,6 +74,9 @@ const Login = props => {
           />
           <input type='submit' value='Login' className='btn btn-primary' />
         </form>
+        <p className='redirect-login_register'>
+          Not a Tech R.A. user yet? <Link to='/auth/register'>Register</Link>
+        </p>
       </div>
     </div>
   );
