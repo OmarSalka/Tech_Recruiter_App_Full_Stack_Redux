@@ -37,6 +37,7 @@ const CandidateState = props => {
     filterType: 'and',
     loading: false,
     candidates: [],
+    emptyFilter: null,
     candidate: []
   };
 
@@ -60,23 +61,18 @@ const CandidateState = props => {
         'x-auth-token': localStorage.token
       }
     };
-    // setLoading();
     try {
       const res = await axios.get(`/api/candidate/${id}`, config);
       if (res.data.msg === 'This candidate exists in your directory') {
         console.log(res.data.msg);
-        // setTimeout(() => {
         dispatch({
           type: IS_CANDIDATE
         });
-        // }, 1000);
       } else if (res.data.msg === 'Does not exist') {
         console.log(res.data.msg);
-        // setTimeout(() => {
         dispatch({
           type: NOT_CANDIDATE
         });
-        // }, 1000);
       }
     } catch (err) {
       console.log(err.response.data.msg);
@@ -106,6 +102,7 @@ const CandidateState = props => {
         type: ADD_CANDIDATE,
         payload: res.data
       });
+      checkIfCandidate(candidateInfo.git_account_id);
     } catch (err) {
       console.log(err.response.data.msg);
       console.log(candidateInfo);
@@ -141,10 +138,16 @@ const CandidateState = props => {
         wholeList = [...wholeList, res.data];
       }
       console.log('wholeList', wholeList);
-      dispatch({
-        type: GET_CANDIDATES,
-        payload: wholeList
-      });
+      if (wholeList.length === 0) {
+        dispatch({
+          type: NO_CANDIDATES_FOUND
+        });
+      } else {
+        dispatch({
+          type: GET_CANDIDATES,
+          payload: wholeList
+        });
+      }
     } catch (err) {
       console.log(err);
     }
@@ -247,6 +250,7 @@ const CandidateState = props => {
         loading: state.loading,
         isCandidate: state.isCandidate,
         candidates: state.candidates,
+        emptyFilter: state.emptyFilter,
         andFilterBtnToggled,
         orFilterBtnToggled,
         checkIfCandidate,

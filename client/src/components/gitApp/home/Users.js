@@ -61,7 +61,17 @@ const Users = () => {
       ) : (
         <div className='home-github-icon'>
           <FadeIn>
-            <i className='fab fa-github fa-10x'></i>
+            <i
+              style={{ display: 'block' }}
+              className='fab fa-github fa-10x'
+            ></i>
+            <p style={{ marginTop: '1rem' }}>
+              Search for candidates using either their "name" or "github login"
+            </p>
+            <p style={{ fontSize: '0.8rem' }}>
+              **Github users referencing other github users in their bio might
+              get displayed in the results as well
+            </p>
           </FadeIn>
         </div>
       )}

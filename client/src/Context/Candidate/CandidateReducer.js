@@ -7,7 +7,7 @@ import {
   NOT_CANDIDATE,
   CLEAR_VERIFIER,
   GET_CANDIDATES,
-  GET_SINGLE_CANDIDATE,
+  // GET_SINGLE_CANDIDATE,
   ADD_CANDIDATE,
   UPDATE_CANDIDATE,
   DELETE_CANDIDATE
@@ -51,18 +51,20 @@ export default (state, action) => {
       return {
         ...state,
         loading: false,
-        candidates: action.payload
+        candidates: action.payload,
+        emptyFilter: null
       };
-    case GET_SINGLE_CANDIDATE:
-      return {
-        ...state,
-        loading: false,
-        candidate: [...state.candidate, action.payload]
-      };
+    // case GET_SINGLE_CANDIDATE:
+    //   return {
+    //     ...state,
+    //     loading: false,
+    //     candidate: [...state.candidate, action.payload]
+    //   };
     case NO_CANDIDATES_FOUND:
       return {
         ...state,
-        loading: false
+        loading: false,
+        emptyFilter: true
       };
     case ADD_CANDIDATE:
       return {

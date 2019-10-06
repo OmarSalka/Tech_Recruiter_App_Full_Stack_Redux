@@ -19,7 +19,7 @@ const Candidates = () => {
   const { user } = authContext;
 
   const candidateContext = useContext(CandidateContext);
-  const { loadCandidates, loading, candidates } = candidateContext;
+  const { loadCandidates, loading, candidates, emptyFilter } = candidateContext;
 
   useEffect(() => {
     loadCandidates();
@@ -46,6 +46,34 @@ const Candidates = () => {
                 them to your directory.
               </p>
             </div>
+          </div>
+        </FadeIn>
+      ) : emptyFilter ? (
+        <FadeIn>
+          <div className='no-results-icon container'>
+            <div className='sky'>
+              <span>&nbsp;&nbsp;</span>
+              <i className='fas fa-star hide-sky'></i>
+              <span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </span>
+              <i className='fas fa-moon fa-3x'></i>
+              <span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </span>
+              <i className='fas fa-star'></i>
+              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <i className='fas fa-star hide-sky'></i>
+              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            </div>
+            <div className='ground'>
+              <i className='fas fa-tree fa-10x'></i>
+              <i className='fas fa-campground fa-5x'></i>
+              <i className='fas fa-tree fa-10x'></i>
+            </div>
+            <h2 style={{ marginTop: '0.5rem' }}>
+              It's pretty quiet out here...
+            </h2>
           </div>
         </FadeIn>
       ) : (

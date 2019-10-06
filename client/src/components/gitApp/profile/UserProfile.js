@@ -57,7 +57,6 @@ const UserProfile = ({ match }) => {
     githubContext.getRepos(match.params.login);
     loadUser();
     checkIfCandidate(id);
-    // console.log(isCandidate);
     // eslint-disable-next-line
   }, [id]);
 

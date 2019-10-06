@@ -41,7 +41,7 @@ const Navbar = ({ icon, platform }) => {
       </li>
       <li className='mobile-nav-item'>
         <FadeInDown>
-          <Link to='/gitapp/database'>MyDirectory</Link>
+          <Link to='/gitapp/database'>My Candidates</Link>
         </FadeInDown>
       </li>
       <li className='mobile-nav-item'>
@@ -58,7 +58,7 @@ const Navbar = ({ icon, platform }) => {
           </span>
         </FadeInDown>
         <div className='dropdown-content'>
-          <Link to='/gitapp/database'>My Directory</Link>
+          <Link to='/gitapp/database'>My Candidates</Link>
           <Link to='/' className='dropdown-item' onClick={logoutClicked}>
             Logout
           </Link>

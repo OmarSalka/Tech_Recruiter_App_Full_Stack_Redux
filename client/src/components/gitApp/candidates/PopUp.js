@@ -45,7 +45,7 @@ const PopUp = () => {
           position: position,
           notes: notes
         });
-        checkIfCandidate(id);
+        // checkIfCandidate(id);
         clearPopUps();
       }
     }
@@ -90,12 +90,12 @@ const PopUp = () => {
       ) : popUpType === 'add' ? (
         <div className='popup'>
           <div className='popup-inner'>
-            <Alert />
             <p style={{ paddingLeft: '2rem' }}>
               Enter the following about{' '}
               <span className='highlighted-name'>{candidateToBeAdded}</span>:
             </p>
             <form className='form-sm'>
+              <Alert />
               <label htmlFor='position'>Potential Position:</label>
               <input
                 type='text'
