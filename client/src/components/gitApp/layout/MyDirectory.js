@@ -16,7 +16,7 @@ const MyDirectory = () => {
     andFilterBtnToggled,
     orFilterBtnToggled,
     filterType,
-    loadCandidates
+    loadFilteredCandidates
   } = candidateContext;
 
   const popUpContext = useContext(PopUpContext);
@@ -30,7 +30,7 @@ const MyDirectory = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    loadCandidates(
+    loadFilteredCandidates(
       {
         position: position,
         login: login,

@@ -60,19 +60,23 @@ const CandidateState = props => {
         'x-auth-token': localStorage.token
       }
     };
-    setLoading();
+    // setLoading();
     try {
       const res = await axios.get(`/api/candidate/${id}`, config);
       if (res.data.msg === 'This candidate exists in your directory') {
         console.log(res.data.msg);
+        // setTimeout(() => {
         dispatch({
           type: IS_CANDIDATE
         });
+        // }, 1000);
       } else if (res.data.msg === 'Does not exist') {
         console.log(res.data.msg);
+        // setTimeout(() => {
         dispatch({
           type: NOT_CANDIDATE
         });
+        // }, 1000);
       }
     } catch (err) {
       console.log(err.response.data.msg);
@@ -109,6 +113,42 @@ const CandidateState = props => {
   };
 
   // ======================================
+
+  const loadFilteredCandidates = async (filterInput, spinner = true) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'x-auth-token': localStorage.token
+      }
+    };
+
+    if (spinner) setLoading();
+
+    try {
+      let wholeList = [];
+      let dbData;
+      if (filterInput)
+        dbData = await axios.post('/api/filter', filterInput, config);
+      if (!filterInput) dbData = await axios.post('/api/filter', config);
+
+      console.log('dbData', dbData.data);
+      for (const i of dbData.data) {
+        const res = await axios.get(
+          `https://api.github.com/user/${i.git_account_id}?client_id=${githubClientId}&client_secret=${githubClientSecrect}`
+        );
+        res.data.position = i.position;
+        res.data.notes = i.notes;
+        wholeList = [...wholeList, res.data];
+      }
+      console.log('wholeList', wholeList);
+      dispatch({
+        type: GET_CANDIDATES,
+        payload: wholeList
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const loadCandidates = async (filterInput, spinner = true) => {
     const config = {
@@ -187,7 +227,7 @@ const CandidateState = props => {
         type: DELETE_CANDIDATE
         // payload: res.data
       });
-      loadCandidates(false);
+      loadCandidates(null, false);
     } catch (err) {
       console.log('too bad');
       console.log(err.response.data.msg);
@@ -215,7 +255,8 @@ const CandidateState = props => {
         loadCandidates,
         updateCandidate,
         deleteCandidate,
-        setLoading
+        setLoading,
+        loadFilteredCandidates
       }}
     >
       {props.children}

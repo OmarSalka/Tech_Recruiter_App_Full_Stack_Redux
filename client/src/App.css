@@ -426,6 +426,21 @@ input {
   justify-content: center;
 }
 
+.no-results-icon {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  color: var(--main-text-color);
+}
+
+/* .no-results-icon i {
+  display: inline-block;
+} */
+/* .no-results-icon .camp-icon-group {
+  display: inline-block;
+} */
+
 .home-github-icon i {
   color: var(--git-primary-background-color);
   opacity: 0.5;
@@ -959,6 +974,16 @@ input {
   }
 
   /* profiles */
+  .no-results-icon .sky {
+    font-size: 0.5rem;
+  }
+  .no-results-icon .hide-sky,
+  .no-results-icon span {
+    display: none;
+  }
+  .no-results-icon .ground {
+    font-size: 0.5rem;
+  }
   .userCards {
     grid-template-columns: repeat(2, 1fr);
   }

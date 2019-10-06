@@ -31,9 +31,33 @@ const Users = () => {
           </div>
         </FadeInUsers>
       ) : githubContext.users.length === 0 && clearButton ? (
-        <div>
-          <h1>Oops, try again</h1>
-        </div>
+        <FadeIn>
+          <div className='no-results-icon container'>
+            <div className='sky'>
+              <span>&nbsp;&nbsp;</span>
+              <i className='fas fa-star hide-sky'></i>
+              <span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </span>
+              <i className='fas fa-moon fa-3x'></i>
+              <span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </span>
+              <i className='fas fa-star'></i>
+              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <i className='fas fa-star hide-sky'></i>
+              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            </div>
+            <div className='ground'>
+              <i className='fas fa-tree fa-10x'></i>
+              <i className='fas fa-campground fa-5x'></i>
+              <i className='fas fa-tree fa-10x'></i>
+            </div>
+            <h2 style={{ marginTop: '0.5rem' }}>
+              It's pretty quiet out here...
+            </h2>
+          </div>
+        </FadeIn>
       ) : (
         <div className='home-github-icon'>
           <FadeIn>

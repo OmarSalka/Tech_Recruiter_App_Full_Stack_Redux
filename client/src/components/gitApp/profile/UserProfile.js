@@ -53,13 +53,13 @@ const UserProfile = ({ match }) => {
   } = githubContext.user;
 
   useEffect(() => {
-    if (id) checkIfCandidate(id);
     githubContext.getUser(match.params.login);
     githubContext.getRepos(match.params.login);
     loadUser();
-    console.log(isCandidate);
+    checkIfCandidate(id);
+    // console.log(isCandidate);
     // eslint-disable-next-line
-  }, [id, isCandidate]);
+  }, [id]);
 
   const addCandidate = () => {
     addCandidatePopUp(name, id, login);

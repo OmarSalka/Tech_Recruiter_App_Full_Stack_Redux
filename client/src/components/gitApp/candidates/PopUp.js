@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
 import CandidateContext from '../../../Context/Candidate/candidateContext';
 import PopUpContext from '../../../Context/PopUp/popUpContext';
+import AlertContext from '../../../Context/Alert/alertContext';
+import Alert from '../../Alert';
 
 const PopUp = () => {
   const candidateContext = useContext(CandidateContext);
@@ -20,6 +22,9 @@ const PopUp = () => {
     popUpType
   } = popUpContext;
 
+  const alertContext = useContext(AlertContext);
+  const { setAlert } = alertContext;
+
   const [addInput, setAddInput] = useState({
     position: '',
     notes: ''
@@ -28,17 +33,27 @@ const PopUp = () => {
 
   const yes = () => {
     if (popUpType === 'add') {
-      addToDirectory({
-        git_account_id: id,
-        login: login,
-        position: position,
-        notes: notes
-      });
-      checkIfCandidate(id);
+      if (position === '') {
+        setAlert(
+          'Please enter a position for your potential candidate',
+          'danger'
+        );
+      } else {
+        addToDirectory({
+          git_account_id: id,
+          login: login,
+          position: position,
+          notes: notes
+        });
+        checkIfCandidate(id);
+        clearPopUps();
+      }
     }
 
-    if (popUpType === 'delete') deleteCandidate(id);
-    clearPopUps();
+    if (popUpType === 'delete') {
+      deleteCandidate(id);
+      clearPopUps();
+    }
   };
 
   const no = () => {
@@ -75,6 +90,7 @@ const PopUp = () => {
       ) : popUpType === 'add' ? (
         <div className='popup'>
           <div className='popup-inner'>
+            <Alert />
             <p style={{ paddingLeft: '2rem' }}>
               Enter the following about{' '}
               <span className='highlighted-name'>{candidateToBeAdded}</span>:

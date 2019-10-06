@@ -7,7 +7,7 @@ const UserCard = ({ user: { avatar_url, login, id } }) => {
   const { checkIfCandidate, isCandidate } = candidateContext;
 
   const onClick = () => {
-    // checkIfCandidate(id);
+    checkIfCandidate(id);
   };
 
   return (
