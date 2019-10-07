@@ -41,6 +41,7 @@ const AuthState = props => {
         type: USER_LOADED,
         payload: res.data
       });
+      //
       // const config = {
       //   headers: {
       //     'x-auth-token': localStorage.token
