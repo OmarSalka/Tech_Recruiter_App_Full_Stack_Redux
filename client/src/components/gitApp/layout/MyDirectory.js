@@ -55,7 +55,11 @@ const MyDirectory = () => {
     <div>
       {popUpType === 'delete' && (
         <FadeIn>
-          <PopUp />
+          <PopUp
+            filterPosition={position}
+            filterLogin={login}
+            filterType={filterType}
+          />
         </FadeIn>
       )}
 

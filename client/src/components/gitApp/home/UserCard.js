@@ -4,7 +4,7 @@ import CandidateContext from '../../../Context/Candidate/candidateContext';
 
 const UserCard = ({ user: { avatar_url, login, id } }) => {
   const candidateContext = useContext(CandidateContext);
-  const { checkIfCandidate, isCandidate } = candidateContext;
+  const { checkIfCandidate } = candidateContext;
 
   const onClick = () => {
     checkIfCandidate(id);

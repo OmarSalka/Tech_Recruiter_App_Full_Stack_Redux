@@ -6,8 +6,8 @@ import AuthReducer from './AuthReducer';
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-  USER_LOADED,
   AUTH_ERROR,
+  USER_LOADED,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
@@ -27,24 +27,58 @@ const AuthState = props => {
 
   // Load User
   const loadUser = async () => {
-    const config = {
-      headers: {
-        'x-auth-token': localStorage.token
-      }
-    };
-    try {
+    if (!localStorage.token) {
+      dispatch({ type: AUTH_ERROR });
+    } else {
+      const config = {
+        headers: {
+          'x-auth-token': localStorage.token
+        }
+      };
       const res = await axios.get('/api/auth', config);
 
       dispatch({
         type: USER_LOADED,
         payload: res.data
       });
-    } catch (err) {
-      dispatch({
-        type: AUTH_ERROR
-      });
+      // const config = {
+      //   headers: {
+      //     'x-auth-token': localStorage.token
+      //   }
+      // };
+
+      // try {
+      //   const res = await axios.get('/api/auth', config);
+
+      //   dispatch({
+      //     type: USER_LOADED,
+      //     payload: res.data
+      //   });
+      // } catch (err) {
+      //   // console.log(err.response.status);
+      //   dispatch({ type: AUTH_ERROR });
+      // }
     }
   };
+  // // Load User
+  // const loadUser = async () => {
+  //   const config = {
+  //     headers: {
+  //       'x-auth-token': localStorage.token
+  //     }
+  //   };
+  //   try {
+  //     const res = await axios.get('/api/auth', config);
+
+  //     dispatch({
+  //       type: USER_LOADED,
+  //       payload: res.data
+  //     });
+  //   } catch (err) {
+  //     console.log(err.response.status);
+  //     dispatch({ type: AUTH_ERROR });
+  //   }
+  // };
 
   // Register User
   const register = async formData => {

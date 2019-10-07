@@ -1,9 +1,9 @@
 import React, { useEffect, useContext } from 'react';
 
 import GithubContext from '../../../Context/Github/githubContext';
-import CandidateContext from '../../../Context/Candidate/candidateContext';
+// import CandidateContext from '../../../Context/Candidate/candidateContext';
 import AuthContext from '../../../Context/Authentication/authContext';
-import PopUpContext from '../../../Context/PopUp/popUpContext';
+// import PopUpContext from '../../../Context/PopUp/popUpContext';
 
 import Repos from '../profile/Repos';
 import PopUp from '../candidates/PopUp';
@@ -20,14 +20,14 @@ const FadeInLeft = styled.div`
 `;
 
 const CandidateProfile = ({ match }) => {
-  const popUpContext = useContext(PopUpContext);
-  const { addCandidatePopUp } = popUpContext;
+  // const popUpContext = useContext(PopUpContext);
+  // const { addCandidatePopUp } = popUpContext;
 
   const authContext = useContext(AuthContext);
-  const { user, loadUser } = authContext;
+  const { loadUser } = authContext;
 
-  const candidateContext = useContext(CandidateContext);
-  const { checkIfCandidate } = candidateContext;
+  // const candidateContext = useContext(CandidateContext);
+  // const { checkIfCandidate } = candidateContext;
 
   const githubContext = useContext(GithubContext);
   const {

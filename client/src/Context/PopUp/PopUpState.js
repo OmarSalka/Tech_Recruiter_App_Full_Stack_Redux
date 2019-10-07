@@ -1,5 +1,4 @@
 import React, { useReducer } from 'react';
-// import axios from 'axios';
 import PopUpContext from './popUpContext';
 import PopUpReducer from './PopUpReducer';
 
@@ -25,16 +24,16 @@ const PopUpState = props => {
   const [state, dispatch] = useReducer(PopUpReducer, initialState);
 
   const toggleDisplay = (boolean, id) => {
-    {
-      boolean
-        ? dispatch({
-            type: DISPLAY,
-            payload: id
-          })
-        : dispatch({
-            type: NO_DISPLAY,
-            payload: id
-          });
+    if (boolean) {
+      dispatch({
+        type: DISPLAY,
+        payload: id
+      });
+    } else {
+      dispatch({
+        type: NO_DISPLAY,
+        payload: id
+      });
     }
   };
 

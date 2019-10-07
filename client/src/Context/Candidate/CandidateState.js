@@ -3,8 +3,6 @@ import axios from 'axios';
 import CandidateContext from './candidateContext';
 import CandidateReducer from './CandidateReducer';
 
-// import setAuthToken from '../../utils/setAuthToken';
-
 import {
   SET_LOADING,
   AND,
@@ -32,7 +30,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 const CandidateState = props => {
   const initialState = {
-    // token: localStorage.getItem('token'),
     isCandidate: null,
     filterType: 'and',
     loading: false,
@@ -64,12 +61,10 @@ const CandidateState = props => {
     try {
       const res = await axios.get(`/api/candidate/${id}`, config);
       if (res.data.msg === 'This candidate exists in your directory') {
-        console.log(res.data.msg);
         dispatch({
           type: IS_CANDIDATE
         });
       } else if (res.data.msg === 'Does not exist') {
-        console.log(res.data.msg);
         dispatch({
           type: NOT_CANDIDATE
         });
@@ -97,7 +92,6 @@ const CandidateState = props => {
     };
     try {
       const res = await axios.post('/api/candidates', candidateInfo, config);
-      console.log('Added successfully');
       dispatch({
         type: ADD_CANDIDATE,
         payload: res.data
@@ -127,8 +121,7 @@ const CandidateState = props => {
       if (filterInput)
         dbData = await axios.post('/api/filter', filterInput, config);
       if (!filterInput) dbData = await axios.post('/api/filter', config);
-
-      console.log('dbData', dbData.data);
+      // eslint-disable-next-line
       for (const i of dbData.data) {
         const res = await axios.get(
           `https://api.github.com/user/${i.git_account_id}?client_id=${githubClientId}&client_secret=${githubClientSecrect}`
@@ -137,7 +130,6 @@ const CandidateState = props => {
         res.data.notes = i.notes;
         wholeList = [...wholeList, res.data];
       }
-      console.log('wholeList', wholeList);
       if (wholeList.length === 0) {
         dispatch({
           type: NO_CANDIDATES_FOUND
@@ -169,8 +161,7 @@ const CandidateState = props => {
       if (filterInput)
         dbData = await axios.get('/api/candidates', filterInput, config);
       if (!filterInput) dbData = await axios.get('/api/candidates', config);
-
-      console.log('dbData', dbData.data);
+      // eslint-disable-next-line
       for (const i of dbData.data) {
         const res = await axios.get(
           `https://api.github.com/user/${i.git_account_id}?client_id=${githubClientId}&client_secret=${githubClientSecrect}`
@@ -179,7 +170,6 @@ const CandidateState = props => {
         res.data.notes = i.notes;
         wholeList = [...wholeList, res.data];
       }
-      console.log('wholeList', wholeList);
       dispatch({
         type: GET_CANDIDATES,
         payload: wholeList
@@ -198,46 +188,31 @@ const CandidateState = props => {
     };
     try {
       const res = await axios.put(`/api/candidates/${git_id}`, updates, config);
-      console.log('Updated Successfully');
       dispatch({
         type: UPDATE_CANDIDATE,
         payload: res.data
       });
       loadCandidates(null, false);
     } catch (err) {
-      // console.log(err.response.data.msg);
+      console.log(err.response.data.msg);
       console.log(err);
-      console.log(updates);
-      console.log(git_id);
-      // dispatch({
-      //   type: ,
-      //   payload: err.response.data.msg
-      // });
     }
   };
 
-  const deleteCandidate = async git_id => {
+  const deleteCandidate = async (filterData, git_id) => {
     const config = {
       headers: {
         'x-auth-token': localStorage.token
       }
     };
     try {
-      const res = await axios.delete(`/api/candidates/${git_id}`, config);
-      console.log('Deleted Successfully');
-      console.log('delete', res);
+      await axios.delete(`/api/candidates/${git_id}`, config);
       dispatch({
         type: DELETE_CANDIDATE
-        // payload: res.data
       });
-      loadCandidates(null, false);
+      loadFilteredCandidates(filterData, false);
     } catch (err) {
-      console.log('too bad');
       console.log(err.response.data.msg);
-      // dispatch({
-      //   type: ,
-      //   payload: err.response.data.msg
-      // });
     }
   };
 

@@ -4,13 +4,9 @@ import PopUpContext from '../../../Context/PopUp/popUpContext';
 import AlertContext from '../../../Context/Alert/alertContext';
 import Alert from '../../Alert';
 
-const PopUp = () => {
+const PopUp = ({ filterPosition, filterLogin, filterType }) => {
   const candidateContext = useContext(CandidateContext);
-  const {
-    addToDirectory,
-    deleteCandidate,
-    checkIfCandidate
-  } = candidateContext;
+  const { addToDirectory, deleteCandidate } = candidateContext;
 
   const popUpContext = useContext(PopUpContext);
   const {
@@ -51,7 +47,14 @@ const PopUp = () => {
     }
 
     if (popUpType === 'delete') {
-      deleteCandidate(id);
+      deleteCandidate(
+        {
+          position: filterPosition,
+          login: filterLogin,
+          filterType: filterType
+        },
+        id
+      );
       clearPopUps();
     }
   };

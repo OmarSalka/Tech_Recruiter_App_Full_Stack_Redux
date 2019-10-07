@@ -42,7 +42,6 @@ export default (state, action) => {
         candidateToBeDeleted: false,
         id: null,
         login: null,
-        id: null,
         popUpType: null
       };
     default:

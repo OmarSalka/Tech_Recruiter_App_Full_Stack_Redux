@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Features from '../../gitApp/about/Features';
 import Contact from '../../gitApp/about/Contact';
 import styled, { keyframes } from 'styled-components';
