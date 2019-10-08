@@ -1,8 +1,13 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import PopUp from '../candidates/PopUp';
 import Candidates from '../candidates/Candidates';
-import CandidateContext from '../../../Context/Candidate/candidateContext';
-import PopUpContext from '../../../Context/PopUp/popUpContext';
+import { connect } from 'react-redux';
+import {
+  andFilterBtnToggled,
+  orFilterBtnToggled,
+  loadFilteredCandidates
+} from '../../../actions/candidateActions';
+import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 import { fadeIn } from 'react-animations';
 
@@ -10,18 +15,13 @@ const FadeIn = styled.div`
   animation: 1s ${keyframes`${fadeIn}`};
 `;
 
-const MyDirectory = () => {
-  const candidateContext = useContext(CandidateContext);
-  const {
-    andFilterBtnToggled,
-    orFilterBtnToggled,
-    filterType,
-    loadFilteredCandidates
-  } = candidateContext;
-
-  const popUpContext = useContext(PopUpContext);
-  const { popUpType } = popUpContext;
-
+const MyDirectory = ({
+  candidate: { filterType },
+  popUp: { popUpType },
+  andFilterBtnToggled,
+  orFilterBtnToggled,
+  loadFilteredCandidates
+}) => {
   const [filters, setFilters] = useState({
     position: '',
     login: ''
@@ -109,4 +109,15 @@ const MyDirectory = () => {
   );
 };
 
-export default MyDirectory;
+const mapStateToProps = state => ({
+  candidate: state.candidate,
+  popUp: state.popUp,
+  andFilterBtnToggled: PropTypes.func.isRequired,
+  orFilterBtnToggled: PropTypes.func.isRequired,
+  loadFilteredCandidates: PropTypes.func.isRequired
+});
+
+export default connect(
+  mapStateToProps,
+  { andFilterBtnToggled, orFilterBtnToggled, loadFilteredCandidates }
+)(MyDirectory);

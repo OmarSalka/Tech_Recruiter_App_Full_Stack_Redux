@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
-import GithubContext from '../../../Context/Github/githubContext';
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import UserCard from './UserCard';
 import styled, { keyframes } from 'styled-components';
 import { fadeIn } from 'react-animations';
@@ -11,16 +12,12 @@ const FadeIn = styled.div`
   animation: 2s ${keyframes`${fadeIn}`};
 `;
 
-const Users = () => {
-  const githubContext = useContext(GithubContext);
-
-  const { users, clearButton, loading } = githubContext;
-
+const Users = ({ github: { users, clearButton, loading } }) => {
   return (
     <div>
       {loading ? (
         <div className='loader container'></div>
-      ) : githubContext.users.length > 0 ? (
+      ) : users.length > 0 ? (
         <FadeInUsers>
           <div className='container'>
             <div className='userCards' style={{ marginBottom: '1rem' }}>
@@ -30,7 +27,7 @@ const Users = () => {
             </div>
           </div>
         </FadeInUsers>
-      ) : githubContext.users.length === 0 && clearButton ? (
+      ) : users.length === 0 && clearButton ? (
         <FadeIn>
           <div className='no-results-icon container'>
             <div className='sky'>
@@ -78,5 +75,11 @@ const Users = () => {
     </div>
   );
 };
+Users.propTypes = {
+  github: PropTypes.object.isRequired
+};
 
-export default Users;
+const mapStateToProps = state => ({
+  github: state.github
+});
+export default connect(mapStateToProps)(Users);

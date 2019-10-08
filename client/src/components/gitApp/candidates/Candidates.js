@@ -1,8 +1,8 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 import CandidateCard from './CandidateCard';
-
-import CandidateContext from '../../../Context/Candidate/candidateContext';
-import AuthContext from '../../../Context/Authentication/authContext';
+import { connect } from 'react-redux';
+import { loadCandidates } from '../../../actions/candidateActions';
+import PropTypes from 'prop-types';
 
 import styled, { keyframes } from 'styled-components';
 import { fadeIn } from 'react-animations';
@@ -14,18 +14,15 @@ const FadeIn = styled.div`
   animation: 2s ${keyframes`${fadeIn}`};
 `;
 
-const Candidates = () => {
-  const authContext = useContext(AuthContext);
-  const { user } = authContext;
-
-  const candidateContext = useContext(CandidateContext);
-  const { loadCandidates, loading, candidates, emptyFilter } = candidateContext;
-
+const Candidates = ({
+  auth: { user },
+  candidate: { loading, candidates, emptyFilter },
+  loadCandidates
+}) => {
   useEffect(() => {
     loadCandidates();
     // eslint-disable-next-line
   }, []);
-
   return (
     <div className='empty-directory-message'>
       {loading ? (
@@ -94,4 +91,17 @@ const Candidates = () => {
   );
 };
 
-export default Candidates;
+Candidates.propTypes = {
+  auth: PropTypes.object.isRequired,
+  candidate: PropTypes.object.isRequired,
+  loadCandidates: PropTypes.func.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth,
+  candidate: state.candidate
+});
+
+export default connect(
+  mapStateToProps,
+  { loadCandidates }
+)(Candidates);

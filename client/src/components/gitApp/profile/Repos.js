@@ -1,12 +1,9 @@
-import React, { useContext } from 'react';
-import GithubContext from '../../../Context/Github/githubContext';
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Repository from './Repository';
 
-const Repos = () => {
-  const githubContext = useContext(GithubContext);
-
-  const { repos } = githubContext;
-
+const Repos = ({ github: { repos } }) => {
   return (
     <div style={{ alignItems: 'left' }}>
       {repos.map(repo => (
@@ -16,4 +13,12 @@ const Repos = () => {
   );
 };
 
-export default Repos;
+Repos.propTypes = {
+  github: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  github: state.github
+});
+
+export default connect(mapStateToProps)(Repos);

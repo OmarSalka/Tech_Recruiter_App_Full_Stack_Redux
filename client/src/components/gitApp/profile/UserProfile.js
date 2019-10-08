@@ -1,9 +1,13 @@
-import React, { useEffect, useContext } from 'react';
-
-import GithubContext from '../../../Context/Github/githubContext';
-import CandidateContext from '../../../Context/Candidate/candidateContext';
-import AuthContext from '../../../Context/Authentication/authContext';
-import PopUpContext from '../../../Context/PopUp/popUpContext';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getUser, getRepos } from '../../../actions/githubActions';
+import {
+  checkIfCandidate,
+  clearVerifier
+} from '../../../actions/candidateActions';
+import { loadUser } from '../../../actions/authActions';
+import { addCandidatePopUp } from '../../../actions/popUpActions';
+import PropTypes from 'prop-types';
 
 import Repos from '../profile/Repos';
 import PopUp from '../candidates/PopUp';
@@ -19,22 +23,17 @@ const FadeInLeft = styled.div`
   animation: 1s ${keyframes`${fadeInLeft}`};
 `;
 
-const UserProfile = ({ match }) => {
-  const popUpContext = useContext(PopUpContext);
-  const { addCandidatePopUp } = popUpContext;
-
-  const authContext = useContext(AuthContext);
-  const { loadUser } = authContext;
-
-  const candidateContext = useContext(CandidateContext);
-  const {
-    checkIfCandidate,
-    isCandidate,
-    clearVerifier,
-    loading
-  } = candidateContext;
-
-  const githubContext = useContext(GithubContext);
+const UserProfile = ({
+  match,
+  github: { user },
+  getUser,
+  getRepos,
+  candidate: { isCandidate, loading },
+  checkIfCandidate,
+  clearVerifier,
+  loadUser,
+  addCandidatePopUp
+}) => {
   const {
     id,
     login,
@@ -50,11 +49,11 @@ const UserProfile = ({ match }) => {
     name,
     public_gists,
     public_repos
-  } = githubContext.user;
+  } = user;
 
   useEffect(() => {
-    githubContext.getUser(match.params.login);
-    githubContext.getRepos(match.params.login);
+    getUser(match.params.login);
+    getRepos(match.params.login);
     loadUser();
     if (id) checkIfCandidate(id);
     // eslint-disable-next-line
@@ -87,7 +86,6 @@ const UserProfile = ({ match }) => {
         <div className='cardElement1'>
           <div className='topCardElement'>
             {loading ? (
-              // <div className='loader loader-sm container'></div>
               <p className='loading-dot'>
                 Loading<span>.</span>
                 <span>.</span>
@@ -228,4 +226,31 @@ const UserProfile = ({ match }) => {
   );
 };
 
-export default UserProfile;
+UserProfile.propTypes = {
+  match: PropTypes.object.isRequired,
+  github: PropTypes.object.isRequired,
+  candidate: PropTypes.object.isRequired,
+  getUser: PropTypes.func.isRequired,
+  getRepos: PropTypes.func.isRequired,
+  checkIfCandidate: PropTypes.func.isRequired,
+  clearVerifier: PropTypes.func.isRequired,
+  loadUser: PropTypes.func.isRequired,
+  addCandidatePopUp: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  github: state.github,
+  candidate: state.candidate
+});
+
+export default connect(
+  mapStateToProps,
+  {
+    getUser,
+    getRepos,
+    checkIfCandidate,
+    clearVerifier,
+    loadUser,
+    addCandidatePopUp
+  }
+)(UserProfile);

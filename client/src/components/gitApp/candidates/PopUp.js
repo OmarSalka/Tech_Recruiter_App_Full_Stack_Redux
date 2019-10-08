@@ -1,26 +1,24 @@
-import React, { useContext, useState } from 'react';
-import CandidateContext from '../../../Context/Candidate/candidateContext';
-import PopUpContext from '../../../Context/PopUp/popUpContext';
-import AlertContext from '../../../Context/Alert/alertContext';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { clearPopUps } from '../../../actions/popUpActions';
+import {
+  addToDirectory,
+  deleteCandidate
+} from '../../../actions/candidateActions';
+import { setAlert } from '../../../actions/alertActions';
 import Alert from '../../Alert';
 
-const PopUp = ({ filterPosition, filterLogin, filterType }) => {
-  const candidateContext = useContext(CandidateContext);
-  const { addToDirectory, deleteCandidate } = candidateContext;
-
-  const popUpContext = useContext(PopUpContext);
-  const {
-    candidateToBeDeleted,
-    candidateToBeAdded,
-    login,
-    id,
-    clearPopUps,
-    popUpType
-  } = popUpContext;
-
-  const alertContext = useContext(AlertContext);
-  const { setAlert } = alertContext;
-
+const PopUp = ({
+  filterPosition,
+  filterLogin,
+  filterType,
+  popUp: { candidateToBeDeleted, candidateToBeAdded, login, id, popUpType },
+  clearPopUps,
+  addToDirectory,
+  deleteCandidate,
+  setAlert
+}) => {
   const [addInput, setAddInput] = useState({
     position: '',
     notes: ''
@@ -60,7 +58,6 @@ const PopUp = ({ filterPosition, filterLogin, filterType }) => {
   };
 
   const no = () => {
-    console.log('no');
     clearPopUps();
   };
 
@@ -142,5 +139,28 @@ const PopUp = ({ filterPosition, filterLogin, filterType }) => {
     </div>
   );
 };
+PopUp.defaultProps = {
+  filterPosition: '',
+  filterLogin: '',
+  filterType: ''
+};
 
-export default PopUp;
+PopUp.propTypes = {
+  popUp: PropTypes.object.isRequired,
+  clearPopUps: PropTypes.func.isRequired,
+  addToDirectory: PropTypes.func.isRequired,
+  deleteCandidate: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired,
+  filterPosition: PropTypes.string.isRequired,
+  filterLogin: PropTypes.string.isRequired,
+  filterType: PropTypes.string.isRequired
+};
+
+const mapStateToProps = state => ({
+  popUp: state.popUp
+});
+
+export default connect(
+  mapStateToProps,
+  { clearPopUps, addToDirectory, deleteCandidate, setAlert }
+)(PopUp);

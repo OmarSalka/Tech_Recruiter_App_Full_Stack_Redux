@@ -1,19 +1,21 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Alert from '../Alert';
-import AlertContext from '../../Context/Alert/alertContext';
-import AuthContext from '../../Context/Authentication/authContext';
+import { connect } from 'react-redux';
+import { login, clearErrors } from '../../actions/authActions';
+import { setAlert } from '../../actions/alertActions';
+import PropTypes from 'prop-types';
 
-const Login = props => {
-  const alertContext = useContext(AlertContext);
-  const { setAlert } = alertContext;
-
-  const authContext = useContext(AuthContext);
-  const { login, error, clearErrors, isAuthenticated } = authContext;
-
+const Login = ({
+  history,
+  auth: { error, isAuthenticated },
+  setAlert,
+  clearErrors,
+  login
+}) => {
   useEffect(() => {
     if (isAuthenticated) {
-      props.history.push('/gitapp');
+      history.push('/gitapp');
     }
     if (
       error === 'Invalid Credentials' ||
@@ -23,7 +25,7 @@ const Login = props => {
       clearErrors();
     }
     // eslint-disable-next-line
-  }, [error, isAuthenticated, props.history]);
+  }, [error, isAuthenticated, history]);
 
   const [user, setUser] = useState({
     email: '',
@@ -81,5 +83,19 @@ const Login = props => {
     </div>
   );
 };
+Login.propTypes = {
+  auth: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  setAlert: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired
+};
 
-export default Login;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { login, clearErrors, setAlert }
+)(Login);

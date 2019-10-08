@@ -1,11 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import CandidateContext from '../../../Context/Candidate/candidateContext';
+import { connect } from 'react-redux';
+import { checkIfCandidate } from '../../../actions/candidateActions';
+import PropTypes from 'prop-types';
 
-const UserCard = ({ user: { avatar_url, login, id } }) => {
-  const candidateContext = useContext(CandidateContext);
-  const { checkIfCandidate } = candidateContext;
-
+const UserCard = ({ user: { avatar_url, login, id }, checkIfCandidate }) => {
   const onClick = () => {
     checkIfCandidate(id);
   };
@@ -35,4 +34,12 @@ const customBtn = {
   borderRadius: '5px',
   margin: '0 auto'
 };
-export default UserCard;
+UserCard.propTypes = {
+  user: PropTypes.object.isRequired,
+  checkIfCandidate: PropTypes.func.isRequired
+};
+
+export default connect(
+  null,
+  { checkIfCandidate }
+)(UserCard);

@@ -1,5 +1,7 @@
-import React, { Fragment, useContext, useEffect } from 'react';
-import AuthContext from '../../Context/Authentication/authContext';
+import React, { Fragment, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { loadUser } from '../../actions/authActions';
+import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './layout/Navbar';
 import Home from './layout/Home';
@@ -10,10 +12,7 @@ import CandidateProfile from './candidates/CandidateProfile';
 import Footer from './layout/Footer';
 import App from '../../App';
 
-const GitApp = ({ match }) => {
-  const authContext = useContext(AuthContext);
-  const { loadUser, isAuthenticated } = authContext;
-
+const GitApp = ({ match, auth: { isAuthenticated }, loadUser }) => {
   useEffect(() => {
     loadUser();
     // eslint-disable-next-line
@@ -58,5 +57,17 @@ const GitApp = ({ match }) => {
     </Fragment>
   );
 };
+GitApp.propTypes = {
+  match: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
+  loadUser: PropTypes.func.isRequired
+};
 
-export default GitApp;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { loadUser }
+)(GitApp);

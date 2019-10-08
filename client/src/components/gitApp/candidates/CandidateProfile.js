@@ -1,9 +1,8 @@
-import React, { useEffect, useContext } from 'react';
-
-import GithubContext from '../../../Context/Github/githubContext';
-// import CandidateContext from '../../../Context/Candidate/candidateContext';
-import AuthContext from '../../../Context/Authentication/authContext';
-// import PopUpContext from '../../../Context/PopUp/popUpContext';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getUser, getRepos } from '../../../actions/githubActions';
+import { loadUser } from '../../../actions/authActions';
+import PropTypes from 'prop-types';
 
 import Repos from '../profile/Repos';
 import PopUp from '../candidates/PopUp';
@@ -19,17 +18,13 @@ const FadeInLeft = styled.div`
   animation: 1s ${keyframes`${fadeInLeft}`};
 `;
 
-const CandidateProfile = ({ match }) => {
-  // const popUpContext = useContext(PopUpContext);
-  // const { addCandidatePopUp } = popUpContext;
-
-  const authContext = useContext(AuthContext);
-  const { loadUser } = authContext;
-
-  // const candidateContext = useContext(CandidateContext);
-  // const { checkIfCandidate } = candidateContext;
-
-  const githubContext = useContext(GithubContext);
+const CandidateProfile = ({
+  match,
+  github: { user },
+  getUser,
+  getRepos,
+  loadUser
+}) => {
   const {
     id,
     login,
@@ -45,11 +40,11 @@ const CandidateProfile = ({ match }) => {
     name,
     public_gists,
     public_repos
-  } = githubContext.user;
+  } = user;
 
   useEffect(() => {
-    githubContext.getUser(match.params.login);
-    githubContext.getRepos(match.params.login);
+    getUser(match.params.login);
+    getRepos(match.params.login);
     loadUser();
     // eslint-disable-next-line
   }, [id]);
@@ -196,5 +191,19 @@ const CandidateProfile = ({ match }) => {
     </FadeInLeft>
   );
 };
+CandidateProfile.propTypes = {
+  match: PropTypes.object.isRequired,
+  github: PropTypes.object.isRequired,
+  getUser: PropTypes.func.isRequired,
+  getRepos: PropTypes.func.isRequired,
+  loadUser: PropTypes.func.isRequired
+};
 
-export default CandidateProfile;
+const mapSateToProps = state => ({
+  github: state.github
+});
+
+export default connect(
+  mapSateToProps,
+  { getUser, getRepos, loadUser }
+)(CandidateProfile);

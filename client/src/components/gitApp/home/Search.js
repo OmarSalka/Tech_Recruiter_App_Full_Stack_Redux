@@ -1,6 +1,8 @@
-import React, { useState, useContext } from 'react';
-import GithubContext from '../../../Context/Github/githubContext';
-import AlertContext from '../../../Context/Alert/alertContext';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { clearUsers, searchUsers } from '../../../actions/githubActions';
+import { setAlert } from '../../../actions/alertActions';
+import PropTypes from 'prop-types';
 import Alert from '../../Alert';
 import styled, { keyframes } from 'styled-components';
 import { fadeIn } from 'react-animations';
@@ -9,13 +11,12 @@ const FadeIn = styled.div`
   animation: 2s ${keyframes`${fadeIn}`};
 `;
 
-const Search = () => {
-  const githubContext = useContext(GithubContext);
-  const { clearButton } = githubContext;
-
-  const alertContext = useContext(AlertContext);
-  const { setAlert } = alertContext;
-
+const Search = ({
+  github: { users, clearButton },
+  clearUsers,
+  searchUsers,
+  setAlert
+}) => {
   const [text, setText] = useState('');
 
   const onSubmit = e => {
@@ -23,7 +24,7 @@ const Search = () => {
     if (text === '') {
       setAlert('Please enter a valid github username', 'secondary');
     } else {
-      githubContext.searchUsers(text);
+      searchUsers(text);
       setText('');
     }
   };
@@ -33,7 +34,7 @@ const Search = () => {
   };
 
   const onClick = () => {
-    githubContext.clearUsers();
+    clearUsers();
   };
 
   return (
@@ -53,7 +54,7 @@ const Search = () => {
 
           <input type='submit' value='Search' className='btn btn-primary' />
 
-          {clearButton && !githubContext.users && (
+          {clearButton && !users && (
             <input
               type='submit'
               value='Clear'
@@ -67,4 +68,18 @@ const Search = () => {
     </div>
   );
 };
-export default Search;
+Search.propTypes = {
+  github: PropTypes.object.isRequired,
+  clearUsers: PropTypes.func.isRequired,
+  searchUsers: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  github: state.github
+});
+
+export default connect(
+  mapStateToProps,
+  { clearUsers, searchUsers, setAlert }
+)(Search);

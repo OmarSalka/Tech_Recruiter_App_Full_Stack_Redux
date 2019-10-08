@@ -1,22 +1,20 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import PopUpContext from '../../../Context/PopUp/popUpContext';
-import CandidateContext from '../../../Context/Candidate/candidateContext';
+import { connect } from 'react-redux';
+import {
+  deleteCandidatePopUp,
+  toggleDisplay
+} from '../../../actions/popUpActions';
+import { updateCandidate } from '../../../actions/candidateActions';
+import PropTypes from 'prop-types';
 
 const CandidateCard = ({
-  candidate: { id, notes, position, name, hireable, login, avatar_url }
+  candidate: { id, notes, position, name, hireable, login, avatar_url },
+  popUp: { candidateToBeUpdated, editNotes },
+  deleteCandidatePopUp,
+  toggleDisplay,
+  updateCandidate
 }) => {
-  const popUpContext = useContext(PopUpContext);
-  const {
-    deleteCandidatePopUp,
-    toggleDisplay,
-    editNotes,
-    candidateToBeUpdated
-  } = popUpContext;
-
-  const candidateContext = useContext(CandidateContext);
-  const { updateCandidate } = candidateContext;
-
   const [editableField, setEditableField] = useState(notes);
 
   const removeCandidate = () => {
@@ -157,5 +155,19 @@ const CandidateCard = ({
     </div>
   );
 };
+CandidateCard.propTypes = {
+  candidate: PropTypes.object.isRequired,
+  popUp: PropTypes.object.isRequired,
+  updateCandidate: PropTypes.func.isRequired,
+  deleteCandidatePopUp: PropTypes.func.isRequired,
+  toggleDisplay: PropTypes.func.isRequired
+};
 
-export default CandidateCard;
+const mapStateToProps = state => ({
+  popUp: state.popUp
+});
+
+export default connect(
+  mapStateToProps,
+  { deleteCandidatePopUp, toggleDisplay, updateCandidate }
+)(CandidateCard);

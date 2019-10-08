@@ -1,23 +1,24 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 import { fadeInDown } from 'react-animations';
-
-import AuthContext from '../../../Context/Authentication/authContext';
-import GithubContext from '../../../Context/Github/githubContext';
+import { connect } from 'react-redux';
+import { logout, loadUser } from '../../../actions/authActions';
+import { clearUsers } from '../../../actions/githubActions';
+import PropTypes from 'prop-types';
 
 const FadeInDown = styled.div`
   animation: 2s ${keyframes`${fadeInDown}`};
 `;
 
-const Navbar = ({ icon, platform }) => {
-  const authContext = useContext(AuthContext);
-  const { isAuthenticated, logout, user, loadUser } = authContext;
-
-  const githubContext = useContext(GithubContext);
-  const { clearUsers } = githubContext;
-
+const Navbar = ({
+  icon,
+  platform,
+  auth: { isAuthenticated, user },
+  logout,
+  loadUser,
+  clearUsers
+}) => {
   useEffect(() => {
     loadUser();
     // eslint-disable-next-line
@@ -105,7 +106,18 @@ Navbar.defaultProps = {
 
 Navbar.propTypes = {
   icon: PropTypes.string.isRequired,
-  platform: PropTypes.string.isRequired
+  platform: PropTypes.string.isRequired,
+  auth: PropTypes.object.isRequired,
+  logout: PropTypes.func.isRequired,
+  loadUser: PropTypes.func.isRequired,
+  clearUsers: PropTypes.func.isRequired
 };
 
-export default Navbar;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { logout, loadUser, clearUsers }
+)(Navbar);
