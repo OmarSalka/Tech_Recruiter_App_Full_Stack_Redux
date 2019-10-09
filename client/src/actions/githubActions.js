@@ -18,6 +18,7 @@ if (process.env.NODE_ENV !== 'production') {
   githubClientSecrect = process.env.GITHUB_CLIENT_SECRET;
 }
 
+// Search github users
 export const searchUsers = text => async dispatch => {
   dispatch(setLoading());
   const response = await axios.get(
@@ -31,6 +32,7 @@ export const searchUsers = text => async dispatch => {
   }, 200);
 };
 
+// Get specific user's info
 export const getUser = login => async dispatch => {
   const response = await axios.get(
     `https://api.github.com/users/${login}?client_id=${githubClientId}&client_secret=${githubClientSecrect}`
@@ -42,6 +44,7 @@ export const getUser = login => async dispatch => {
   });
 };
 
+// Get specific user's repository
 export const getRepos = login => async dispatch => {
   const response = await axios.get(
     `https://api.github.com/users/${login}/repos?per_page=5&sort=created:asc&client_id=${githubClientId}&client_secret=${githubClientSecrect}`
@@ -53,12 +56,14 @@ export const getRepos = login => async dispatch => {
   });
 };
 
+// Clear user from state
 export const clearUsers = () => {
   return {
     type: CLEAR_USERS
   };
 };
 
+// Set Loading
 export const setLoading = () => {
   return {
     type: SET_LOADING

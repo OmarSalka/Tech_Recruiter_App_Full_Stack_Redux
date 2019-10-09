@@ -39,7 +39,6 @@ const PopUp = ({
           position: position,
           notes: notes
         });
-        // checkIfCandidate(id);
         clearPopUps();
       }
     }
@@ -58,6 +57,7 @@ const PopUp = ({
   };
 
   const no = () => {
+    setAddInput({ position: '', notes: '' });
     clearPopUps();
   };
 

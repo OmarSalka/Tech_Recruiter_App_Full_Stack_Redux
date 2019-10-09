@@ -11,16 +11,6 @@ const Alert = ({ alert: { alert } }) => {
     )
   );
 };
-// const Alert = ({ alert: { alerts } }) => {
-//   return (
-//     alerts.length > 0 &&
-//     alerts.map(alert => (
-//       <div key={alert.id} className={`alert alert-${alert.type}`}>
-//         <i className='fas fa-info-circle'></i> {alert.msg}
-//       </div>
-//     ))
-//   );
-// };
 
 Alert.propTypes = {
   alert: PropTypes.object.isRequired

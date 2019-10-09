@@ -5,7 +5,10 @@ import { connect } from 'react-redux';
 import {
   andFilterBtnToggled,
   orFilterBtnToggled,
-  loadFilteredCandidates
+  loadCandidates,
+  loadFilteredCandidates,
+  displayClearButton,
+  maskClearButton
 } from '../../../actions/candidateActions';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
@@ -16,11 +19,14 @@ const FadeIn = styled.div`
 `;
 
 const MyDirectory = ({
-  candidate: { filterType },
+  candidate: { filterType, clearButton },
   popUp: { popUpType },
   andFilterBtnToggled,
   orFilterBtnToggled,
-  loadFilteredCandidates
+  loadFilteredCandidates,
+  displayClearButton,
+  maskClearButton,
+  loadCandidates
 }) => {
   const [filters, setFilters] = useState({
     position: '',
@@ -30,11 +36,14 @@ const MyDirectory = ({
 
   const onSubmit = e => {
     e.preventDefault();
-    loadFilteredCandidates({
-      position: position,
-      login: login,
-      filterType: filterType
-    });
+    if (position || login) {
+      loadFilteredCandidates({
+        position: position,
+        login: login,
+        filterType: filterType
+      });
+      displayClearButton();
+    }
   };
 
   const onChange = e => {
@@ -46,6 +55,12 @@ const MyDirectory = ({
   };
   const orClicked = () => {
     orFilterBtnToggled();
+  };
+
+  const clearFilterResults = () => {
+    maskClearButton();
+    setFilters({ position: '', login: '' });
+    loadCandidates();
   };
 
   return (
@@ -99,6 +114,20 @@ const MyDirectory = ({
             value={login}
           />
           <input className='btn btn-primary' type='submit' value='Filter' />
+
+          {clearButton && (
+            <input
+              type='submit'
+              value='Clear'
+              className='btn btn-hover'
+              style={{
+                background: '#d6d1d1',
+                textAlign: 'center',
+                marginTop: '0.5rem'
+              }}
+              onClick={clearFilterResults}
+            />
+          )}
         </form>
         <Candidates />
       </div>
@@ -111,10 +140,20 @@ const mapStateToProps = state => ({
   popUp: state.popUp,
   andFilterBtnToggled: PropTypes.func.isRequired,
   orFilterBtnToggled: PropTypes.func.isRequired,
-  loadFilteredCandidates: PropTypes.func.isRequired
+  loadFilteredCandidates: PropTypes.func.isRequired,
+  displayClearButton: PropTypes.func.isRequired,
+  maskClearButton: PropTypes.func.isRequired,
+  loadCandidates: PropTypes.func.isRequired
 });
 
 export default connect(
   mapStateToProps,
-  { andFilterBtnToggled, orFilterBtnToggled, loadFilteredCandidates }
+  {
+    andFilterBtnToggled,
+    orFilterBtnToggled,
+    loadFilteredCandidates,
+    loadCandidates,
+    displayClearButton,
+    maskClearButton
+  }
 )(MyDirectory);

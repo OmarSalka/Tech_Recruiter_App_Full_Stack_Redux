@@ -12,7 +12,7 @@ const FadeIn = styled.div`
 `;
 
 const Search = ({
-  github: { users, clearButton },
+  github: { clearButton },
   clearUsers,
   searchUsers,
   setAlert
@@ -54,7 +54,7 @@ const Search = ({
 
           <input type='submit' value='Search' className='btn btn-primary' />
 
-          {clearButton && !users && (
+          {clearButton && (
             <input
               type='submit'
               value='Clear'

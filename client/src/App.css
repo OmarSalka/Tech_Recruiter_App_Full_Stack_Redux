@@ -1,17 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-/* Global Styling */
+/* >>>>>>>>>>>>>>>>>>>>>>>>>Global Styling <<<<<<<<<<<<<<<<<<<<<<<*/
 :root {
-  /* --main-text-color: #333; */
   --main-text-color: grey;
   --main-hover-background-color: #f3efef;
   --git-primary-color: #f4f4f4;
-  --git-primary-background-color: #eb410e;
   --git-primary-background-color: #1da1f2;
-  /* --git-primary-background-color: #968b2b; */
-  /* --git-primary-background-color: #a58861; */
-  /* --git-primary-background-color: #684b26; */
-  /* --git-primary-background-color: #388f83; */
   --git-hover-background: #f4f4f41c;
   --twitter-primary-background-color: #1da1f2;
 }
@@ -93,7 +87,6 @@ input {
   font-size: 1rem;
   border: none;
   cursor: pointer;
-  /* margin-right: 0.5rem; */
   transition: opacity 0.2s ease-in;
   outline: none;
 }
@@ -128,7 +121,7 @@ input {
   display: none;
 }
 
-/* Landing Page ======================================*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Landing Page <<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 .navLanding {
   background-color: rgba(255, 255, 255, 0);
@@ -155,7 +148,7 @@ input {
   opacity: 0.9;
 }
 
-/* Section1 */
+/* Section1 =======================*/
 
 #section1 {
   margin-top: -4.3rem;
@@ -199,7 +192,6 @@ input {
   top: 45vh;
   left: 0;
   z-index: 1;
-  /* background: grey; */
 }
 
 .sideNavBar ul li i {
@@ -214,7 +206,7 @@ input {
   color: #f4f4f4;
 }
 
-/* Section2 */
+/* Section2 =======================*/
 #section2 {
   display: flex;
   justify-content: space-around;
@@ -258,7 +250,7 @@ input {
   text-align: left;
 }
 
-/* Section3 */
+/* Section3 =====================*/
 #section3 {
   display: block;
   color: #f4f4f4;
@@ -286,7 +278,6 @@ input {
 }
 
 #section3 hr {
-  /* width: 60%; */
   margin-bottom: 1rem;
 }
 
@@ -323,7 +314,7 @@ input {
 .redirect-login_register a {
   color: var(--git-primary-background-color);
 }
-/* Navbars */
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Navbars <<<<<<<<<<<<<<<<<<<<<*/
 /* global */
 .navbar {
   display: flex;
@@ -355,7 +346,7 @@ input {
   border-radius: 5px;
 }
 
-/* >>>>>>>>>>>>>> Footer <<<<<<<<<<<<<<<<<*/
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>> Footer <<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 #footer {
   position: absolute;
   bottom: 0;
@@ -371,7 +362,7 @@ input {
   color: var(--main-text-color);
 }
 
-/* Dropdown =================== */
+/* Dropdown ===================================*/
 .dropdown {
   position: relative;
   padding: 1rem;
@@ -404,12 +395,10 @@ input {
 
 .dropdown-content a:hover {
   background-color: var(--main-hover-background-color);
-  /* background-color: var(--git-hover-background); */
 }
 
 .dropdown-item:hover {
   background-color: var(--main-hover-background-color);
-  /* background-color: var(--git-hover-background); */
 }
 
 .dropdown:hover .dropdown-content {
@@ -420,13 +409,12 @@ input {
   display: none;
 }
 
-/* Users */
+/* Users ========================*/
 .home-github-icon {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  /* justify-content: center; */
 }
 .home-github-icon p {
   color: var(--main-text-color);
@@ -440,13 +428,6 @@ input {
   color: var(--main-text-color);
 }
 
-/* .no-results-icon i {
-  display: inline-block;
-} */
-/* .no-results-icon .camp-icon-group {
-  display: inline-block;
-} */
-
 .home-github-icon i {
   color: var(--git-primary-background-color);
   opacity: 0.5;
@@ -456,7 +437,6 @@ input {
 .userCard {
   background: #f4f4f4bd;
   padding: 1rem 0rem;
-  /* text-align: center; */
   align-items: center;
   box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.2);
 }
@@ -467,7 +447,6 @@ input {
 
 .userCard img {
   border-radius: 50%;
-  /* height: 30%; */
   width: 30%;
 }
 
@@ -504,8 +483,6 @@ input {
 }
 
 .added-to-directory {
-  /* display: flex;
-  align-items: center; */
   margin-bottom: 0.5rem;
   color: var(--git-primary-background-color);
 }
@@ -590,7 +567,7 @@ input {
   opacity: 0.7;
 }
 
-/* >>>>>>>>>>>>>>>>>>>>> About <<<<<<<<<<<<<<<<<<<< */
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> About <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 #about {
   color: var(--main-text-color);
 }
@@ -602,7 +579,6 @@ input {
 }
 
 #about .indent-features {
-  /* margin-left: 1rem; */
   font-size: 1.5rem;
   text-align: left;
   margin: 0.5rem 0rem;
@@ -617,7 +593,6 @@ input {
   background: #f4f4f4bd !important;
   color: var(--main-text-color) !important;
   box-shadow: 0px 8px 8px 0px var(--main-text-color);
-  /* box-shadow: 0px 8px 8px 0px #424141; */
 }
 
 .about-contact,
@@ -632,7 +607,7 @@ input {
   opacity: 0.7;
 }
 
-/* >>>>>>>>>>>>>>>>>>>>>>> MyDirectory <<<<<<<<<<<< */
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MyDirectory <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 .confirmation {
   display: flex;
   justify-content: center;
@@ -662,7 +637,6 @@ input {
 .filter-condition p {
   display: inline-block;
   padding: 0.4rem;
-  /* background: #d9dbdb; */
   width: 3rem;
   text-align: center;
   cursor: pointer;
@@ -672,8 +646,6 @@ input {
   opacity: 0.7;
 }
 .filter-condition p:first-child {
-  /* background: #388f83;
-  color: #f4f4f4; */
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
@@ -694,7 +666,8 @@ input {
 .empty-directory-message {
   margin-top: 2rem;
 }
-/* =============================================================================================== */
+
+/* Candidate Cards =========================== */
 .candidateCards {
   grid-template-columns: repeat(2, 1fr);
 }
@@ -721,11 +694,8 @@ input {
 }
 
 .candidateCard {
-  /* display: grid;
-  grid-template-columns: 1fr 2fr; */
   background: #f4f4f4bd;
   padding: 0.5rem 0rem;
-  /* text-align: center; */
   align-items: center;
   box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.2);
 }
@@ -765,6 +735,8 @@ input {
   opacity: 0.7;
 }
 
+/* PopUp ============================= */
+
 .popup {
   position: fixed;
   width: 100%;
@@ -781,8 +753,6 @@ input {
 }
 .popup-inner {
   position: absolute;
-  /* top: 20vh;
-  left: 5vh; */
   margin: auto;
   border-radius: 20px;
   background: white;
@@ -803,16 +773,17 @@ input {
   background: #d9dbdb;
 }
 
-/* ====================== */
-
 /* Git */
 .git {
   background: var(--git-primary-background-color);
   color: var(--git-primary-color);
 }
-/* >>>>>>>>>>>>>>>>>>>> Responsive Design <<<<<<<<<<<<<<<<<<<<<< */
 
-/* Tablets */
+/* <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><<><><><><> */
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Responsive Design <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+/* <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><<><><><><> */
+
+/* Tablets =============================================*/
 @media (max-width: 1130px) {
   .profileCard {
     margin: 1rem;
@@ -831,7 +802,7 @@ input {
   }
 }
 
-/* Unique: git profile cards */
+/* Unique: git profile cards =======================================*/
 @media (max-width: 830px) {
   .profileStats {
     display: grid;
@@ -844,7 +815,7 @@ input {
   }
 }
 
-/* Mobile */
+/* Mobile ========================================================*/
 @media (max-width: 700px) {
   .hide-mobile-item {
     display: block;
@@ -1026,6 +997,7 @@ input {
   }
 }
 
+/* Unique: Very small screen devices */
 @media (max-width: 370px) {
   .form {
     padding: 0.7rem;
@@ -1035,6 +1007,7 @@ input {
   }
 }
 
+/* Unique: Very very small screen devices */
 @media (max-width: 320px) {
   .navbar ul a {
     padding: 0.5rem;
@@ -1052,37 +1025,6 @@ input {
   height: 120px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
-}
-
-@keyframes blink {
-  0% {
-    opacity: 0.2;
-  }
-  20% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.2;
-  }
-}
-
-.loading-dot {
-  color: var(--git-primary-background-color);
-  font-size: 1.5rem;
-}
-.loading-dot span {
-  animation-name: blink;
-  animation-duration: 1.4s;
-  animation-iteration-count: infinite;
-  animation-fill-mode: both;
-}
-
-.loading-dot span:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.loading-dot span:nth-child(3) {
-  animation-delay: 0.4s;
 }
 
 /* Safari */
@@ -1103,5 +1045,3 @@ input {
     transform: rotate(360deg);
   }
 }
-
-/* Test ============================= */

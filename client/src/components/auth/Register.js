@@ -51,6 +51,7 @@ const Register = ({
       });
     }
   };
+
   const onChange = e => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
@@ -108,6 +109,7 @@ const Register = ({
     </div>
   );
 };
+
 Register.propTypes = {
   auth: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
@@ -115,9 +117,11 @@ Register.propTypes = {
   clearErrors: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired
 };
+
 const mapStateToProps = state => ({
   auth: state.auth
 });
+
 export default connect(
   mapStateToProps,
   { register, clearErrors, setAlert }

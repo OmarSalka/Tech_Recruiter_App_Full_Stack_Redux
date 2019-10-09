@@ -46,6 +46,7 @@ const Login = ({
       });
     }
   };
+
   const onChange = e => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
@@ -84,6 +85,7 @@ const Login = ({
     </div>
   );
 };
+
 Login.propTypes = {
   auth: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,

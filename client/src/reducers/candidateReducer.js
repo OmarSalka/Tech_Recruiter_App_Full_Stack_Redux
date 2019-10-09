@@ -5,6 +5,8 @@ import {
   IS_CANDIDATE,
   NOT_CANDIDATE,
   CLEAR_VERIFIER,
+  DISPLAY_CLEAR_BTN,
+  MASK_CLEAR_BTN,
   GET_CANDIDATES,
   ADD_CANDIDATE,
   UPDATE_CANDIDATE,
@@ -16,8 +18,9 @@ const initialState = {
   isCandidate: null,
   filterType: 'and',
   loading: false,
+  clearButton: false,
   candidates: [],
-  emptyFilter: null,
+  emptyFilterResults: null,
   candidate: []
 };
 
@@ -55,18 +58,28 @@ export default (state = initialState, action) => {
         ...state,
         isCandidate: null
       };
+    case DISPLAY_CLEAR_BTN:
+      return {
+        ...state,
+        clearButton: true
+      };
+    case MASK_CLEAR_BTN:
+      return {
+        ...state,
+        clearButton: false
+      };
     case GET_CANDIDATES:
       return {
         ...state,
         loading: false,
         candidates: action.payload,
-        emptyFilter: null
+        emptyFilterResults: null
       };
     case NO_CANDIDATES_FOUND:
       return {
         ...state,
         loading: false,
-        emptyFilter: true
+        emptyFilterResults: true
       };
     case ADD_CANDIDATE:
       return {
