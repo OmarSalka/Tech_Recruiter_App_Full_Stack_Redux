@@ -30,14 +30,11 @@ const MyDirectory = ({
 
   const onSubmit = e => {
     e.preventDefault();
-    loadFilteredCandidates(
-      {
-        position: position,
-        login: login,
-        filterType: filterType
-      },
-      false
-    );
+    loadFilteredCandidates({
+      position: position,
+      login: login,
+      filterType: filterType
+    });
   };
 
   const onChange = e => {

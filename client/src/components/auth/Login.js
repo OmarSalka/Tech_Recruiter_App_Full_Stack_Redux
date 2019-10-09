@@ -73,6 +73,7 @@ const Login = ({
             value={password}
             onChange={onChange}
             required
+            minLength='6'
           />
           <input type='submit' value='Login' className='btn btn-primary' />
         </form>

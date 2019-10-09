@@ -97,7 +97,7 @@ export const loadFilteredCandidates = (
       'x-auth-token': localStorage.token
     }
   };
-  if (spinner) dispatch(setLoading(null, false));
+  if (spinner) dispatch(setLoading());
   try {
     let wholeList = [];
     let dbData;

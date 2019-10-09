@@ -84,7 +84,6 @@ const Navbar = ({
   );
 
   return (
-    // <div className='git navbar'>
     <div className='navbar'>
       <FadeInDown>
         <div className='logo'>

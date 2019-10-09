@@ -10,19 +10,29 @@ const Candidate = require('../models/Candidate');
 router.post('/', auth, async (req, res) => {
   try {
     const { position, login, filterType } = req.body;
+
     if (filterType === 'or') {
       const filterFields = [];
       if (position) filterFields.push({ position: position });
       if (login) filterFields.push({ login: login });
-      const candidates = await Candidate.find({
-        user: req.user.id,
-        $or: filterFields
-      })
-        .select('git_account_id notes position -_id')
-        .sort({
-          date: -1
-        });
-      res.json(candidates);
+      if (filterFields.length === 0) {
+        const candidates = await Candidate.find({ user: req.user.id })
+          .select('git_account_id notes position -_id')
+          .sort({
+            date: -1
+          });
+        res.json(candidates);
+      } else {
+        const candidates = await Candidate.find({
+          user: req.user.id,
+          $or: filterFields
+        })
+          .select('git_account_id notes position -_id')
+          .sort({
+            date: -1
+          });
+        res.json(candidates);
+      }
     } else if (filterType === 'and') {
       const candidateFields = {};
       if (position) candidateFields.position = position;
@@ -36,7 +46,7 @@ router.post('/', auth, async (req, res) => {
       res.json(candidates);
     }
   } catch (err) {
-    console.log(res.error);
+    console.log(response.err);
     res.status(500).send('Server Error');
   }
 });
