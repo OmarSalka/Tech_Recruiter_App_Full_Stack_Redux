@@ -2,14 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Repository = ({ repo }) => {
-  const { name, description, clone_url } = repo;
+  const { name, description } = repo;
   return (
     <div className='repo'>
-      <h3>
-        <a href={clone_url} target='_blank' rel='noopener noreferrer'>
-          {name} <i className='fas fa-link'></i>
-        </a>
-      </h3>
+      <strong style={{ fontSize: '1.4rem' }}>{name} :</strong>
       <p style={{ fontSize: 14 }}>{description}</p>
     </div>
   );

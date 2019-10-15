@@ -9,7 +9,7 @@ import { updateCandidate } from '../../../actions/candidateActions';
 import PropTypes from 'prop-types';
 
 const CandidateCard = ({
-  candidate: { id, notes, position, name, hireable, login, avatar_url },
+  candidate: { id, notes, position, name, hireable, login },
   popUp: { candidateToBeUpdated, editNotes },
   deleteCandidatePopUp,
   toggleDisplay,
@@ -47,7 +47,6 @@ const CandidateCard = ({
               {login ? login : 'N/A'}
             </strong>
           </Link>
-          <img src={avatar_url} alt='Oops' />
           <p>
             Position:
             <br />

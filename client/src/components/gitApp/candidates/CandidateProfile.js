@@ -28,14 +28,12 @@ const CandidateProfile = ({
   const {
     id,
     login,
-    avatar_url,
     bio,
     company,
     email,
     followers,
     following,
     hireable,
-    html_url,
     location,
     name,
     public_gists,
@@ -86,24 +84,6 @@ const CandidateProfile = ({
               )}
             </p>
             <h1>{name ? name : login}</h1>
-            <img
-              src={avatar_url}
-              alt='Oops'
-              style={{
-                borderRadius: '80%',
-                width: '40%',
-                marginRight: 'none'
-              }}
-            />
-            <a
-              className='btn btn-primary btn-hover'
-              style={{ borderRadius: 5 }}
-              href={html_url}
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              Github Profile
-            </a>
           </div>
           <hr style={{ border: '1px solid #d6d1d1', margin: '1rem' }} />
           <div className='bottomCardElement'>

@@ -4,18 +4,13 @@ import { connect } from 'react-redux';
 import { checkIfCandidate } from '../../../actions/candidateActions';
 import PropTypes from 'prop-types';
 
-const UserCard = ({
-  user,
-  user: { avatar_url, login, id },
-  checkIfCandidate
-}) => {
+const UserCard = ({ user: { avatar_url, login, id }, checkIfCandidate }) => {
   const onClick = () => {
     checkIfCandidate(id);
   };
-  console.log(user);
+
   return (
     <div className='userCard'>
-      <img src={avatar_url} alt='Oops' />
       <p style={{ marginBottom: '0.5rem' }}>
         <strong style={{ fontFamily: 'Acme' }}>{login}</strong>
       </p>
@@ -25,7 +20,7 @@ const UserCard = ({
         style={customBtn}
         onClick={onClick}
       >
-        More
+        Profile
       </Link>
     </div>
   );

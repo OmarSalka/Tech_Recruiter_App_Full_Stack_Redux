@@ -99,8 +99,8 @@ const Features = () => {
               animateOnce={true}
             >
               <h1>
-                <i className='fas fa-quote-left'></i> First of its kind and the
-                best yet!
+                <i className='fas fa-quote-left'></i> It's a great app! Haven't
+                seen anything like it!
               </h1>
               <p style={{ textAlign: 'center' }}>- Omar Salka</p>
             </ScrollAnimation>

@@ -558,15 +558,6 @@ input {
   padding-left: 0.5rem !important;
 }
 
-.repo a {
-  color: var(--git-primary-background-color);
-  font-weight: bold;
-  padding: 0 !important;
-}
-.repo a:hover {
-  opacity: 0.7;
-}
-
 /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> About <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 #about {
   color: var(--main-text-color);
