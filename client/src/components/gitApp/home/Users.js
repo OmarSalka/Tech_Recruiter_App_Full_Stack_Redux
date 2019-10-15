@@ -60,7 +60,7 @@ const Users = ({ github: { users, clearButton, loading } }) => {
           <FadeIn>
             <i
               style={{ display: 'block' }}
-              className='fab fa-github fa-10x'
+              className='fas fa-search fa-10x'
             ></i>
             <p style={{ marginTop: '1rem' }}>
               Search for candidates using either their "name" or "github login"

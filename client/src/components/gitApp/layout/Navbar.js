@@ -55,7 +55,7 @@ const Navbar = ({
       <div className='dropdown'>
         <FadeInDown>
           <span style={{ cursor: 'pointer', fontSize: '0.5rem' }}>
-            <i className='fas fa-user-circle fa-3x'></i>
+            <i className='fas fa-bars fa-3x'></i>
           </span>
         </FadeInDown>
         <div className='dropdown-content'>

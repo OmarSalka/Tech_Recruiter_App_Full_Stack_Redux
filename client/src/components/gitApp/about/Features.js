@@ -33,7 +33,7 @@ const Features = () => {
         >
           <div className='features about-featureItem'>
             <div className='featureItem'>
-              <i className='fas fa-id-card fa-3x'></i>
+              <i className='far fa-folder-open fa-3x'></i>
               <div style={{ textAlign: 'left' }}>
                 <h4>Mini Github Profiles</h4>
                 <p>
@@ -82,7 +82,7 @@ const Features = () => {
               </div>
             </div>
             <div className='featureItem'>
-              <i className='fas fa-user-circle fa-3x'></i>
+              <i className='fas fa-sign-in-alt fa-3x'></i>
               <div style={{ textAlign: 'left' }}>
                 <h4>Unique Features</h4>
                 <p>

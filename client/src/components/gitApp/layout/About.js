@@ -42,9 +42,7 @@ const About = () => {
             marginTop: '4rem',
             marginBottom: '4rem'
           }}
-        >
-          <i className='fab fa-github fa-10x' style={{ opacity: '0.5' }}></i>
-        </div>
+        ></div>
       </FadeInDown>
       <Contact />
       <p>
