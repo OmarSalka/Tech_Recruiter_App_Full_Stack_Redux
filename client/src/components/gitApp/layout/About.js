@@ -20,6 +20,11 @@ const About = () => {
           convenient way
         </p>
         <p className='indent-features'>
+          <i className='fas fa-caret-right'></i> Easily clone a prospect's repo
+          using the provided git command without having to visit their github
+          page
+        </p>
+        <p className='indent-features'>
           <i className='fas fa-caret-right'></i> Add the potential condidate to
           your directory
         </p>
