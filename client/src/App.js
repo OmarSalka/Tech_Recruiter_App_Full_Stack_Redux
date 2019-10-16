@@ -15,14 +15,12 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <Router>
-          <Switch>
-            <Route exact path='/' component={LandingPage} />
-            <Route path={'/auth'} component={Auth} />
-            <PrivateRoute path='/gitapp' component={GitApp} />
-            <Route component={PageNotFound} />
-          </Switch>
-        </Router>
+        <Switch>
+          <Route exact path='/' component={LandingPage} />
+          <Route path={'/auth'} component={Auth} />
+          <PrivateRoute path='/gitapp' component={GitApp} />
+          <Route component={PageNotFound} />
+        </Switch>
       </Router>
     </Provider>
   );
