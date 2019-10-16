@@ -15,25 +15,33 @@ const About = () => {
       <hr className='divider' />
       <FadeInDown>
         <p className='indent-features'>
-          <i className='fas fa-caret-right'></i> Search Potential Candidates'
-          Github account with the most valuable metrics displayed in a very
-          convenient way
+          <i className='fas fa-caret-right'></i> Save the time and pain of
+          searching candidates' profiles and repos. With this app, you have all
+          the info you need
         </p>
         <p className='indent-features'>
-          <i className='fas fa-caret-right'></i> Easily clone a prospect's repo
-          using the provided git command without having to visit their github
-          page
+          <i className='fas fa-caret-right'></i> Explore custom-made profiles of
+          github users with just the information you need to make your hiring
+          decision
+        </p>
+        <p className='indent-features'>
+          <i className='fas fa-caret-right'></i> Clone a prospect's repo on your
+          local machine with the provided git command
         </p>
         <p className='indent-features'>
           <i className='fas fa-caret-right'></i> Add the potential condidate to
-          your directory
+          your directory, to access later.
+        </p>
+        <p className='indent-features'>
+          <i className='fas fa-caret-right'></i> Add notes regarding your
+          prospects
         </p>
         <p className='indent-features'>
           <i className='fas fa-caret-right'></i> Revisit your directory with all
-          the saved profiles for comparisons
+          the saved profiles to compare github profiles
         </p>
         <p className='indent-features'>
-          <i className='fas fa-caret-right'></i> In case of a no match, you can
+          <i className='fas fa-caret-right'></i> In case of a no-match, you can
           delete a candidate's profile from your directory
         </p>
         <div
