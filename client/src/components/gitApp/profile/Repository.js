@@ -9,7 +9,8 @@ const Repository = ({ repo }) => {
       <h2>{name}</h2>
       <p style={{ fontSize: 14 }}>{description}</p>
       <p>
-        Clone repo command:{' '}
+        ~ Clone repo ~
+        <br />
         <span style={{ fontWeight: 'bold' }}>git clone {clone_url}</span>
       </p>
     </div>

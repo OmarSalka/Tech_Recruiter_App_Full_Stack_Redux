@@ -13,7 +13,6 @@ const About = () => {
     <div id='about'>
       <div className='container'>
         <Features />
-        {/* <hr className='divider' /> */}
         <div className='features-description'>
           <FadeInDown>
             <div className='feature-block'>

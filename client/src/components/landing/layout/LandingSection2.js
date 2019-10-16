@@ -21,8 +21,7 @@ const LandingSection2 = () => {
           animateOnce={true}
         >
           <p style={{ margin: '1rem 0' }}>
-            Make your hiring more productive and efficient with the best
-            designed tech hiring tool
+            Make your hiring journey efficient and productive
           </p>
         </ScrollAnimation>
         <ScrollAnimation
