@@ -575,9 +575,20 @@ input {
 }
 
 #about .indent-features {
+  display: inline;
   font-size: 1.5rem;
+}
+
+#about .features-description {
+  margin: 2rem 0rem;
+}
+
+#about .feature-block {
+  margin: 1rem;
   text-align: left;
-  margin: 0.5rem 0rem;
+}
+#about .feature-block i {
+  font-size: 1.5rem;
 }
 
 .about-features {

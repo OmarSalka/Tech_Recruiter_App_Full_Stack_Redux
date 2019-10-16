@@ -91,20 +91,6 @@ const Features = () => {
               </div>
             </div>
           </div>
-          <div style={{ margin: '3rem 0' }}>
-            <ScrollAnimation
-              animateIn='fadeIn'
-              animateOut='fadeOut'
-              delay={100}
-              animateOnce={true}
-            >
-              <h1>
-                <i className='fas fa-quote-left'></i> It's a great app! Haven't
-                seen anything like it!
-              </h1>
-              <p style={{ textAlign: 'center' }}>- Omar Salka</p>
-            </ScrollAnimation>
-          </div>
         </ScrollAnimation>
       </div>
     </div>

@@ -4,7 +4,7 @@ import 'animate.css/animate.min.css';
 const Contact = () => {
   return (
     <div id='section3' className='about-contact'>
-      <div className='section3ContactUs'>
+      <div className='section3ContactUs' style={{ margin: '0rem' }}>
         <div className='contactItem'>
           <h2>Contact Us</h2>
           <hr />

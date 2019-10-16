@@ -99,11 +99,6 @@ const LandingSection2 = () => {
               delay={100}
               animateOnce={true}
             >
-              <h1>
-                <i className='fas fa-quote-left'></i> It's a great app! Haven't
-                seen anything like it!
-              </h1>
-              <p style={{ textAlign: 'center' }}>- Omar Salka</p>
               <h2 style={{ margin: '1rem 0rem' }}>
                 So what are you waiting for?
               </h2>
