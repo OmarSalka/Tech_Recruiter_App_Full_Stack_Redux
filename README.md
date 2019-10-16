@@ -40,5 +40,3 @@
     Create an account to access all the unique features we offer
   </li>
 </ul>
-
-<img src="./client/src/img/aboutPage.JPG" alt="Screenshot" style="max-width:100%"/>
