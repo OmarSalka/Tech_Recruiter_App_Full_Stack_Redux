@@ -1,1 +1,1 @@
-! [Oops](./client/src/img/features_part1.JPG)
+! [Oops]&nbsp;(./client/src/img/features_part1.JPG)
