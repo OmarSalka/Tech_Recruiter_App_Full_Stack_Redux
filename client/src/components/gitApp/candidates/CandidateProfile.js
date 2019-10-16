@@ -83,6 +83,7 @@ const CandidateProfile = ({
                 <i className='fas fa-question' style={{ color: 'grey' }}></i>
               )}
             </p>
+            <i className='fas fa-code fa-6x' style={{ color: 'grey' }}></i>
             <h1>{name ? name : login}</h1>
           </div>
           <hr style={{ border: '1px solid #d6d1d1', margin: '1rem' }} />

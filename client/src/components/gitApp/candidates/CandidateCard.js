@@ -47,6 +47,10 @@ const CandidateCard = ({
               {login ? login : 'N/A'}
             </strong>
           </Link>
+          <i
+            className='fab fa-connectdevelop fa-3x'
+            style={{ color: 'grey' }}
+          ></i>
           <p>
             Position:
             <br />

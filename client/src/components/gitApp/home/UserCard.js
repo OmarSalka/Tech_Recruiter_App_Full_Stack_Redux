@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { checkIfCandidate } from '../../../actions/candidateActions';
 import PropTypes from 'prop-types';
+import candidateImage from '../../../img/glasses.jpg';
+// import candidateImage from '../../../img/anonymous.JPG';
 
 const UserCard = ({ user: { avatar_url, login, id }, checkIfCandidate }) => {
   const onClick = () => {
@@ -11,6 +13,8 @@ const UserCard = ({ user: { avatar_url, login, id }, checkIfCandidate }) => {
 
   return (
     <div className='userCard'>
+      <i className='fab fa-connectdevelop fa-3x' style={{ color: 'grey' }}></i>
+      {/* <img src={candidateImage} alt='Oops' /> */}
       <p style={{ marginBottom: '0.5rem' }}>
         <strong style={{ fontFamily: 'Acme' }}>{login}</strong>
       </p>
