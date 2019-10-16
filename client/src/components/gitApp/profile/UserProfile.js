@@ -9,7 +9,6 @@ import { loadUser } from '../../../actions/authActions';
 import { addCandidatePopUp } from '../../../actions/popUpActions';
 import PropTypes from 'prop-types';
 
-import candidateImage from '../../../img/programmer.jpg';
 import Repos from '../profile/Repos';
 import PopUp from '../candidates/PopUp';
 import styled, { keyframes } from 'styled-components';
@@ -119,7 +118,6 @@ const UserProfile = ({
                 <i className='fas fa-question' style={{ color: 'grey' }}></i>
               )}
             </p>
-            {/* <img src={candidateImage} alt='Oops' /> */}
             <i className='fas fa-code fa-6x' style={{ color: 'grey' }}></i>
             <h1>{name ? name : login}</h1>
           </div>

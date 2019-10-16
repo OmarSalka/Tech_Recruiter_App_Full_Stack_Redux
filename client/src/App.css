@@ -447,8 +447,7 @@ input {
 
 .userCard img {
   border-radius: 50%;
-  height: 4rem;
-  width: 4rem;
+  width: 30%;
 }
 
 .userCards {
@@ -486,12 +485,6 @@ input {
 .added-to-directory {
   margin-bottom: 0.5rem;
   color: var(--git-primary-background-color);
-}
-
-.profileCard img {
-  border-radius: 50%;
-  width: 50%;
-  opacity: 0.8;
 }
 
 .bottomCardElement p {
