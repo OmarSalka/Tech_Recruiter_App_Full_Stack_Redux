@@ -57,25 +57,29 @@ const Login = ({
         <Alert />
         <h1>Login</h1>
         <form onSubmit={onSubmit}>
-          <label htmlFor='email'>Email:</label>
-          <input
-            type='text'
-            name='email'
-            placeholder='example@email.com'
-            value={email}
-            onChange={onChange}
-            required
-          />
-          <label htmlFor='password'>Password:</label>
-          <input
-            type='password'
-            name='password'
-            placeholder='Enter password...'
-            value={password}
-            onChange={onChange}
-            required
-            minLength='6'
-          />
+          <div>
+            <label htmlFor='email'>Email:</label>
+            <input
+              type='text'
+              name='email'
+              placeholder='example@email.com'
+              value={email}
+              onChange={onChange}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor='password'>Password:</label>
+            <input
+              type='password'
+              name='password'
+              placeholder='Enter password...'
+              value={password}
+              onChange={onChange}
+              required
+              minLength='6'
+            />
+          </div>
           <input type='submit' value='Login' className='btn btn-primary' />
         </form>
         <p className='redirect-login_register'>
