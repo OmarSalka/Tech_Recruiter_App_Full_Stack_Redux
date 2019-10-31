@@ -10,6 +10,7 @@ import {
 } from '../actions/types';
 
 const initialState = {
+  landing: false,
   token: localStorage.getItem('token'),
   isAuthenticated: null,
   loading: true,
@@ -58,6 +59,7 @@ export default (state = initialState, action) => {
         ...state,
         token: null,
         isAuthenticated: false,
+        landing: true,
         loading: false,
         user: null,
         error: action.payload

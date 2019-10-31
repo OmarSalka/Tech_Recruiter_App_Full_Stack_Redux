@@ -16,7 +16,7 @@ const GitApp = ({ match, auth: { isAuthenticated }, loadUser }) => {
   useEffect(() => {
     loadUser();
     // eslint-disable-next-line
-  }, []);
+  }, [isAuthenticated]);
 
   const containerStyling = {
     minHeight: isAuthenticated && '100vh',

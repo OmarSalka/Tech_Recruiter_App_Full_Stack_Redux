@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './gitApp/layout/Navbar';
 import Register from './auth/Register';
@@ -6,7 +7,17 @@ import Login from './auth/Login';
 import Footer from './gitApp/layout/Footer';
 import GitApp from './gitApp/GitApp';
 
-const Auth = ({ match }) => {
+const Auth = ({ match, auth: { isAuthenticated } }) => {
+  const containerStyling = {
+    minHeight: !isAuthenticated && '100vh',
+    overflow: !isAuthenticated && 'hidden',
+    display: !isAuthenticated && 'block',
+    paddingBottom: !isAuthenticated && '70px',
+    position: !isAuthenticated && 'relative'
+  };
+
+  document.body.style.background = '#fff';
+
   return (
     <Fragment>
       <Router>
@@ -24,11 +35,8 @@ const Auth = ({ match }) => {
   );
 };
 
-const containerStyling = {
-  minHeight: '100vh',
-  overflow: 'hidden',
-  display: 'block',
-  position: 'relative'
-};
+const mapStateToProps = state => ({
+  auth: state.auth
+});
 
-export default Auth;
+export default connect(mapStateToProps)(Auth);

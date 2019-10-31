@@ -52,41 +52,41 @@ const Login = ({
   };
 
   return (
-    <div className='form-background'>
-      <div className='form-sm'>
-        <Alert />
-        <h1>Login</h1>
-        <form onSubmit={onSubmit}>
-          <div>
-            <label htmlFor='email'>Email:</label>
-            <input
-              type='text'
-              name='email'
-              placeholder='example@email.com'
-              value={email}
-              onChange={onChange}
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor='password'>Password:</label>
-            <input
-              type='password'
-              name='password'
-              placeholder='Enter password...'
-              value={password}
-              onChange={onChange}
-              required
-              minLength='6'
-            />
-          </div>
-          <input type='submit' value='Login' className='btn btn-primary' />
-        </form>
-        <p className='redirect-login_register'>
-          Not a Tech R.A. user yet? <Link to='/auth/register'>Register</Link>
-        </p>
-      </div>
+    // <div className='form-background'>
+    <div className='form-sm'>
+      <Alert />
+      <h1>Login</h1>
+      <form onSubmit={onSubmit}>
+        <div>
+          <label htmlFor='email'>Email:</label>
+          <input
+            type='text'
+            name='email'
+            placeholder='example@email.com'
+            value={email}
+            onChange={onChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor='password'>Password:</label>
+          <input
+            type='password'
+            name='password'
+            placeholder='Enter password...'
+            value={password}
+            onChange={onChange}
+            required
+            minLength='6'
+          />
+        </div>
+        <input type='submit' value='Login' className='btn btn-primary' />
+      </form>
+      <p className='redirect-login_register'>
+        Not a Tech R.A. user yet? <Link to='/auth/register'>Register</Link>
+      </p>
     </div>
+    /* </div> */
   );
 };
 

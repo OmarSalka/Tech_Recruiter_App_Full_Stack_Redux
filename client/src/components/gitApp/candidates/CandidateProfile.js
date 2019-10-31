@@ -7,13 +7,10 @@ import PropTypes from 'prop-types';
 import Repos from '../profile/Repos';
 import PopUp from '../candidates/PopUp';
 import styled, { keyframes } from 'styled-components';
-import { fadeInLeft, fadeIn } from 'react-animations';
+import { fadeInLeft } from 'react-animations';
 
 import { Link } from 'react-router-dom';
 
-const FadeIn = styled.div`
-  animation: 1s ${keyframes`${fadeIn}`};
-`;
 const FadeInLeft = styled.div`
   animation: 1s ${keyframes`${fadeInLeft}`};
 `;
@@ -49,9 +46,7 @@ const CandidateProfile = ({
 
   return (
     <FadeInLeft>
-      <FadeIn>
-        <PopUp />
-      </FadeIn>
+      <PopUp />
       <div className='container' style={{ display: 'flex' }}>
         <Link
           to='/gitapp/database'

@@ -11,12 +11,6 @@ import {
   maskClearButton
 } from '../../../actions/candidateActions';
 import PropTypes from 'prop-types';
-import styled, { keyframes } from 'styled-components';
-import { fadeIn } from 'react-animations';
-
-const FadeIn = styled.div`
-  animation: 1s ${keyframes`${fadeIn}`};
-`;
 
 const MyDirectory = ({
   candidate: { filterType, clearButton },
@@ -66,13 +60,11 @@ const MyDirectory = ({
   return (
     <div>
       {popUpType === 'delete' && (
-        <FadeIn>
-          <PopUp
-            filterPosition={position}
-            filterLogin={login}
-            filterType={filterType}
-          />
-        </FadeIn>
+        <PopUp
+          filterPosition={position}
+          filterLogin={login}
+          filterType={filterType}
+        />
       )}
 
       <div className='container'>
