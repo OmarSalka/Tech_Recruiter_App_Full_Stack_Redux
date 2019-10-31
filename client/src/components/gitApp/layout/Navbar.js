@@ -37,34 +37,21 @@ const Navbar = ({
       </li>
       <li>
         <FadeInDown>
+          <Link to='/gitapp/database'>My Candidates</Link>
+        </FadeInDown>
+      </li>
+      <li>
+        <FadeInDown>
           <Link to='/gitapp/about'>About</Link>
         </FadeInDown>
       </li>
-      <li className='mobile-nav-item'>
-        <FadeInDown>
-          <Link to='/gitapp/database'>My Candidates</Link>
-        </FadeInDown>
-      </li>
-      <li className='mobile-nav-item'>
+      <li>
         <FadeInDown>
           <Link to='/' onClick={logoutClicked}>
-            Logout
+            Logout &nbsp; <i className='fas fa-sign-out-alt'></i>
           </Link>
         </FadeInDown>
       </li>
-      <div className='dropdown'>
-        <FadeInDown>
-          <span style={{ cursor: 'pointer', fontSize: '0.5rem' }}>
-            <i className='fas fa-bars fa-3x'></i>
-          </span>
-        </FadeInDown>
-        <div className='dropdown-content'>
-          <Link to='/gitapp/database'>My Candidates</Link>
-          <Link to='/' className='dropdown-item' onClick={logoutClicked}>
-            Logout
-          </Link>
-        </div>
-      </div>
     </ul>
   );
 

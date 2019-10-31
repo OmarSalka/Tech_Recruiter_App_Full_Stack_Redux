@@ -46,7 +46,7 @@ a {
 
 .form {
   position: relative;
-  z-index: -2;
+  z-index: 0;
   max-width: 900px;
   margin: auto;
   overflow: hidden;
@@ -60,7 +60,8 @@ a {
   border: none;
   border-bottom: 1px solid #1da1f2;
   padding: 0.5rem 0rem;
-  -webkit-border-radius: 0px;
+  -webkit-appearance: none;
+  border-radius: 0px;
 }
 .form input:focus {
   opacity: 1;
@@ -68,7 +69,7 @@ a {
 }
 
 .form input[type='submit'] {
-  border: none;
+  /* border: none; */
   border-radius: 5px;
   margin-top: 1rem;
 }
@@ -887,7 +888,13 @@ input {
   .navLanding {
     background: #333;
     padding: 0.5rem 3rem;
+    padding-bottom: 0rem;
   }
+  .navLanding ul a:hover {
+    background: var(--git-hover-background) !important;
+    padding: 0.3rem 0.4rem;
+  }
+
   .navbar ul {
     flex-direction: column;
     margin-top: 0rem;
@@ -903,10 +910,13 @@ input {
   .navLanding ul li {
     border-bottom: 1px solid #5a5959;
   }
+  .navLanding ul li:last-child {
+    margin-bottom: 0rem;
+  }
 
-  .navbar ul li:last-child {
+  .navbar ul li:first-child {
     padding-top: 0.2rem;
-    border: none;
+    border-top: 1px solid #5a5959;
   }
 
   .dropdown {

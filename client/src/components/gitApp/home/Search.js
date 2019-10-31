@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Icon, Input } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { clearUsers, searchUsers } from '../../../actions/githubActions';
 import { setAlert } from '../../../actions/alertActions';
@@ -44,6 +45,10 @@ const Search = ({
           <div style={{ marginBottom: '0.3rem' }}>
             <Alert />
           </div>
+          {/* <Input
+            icon={<Icon name='search' inverted circular link />}
+            placeholder='Search...'
+          /> */}
           <input
             type='text'
             name='text'
