@@ -60,6 +60,7 @@ a {
   border: none;
   border-bottom: 1px solid #1da1f2;
   padding: 0.5rem 0rem;
+  -webkit-border-radius: 0px;
 }
 .form input:focus {
   opacity: 1;
