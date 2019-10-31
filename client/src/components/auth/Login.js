@@ -52,7 +52,6 @@ const Login = ({
   };
 
   return (
-    // <div className='form-background'>
     <div className='form-sm'>
       <Alert />
       <h1>Login</h1>
@@ -86,7 +85,6 @@ const Login = ({
         Not a Tech R.A. user yet? <Link to='/auth/register'>Register</Link>
       </p>
     </div>
-    /* </div> */
   );
 };
 
