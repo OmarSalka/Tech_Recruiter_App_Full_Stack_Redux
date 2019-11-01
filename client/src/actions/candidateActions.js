@@ -22,8 +22,10 @@ if (process.env.NODE_ENV !== 'production') {
   githubClientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
   githubClientSecrect = process.env.REACT_APP_GITHUB_CLIENT_SECRET;
 } else {
-  githubClientId = process.env.GITHUB_CLIENT_ID;
-  githubClientSecrect = process.env.GITHUB_CLIENT_SECRET;
+  githubClientId = '727a25a43434f4b52fad';
+  githubClientSecrect = 'e1d7e46e4c07bdd62eeb29a638f5733271c51e72';
+  // githubClientId = process.env.GITHUB_CLIENT_ID;
+  // githubClientSecrect = process.env.GITHUB_CLIENT_SECRET;
 }
 
 // And filter button clicked
