@@ -3,6 +3,9 @@ const connectDB = require('./config/db');
 const path = require('path');
 const app = express();
 
+require('aws-sdk');
+const awsParamStore = require('aws-param-store');
+
 // Connect Database
 connectDB();
 
@@ -16,7 +19,15 @@ app.use('/api/candidates', require('./routes/candidates'));
 app.use('/api/candidate', require('./routes/candidate'));
 app.use('/api/filter', require('./routes/filter'));
 
+let NODE_ENV;
+awsParamStore
+  .getParameter('NODE_ENV', { region: 'us-east-1' })
+  .then(parameter => {
+    console.log(parameter);
+  })
+  .catch(error => console.error(error));
 // Serve static assets in production
+
 // if (process.env.NODE_ENV === 'production') {
 // Set static folder
 app.use(express.static('client/build'));
