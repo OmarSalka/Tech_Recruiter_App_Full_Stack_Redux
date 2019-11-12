@@ -56,6 +56,7 @@ export const getRepos = login => async dispatch => {
     type: GET_REPOS,
     payload: response.data
   });
+  console.log(response.data);
 };
 
 // Clear user from state

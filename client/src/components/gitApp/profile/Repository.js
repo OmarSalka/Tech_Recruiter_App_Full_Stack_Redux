@@ -6,7 +6,11 @@ const Repository = ({ repo }) => {
 
   return (
     <div className='repo'>
-      <h2>{name}</h2>
+      <a href={clone_url} target='_blank' rel='noopener noreferrer'>
+        <h2 style={{ display: 'inline' }}>{name}</h2>&nbsp;&nbsp;
+        <i style={{ color: '#1da1f2' }} className='fas fa-link'></i>
+      </a>
+
       <p style={{ fontSize: 14 }}>{description}</p>
       <p>
         ~ Clone repo ~
