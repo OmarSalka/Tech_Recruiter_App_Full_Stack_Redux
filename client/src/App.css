@@ -1023,6 +1023,12 @@ input {
 
   .profileCard {
     grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .repo span {
+    word-break: break-all;
   }
 
   .hireable-mobile {
