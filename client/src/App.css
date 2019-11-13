@@ -72,6 +72,8 @@ a {
   /* border: none; */
   /* border-radius: 5px; */
   margin-top: 1rem;
+  -webkit-appearance: none;
+  border-radius: 0;
 }
 
 input {
