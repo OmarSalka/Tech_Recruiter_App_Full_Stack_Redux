@@ -109,6 +109,8 @@ input {
   border: none;
   border-bottom: 1px solid #1da1f2;
   padding: 0.5rem 0rem;
+  -webkit-appearance: none;
+  border-radius: 0;
 }
 .form-sm input:focus {
   opacity: 1;
