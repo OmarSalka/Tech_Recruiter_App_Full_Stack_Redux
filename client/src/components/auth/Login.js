@@ -100,7 +100,6 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { login, clearErrors, setAlert }
-)(Login);
+export default connect(mapStateToProps, { login, clearErrors, setAlert })(
+  Login
+);

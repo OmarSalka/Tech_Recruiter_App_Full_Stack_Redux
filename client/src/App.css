@@ -112,7 +112,8 @@ input {
   -webkit-appearance: none;
   border-radius: 0;
 }
-.form-sm input:focus {
+.form-sm input[type='text']:focus,
+.form-sm input[type='password']:focus {
   opacity: 1;
   outline: none;
   background: 0%;
@@ -144,6 +145,10 @@ input {
 
 .btn:hover {
   opacity: 0.7;
+}
+
+.btn:focus {
+  background: #1da1f2;
 }
 
 .alert {
