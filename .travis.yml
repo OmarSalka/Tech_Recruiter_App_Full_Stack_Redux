@@ -1,0 +1,36 @@
+language: generic
+
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t omarsalka/react-test -f ./client/Dockerfile.dev ./client
+  - gem install bundler --version '1.7.4'
+
+script:
+  - docker run -e CI=true omarsalka/react-test npm test
+
+after_success:
+  - docker build -t omarsalka/client ./client
+  - docker build -t omarsalka/nginx ./nginx
+  - docker build -t omarsalka/server ./server
+  # Log in to Docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push omarsalka/client
+  - docker push omarsalka/nginx
+  - docker push omarsalka/server
+
+deploy:
+  # edge: true
+  provider: elasticbeanstalk
+  region: us-east-1
+  app: TechRecruiterApp
+  env: Techrecruiterapp-env
+  bucket_name: elasticbeanstalk-us-east-1-595616484790
+  bucket_path: TechRecruiterApp
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
