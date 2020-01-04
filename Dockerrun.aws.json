@@ -1,32 +1,120 @@
 {
   "AWSEBDockerrunVersion": 2,
+  "volumes": [
+    {
+      "name": "home-ec2-user-certs",
+      "host": {
+        "sourcePath": "/home/ec2-user/certs"
+      }
+    },
+    {
+      "name": "etc-nginx-vhost-d",
+      "host": {
+        "sourcePath": "/etc/nginx/vhost.d"
+      }
+    },
+    {
+      "name": "usr-share-nginx-html",
+      "host": {
+        "sourcePath": "/usr/share/nginx/html"
+      }
+    },
+    {
+      "name": "var-run-docker-sock",
+      "host": {
+        "sourcePath": "/var/run/docker.sock"
+      }
+    }
+  ],
   "containerDefinitions": [
+    {
+      "name": "nginx-proxy",
+      "image": "jwilder/nginx-proxy",
+      "essential": true,
+      "dockerLabels": {
+        "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy": "true"
+      },
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        },
+        {
+          "containerPort": 443,
+          "hostPort": 443
+        }
+      ],
+      "mountPoints": [
+        {
+          "sourceVolume": "home-ec2-user-certs",
+          "containerPath": "/etc/nginx/certs",
+          "readOnly": true
+        },
+        {
+          "sourceVolume": "etc-nginx-vhost-d",
+          "containerPath": "/etc/nginx/vhost.d"
+        },
+        {
+          "sourceVolume": "usr-share-nginx-html",
+          "containerPath": "/usr/share/nginx/html"
+        },
+        {
+          "sourceVolume": "var-run-docker-sock",
+          "containerPath": "/tmp/docker.sock",
+          "readOnly": true
+        }
+      ],
+      "links": ["client", "server"],
+      "memory": 128
+    },
+    {
+      "name": "letsencrypt-nginx-proxy-companion",
+      "image": "jrcs/letsencrypt-nginx-proxy-companion",
+      "essential": true,
+      "memory": 128,
+      "volumesFrom": [
+        {
+          "sourceContainer": "nginx-proxy"
+        }
+      ],
+      "mountPoints": [
+        {
+          "sourceVolume": "home-ec2-user-certs",
+          "containerPath": "/etc/nginx/certs"
+        },
+        {
+          "sourceVolume": "var-run-docker-sock",
+          "containerPath": "/var/run/docker.sock",
+          "readOnly": true
+        }
+      ]
+    },
     {
       "name": "client",
       "image": "omarsalka/client",
       "hostname": "client",
       "essential": false,
-      "memory": 160
+      "memory": 160,
+      "environment": [
+        {
+          "name": "VIRTUAL_HOST",
+          "value": "techrecruiterapp.com"
+        },
+        {
+          "name": "LETSENCRYPT_HOST",
+          "value": "techrecruiterapp.com"
+        },
+        {
+          "name": "LETSENCRYPT_EMAIL",
+          "value": "omarsalka9@gmail.com"
+        }
+      ]
     },
     {
       "name": "server",
       "image": "omarsalka/server",
       "hostname": "api",
       "essential": false,
-      "memory": 128
-    },
-    {
-      "name": "nginx",
-      "image": "omarsalka/nginx",
-      "hostname": "nginx",
-      "essential": true,
-      "portMappings": [
-        {
-          "hostPort": 80,
-          "containerPort": 80
-        }
-      ],
-      "links": ["client", "server"],
       "memory": 128
     }
   ]
