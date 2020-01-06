@@ -8,6 +8,9 @@ services:
     restart: always
     ports:
       - "3050:80"
+    links:
+      - client:client
+      - api:api
   client:
     build:
       dockerfile: Dockerfile.dev
