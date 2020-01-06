@@ -1,13 +1,6 @@
 version: "3"
 
 services:
-  nginx:
-    build:
-      dockerfile: Dockerfile.dev
-      context: ./nginx
-    restart: always
-    ports:
-      - "3050:80"
   client:
     build:
       dockerfile: Dockerfile.dev
@@ -24,3 +17,10 @@ services:
     volumes:
       - /app/node_modules
       - ./server:/app
+  nginx:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    restart: always
+    ports:
+      - "3050:80"
