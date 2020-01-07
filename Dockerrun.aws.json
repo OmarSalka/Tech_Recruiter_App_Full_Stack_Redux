@@ -16,14 +16,18 @@
       "memory": 128
     },
     {
-      "name": "nginx",
-      "image": "omarsalka/nginx",
-      "hostname": "nginx",
+      "name": "nginx-letsencrypt",
+      "image": "omarsalka/nginx-letsencrypt",
+      "hostname": "nginx-letsencrypt",
       "essential": true,
       "portMappings": [
         {
           "hostPort": 80,
           "containerPort": 80
+        },
+        {
+          "hostPort": 443,
+          "containerPort": 443
         }
       ],
       "links": ["client", "server"],
