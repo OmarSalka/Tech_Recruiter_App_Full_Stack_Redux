@@ -4,7 +4,8 @@ services:
   nginx:
     build:
       dockerfile: Dockerfile.dev
-      context: ./nginx
+      # context: ./nginx
+      context: ./nginx-letsencrypt
     restart: always
     ports:
       - "3050:80"

@@ -11,7 +11,7 @@ fi
 if [[ ! -f /usr/share/nginx/certificates/cert.crt ]]; then
     openssl genrsa -out /usr/share/nginx/certificates/privkey.pem 4096
     openssl req -new -key /usr/share/nginx/certificates/privkey.pem -out /usr/share/nginx/certificates/cert.csr -nodes -subj \
-    "/C=PT/ST=World/L=World/O=${DOMAIN:-techrecruiterapp.com}/OU=techrecruiterapp/CN=${DOMAIN:-techrecruiterapp.com}/EMAIL=${EMAIL:-omarsalka9@gmail.com}"
+    "/C=PT/ST=World/L=World/O=${DOMAIN:-techrecruiterapp.com}/OU=techrecruiterapp/CN=${DOMAIN:-techrecruiterapp.com}/EMAIL=${EMAIL:-omariosalkos@gmail.com}"
     openssl x509 -req -days 365 -in /usr/share/nginx/certificates/cert.csr -signkey /usr/share/nginx/certificates/privkey.pem -out /usr/share/nginx/certificates/fullchain.pem
 fi
 
