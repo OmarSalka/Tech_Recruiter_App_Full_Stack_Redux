@@ -8,7 +8,8 @@ services:
       context: ./nginx-letsencrypt
     restart: always
     ports:
-      - "3050:80"
+      - "80:80"
+      - "443:443"
     links:
       - client:client
       - api:api

@@ -3,7 +3,7 @@ if [[ ! -f /var/www/certbot ]]; then
 fi
 certbot certonly \
 		--debug \
-        --config-dir "${LETSENCRYPT_DIR:-/etc/letsencrypt}" \
+        --config-dir "/etc/letsencrypt" \
 		--agree-tos \
 		--domains "www.techrecruiterapp.com" \
 		--domains "techrecruiterapp.com" \
@@ -15,9 +15,9 @@ certbot certonly \
 		--dry-run \
 		$OPTIONS || true
 
-if [[ -f "${LETSENCRYPT_DIR:-/etc/letsencrypt}/live/techrecruiterapp.com/privkey.pem" ]]; then
-    cp "${LETSENCRYPT_DIR:-/etc/letsencrypt}/live/techrecruiterapp.com/privkey.pem" /usr/share/nginx/certificates/privkey.pem
-    cp "${LETSENCRYPT_DIR:-/etc/letsencrypt}/live/techrecruiterapp.com/fullchain.pem" /usr/share/nginx/certificates/fullchain.pem
+if [[ -f "/etc/letsencrypt/live/techrecruiterapp.com/privkey.pem" ]]; then
+    cp "/etc/letsencrypt/live/techrecruiterapp.com/privkey.pem" /usr/share/nginx/certificates/privkey.pem
+    cp "/etc/letsencrypt/live/techrecruiterapp.com/fullchain.pem" /usr/share/nginx/certificates/fullchain.pem
 fi
 # if [[ ! -f /var/www/certbot ]]; then
 #     mkdir -p /var/www/certbot
