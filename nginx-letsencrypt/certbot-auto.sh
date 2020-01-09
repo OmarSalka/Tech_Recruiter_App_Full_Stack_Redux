@@ -1,5 +1,5 @@
-if [[ ! -f /var/www/certbot ]]; then
-    mkdir -p /var/www/certbot
+if [[ ! -f /usr/local/bin/certbot-auto ]]; then
+    mkdir -p /usr/local/bin/certbot-auto
 fi
 certbot-auto certonly \
 		--debug \
@@ -11,7 +11,7 @@ certbot-auto certonly \
 		--expand \
 		--noninteractive \
 		--debug-challenges \
-		--webroot -w /var/www/certbot \
+		--webroot -w /usr/local/bin/certbot-auto \
 		--dry-run \
 		$OPTIONS || true
 
