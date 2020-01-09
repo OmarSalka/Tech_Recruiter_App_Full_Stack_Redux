@@ -12,7 +12,6 @@ certbot certonly \
 		--noninteractive \
 		--debug-challenges \
 		--webroot -w /var/www/certbot \
-		--dry-run \
 		$OPTIONS || true
 
 if [[ -f "/etc/letsencrypt/live/techrecruiterapp.com/privkey.pem" ]]; then
