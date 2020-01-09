@@ -1,7 +1,7 @@
 if [[ ! -f /var/www/certbot ]]; then
     mkdir -p /var/www/certbot
 fi
-certbot certonly \
+certbot-auto certonly \
 		--debug \
         --config-dir "/etc/letsencrypt" \
 		--agree-tos \

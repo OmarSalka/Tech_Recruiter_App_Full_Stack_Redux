@@ -1,5 +1,6 @@
 FROM nginx:1.15-alpine 
 RUN apk add inotify-tools certbot openssl ca-certificates
+RUN yum install certbot python2-certbot-nginx yum install python2-acme
 WORKDIR /opt
 COPY entrypoint.sh nginx-letsencrypt
 COPY certbot.sh certbot.sh
