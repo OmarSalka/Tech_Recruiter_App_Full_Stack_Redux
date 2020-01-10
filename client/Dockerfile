@@ -1,5 +1,5 @@
 FROM node:alpine as builder
-
+RUN apk update && apk add bash
 WORKDIR /app
 
 #copying the package files and moving them to working directory

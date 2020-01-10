@@ -1,4 +1,5 @@
-FROM nginx:1.17.6-alpine 
+FROM nginx:1.17.6-alpine
+RUN apk update && apk add bash 
 RUN apk add inotify-tools openssl ca-certificates
 # RUN yum install certbot python2-certbot-nginx yum install python2-acme
 RUN wget https://dl.eff.org/certbot-auto
