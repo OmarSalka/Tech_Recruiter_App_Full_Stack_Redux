@@ -1,7 +1,7 @@
 FROM nginx:1.17.6-alpine
 RUN apk update && apk add bash
 # RUN apk add inotify-tools certbot openssl ca-certificates
-RUN apk add inotify-tools openssl ca-certificates
+RUN apk add inotify-tools openssl ca-certificates python3 augeas letsencrypt
 #####
 RUN wget https://dl.eff.org/certbot-auto
 RUN mv certbot-auto /usr/local/bin/certbot-auto

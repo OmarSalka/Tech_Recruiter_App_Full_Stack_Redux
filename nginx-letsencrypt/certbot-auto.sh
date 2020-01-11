@@ -1,8 +1,8 @@
-if [[ ! -f /usr/local/bin/certbot-auto ]]; then
-    mkdir -p /usr/local/bin/certbot-auto
+if [[ ! -f /var/www/certbot-auto ]]; then
+    mkdir -p /var/www/certbot-auto
 fi
 certbot-auto certonly \
-		--debug \
+		--verbose 
         --config-dir "/etc/letsencrypt" \
 		--agree-tos \
 		--domains "www.techrecruiterapp.com" \
@@ -10,15 +10,18 @@ certbot-auto certonly \
 		--email "omariosalkos@gmail.com" \
 		--expand \
 		--noninteractive \
-		--debug-challenges \
-		--webroot -w /usr/local/bin/certbot-auto \
-		--dry-run \
+		--webroot -w /var/www/certbot-auto \
+		--dry-run
 		$OPTIONS || true
 
 if [[ -f "/etc/letsencrypt/live/techrecruiterapp.com/privkey.pem" ]]; then
     cp "/etc/letsencrypt/live/techrecruiterapp.com/privkey.pem" /usr/share/nginx/certificates/privkey.pem
     cp "/etc/letsencrypt/live/techrecruiterapp.com/fullchain.pem" /usr/share/nginx/certificates/fullchain.pem
 fi
+# /usr/local/bin/certbot-auto
+# 		--os-packages-only \
+		# --debug \
+		# --debug-challenges \
 # if [[ ! -f /var/www/certbot ]]; then
 #     mkdir -p /var/www/certbot
 # fi
