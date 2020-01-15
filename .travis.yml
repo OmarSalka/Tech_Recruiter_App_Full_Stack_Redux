@@ -25,10 +25,10 @@ after_success:
 deploy:
   # edge: true
   provider: elasticbeanstalk
-  region: us-east-1
+  region: us-east-2
   app: TechRecruiterApp
   env: Techrecruiterapp-env
-  bucket_name: elasticbeanstalk-us-east-1-595616484790
+  bucket_name: elasticbeanstalk-us-east-2-595616484790
   bucket_path: TechRecruiterApp
   on:
     branch: master
