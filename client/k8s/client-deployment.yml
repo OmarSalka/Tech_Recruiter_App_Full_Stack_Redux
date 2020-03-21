@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-deployment
+spec:
+  replicas: 5
+  selector:
+  matchLabels:
+    component: client
+  template:
+    metadata:
+      labels:
+        component: patient
+    spec:
+      containers:
+        - name: client
+          image: <INPUT CONTAINER IMAGE NAME HERE>
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
