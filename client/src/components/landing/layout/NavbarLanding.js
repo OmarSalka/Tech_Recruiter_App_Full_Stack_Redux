@@ -1,10 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Link as LinkScroll } from 'react-scroll';
-import PropTypes from 'prop-types';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Link as LinkScroll } from "react-scroll";
+import PropTypes from "prop-types";
 
-import styled, { keyframes } from 'styled-components';
-import { fadeInDown } from 'react-animations';
+import styled, { keyframes } from "styled-components";
+import { fadeInDown } from "react-animations";
 
 const FadeIn = styled.div`
   animation: 2s ${keyframes`${fadeInDown}`};
@@ -12,7 +12,7 @@ const FadeIn = styled.div`
 
 const NavbarLanding = ({ icon, platform }) => {
   return (
-    <div className='navbar navLanding'>
+    <div className="navbar navLanding">
       <FadeIn>
         <h1>
           <i className={icon} /> {platform}
@@ -22,8 +22,8 @@ const NavbarLanding = ({ icon, platform }) => {
         <li>
           <FadeIn>
             <LinkScroll
-              activeClass='active'
-              to='section1'
+              activeClass="active"
+              to="section1"
               spy={true}
               smooth={true}
               offset={0}
@@ -36,8 +36,8 @@ const NavbarLanding = ({ icon, platform }) => {
         <li>
           <FadeIn>
             <LinkScroll
-              activeClass='active'
-              to='section2'
+              activeClass="active"
+              to="section2"
               spy={true}
               smooth={true}
               offset={0}
@@ -50,8 +50,8 @@ const NavbarLanding = ({ icon, platform }) => {
         <li>
           <FadeIn>
             <LinkScroll
-              activeClass='active'
-              to='section3'
+              activeClass="active"
+              to="section3"
               spy={true}
               smooth={true}
               offset={0}
@@ -63,9 +63,9 @@ const NavbarLanding = ({ icon, platform }) => {
         </li>
         <li>
           <FadeIn>
-            <Link to='/auth/login'>
+            <Link to="/auth/login">
               <span>
-                Login <i className='fas fa-sign-in-alt'></i>
+                Login <i className="fas fa-sign-in-alt"></i>
               </span>
             </Link>
           </FadeIn>
@@ -76,8 +76,8 @@ const NavbarLanding = ({ icon, platform }) => {
 };
 
 NavbarLanding.defaultProps = {
-  icon: 'fas fa-terminal',
-  platform: 'Tech R.A.'
+  icon: "fas fa-terminal",
+  platform: "Tech R.A."
 };
 
 NavbarLanding.propTypes = {

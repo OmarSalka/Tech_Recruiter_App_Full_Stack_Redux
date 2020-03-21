@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
-import { fadeInDown } from 'react-animations';
-import { connect } from 'react-redux';
-import { logout, loadUser } from '../../../actions/authActions';
-import { clearUsers } from '../../../actions/githubActions';
-import PropTypes from 'prop-types';
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import styled, { keyframes } from "styled-components";
+import { fadeInDown } from "react-animations";
+import { connect } from "react-redux";
+import { logout, loadUser } from "../../../actions/authActions";
+import { clearUsers } from "../../../actions/githubActions";
+import PropTypes from "prop-types";
 
 const FadeInDown = styled.div`
   animation: 2s ${keyframes`${fadeInDown}`};
@@ -32,23 +32,23 @@ const Navbar = ({
     <ul>
       <li>
         <FadeInDown>
-          <Link to='/gitapp'>Home</Link>
+          <Link to="/gitapp">Home</Link>
         </FadeInDown>
       </li>
       <li>
         <FadeInDown>
-          <Link to='/gitapp/database'>My Candidates</Link>
+          <Link to="/gitapp/database">My Candidates</Link>
         </FadeInDown>
       </li>
       <li>
         <FadeInDown>
-          <Link to='/gitapp/about'>About</Link>
+          <Link to="/gitapp/about">About</Link>
         </FadeInDown>
       </li>
       <li>
         <FadeInDown>
-          <Link to='/' onClick={logoutClicked}>
-            Logout &nbsp; <i className='fas fa-sign-out-alt'></i>
+          <Link to="/" onClick={logoutClicked}>
+            Logout &nbsp; <i className="fas fa-sign-out-alt"></i>
           </Link>
         </FadeInDown>
       </li>
@@ -59,23 +59,23 @@ const Navbar = ({
     <ul>
       <li>
         <FadeInDown>
-          <Link to='/auth/login'>Login</Link>
+          <Link to="/auth/login">Login</Link>
         </FadeInDown>
       </li>
       <li>
         <FadeInDown>
-          <Link to='/auth/register'>Register</Link>
+          <Link to="/auth/register">Register</Link>
         </FadeInDown>
       </li>
     </ul>
   );
 
   return (
-    <div className='navbar'>
+    <div className="navbar">
       <FadeInDown>
-        <div className='logo'>
+        <div className="logo">
           <h1>
-            <i className={icon} />{' '}
+            <i className={icon} />{" "}
             <span>{user ? `Hi, ${user.name}` : platform}</span>
           </h1>
         </div>
@@ -86,8 +86,8 @@ const Navbar = ({
 };
 
 Navbar.defaultProps = {
-  icon: 'fas fa-terminal',
-  platform: 'Tech R.A.'
+  icon: "fas fa-terminal",
+  platform: "Tech R.A."
 };
 
 Navbar.propTypes = {
@@ -103,7 +103,6 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { logout, loadUser, clearUsers }
-)(Navbar);
+export default connect(mapStateToProps, { logout, loadUser, clearUsers })(
+  Navbar
+);
