@@ -5,7 +5,8 @@ services:
     build:
       dockerfile: Dockerfile.dev
       # context: ./nginx
-      context: ./nginx-letsencrypt
+      # context: ./nginx-letsencrypt
+      context: ./nginx
     restart: always
     ports:
       - "80:80"
